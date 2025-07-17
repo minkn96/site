@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간사이 3박 4일 여행 일정표</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .day-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .day-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .day1 { border-left-color: #3498db; }
+        .day2 { border-left-color: #e74c3c; }
+        .day3 { border-left-color: #f39c12; }
+        .day4 { border-left-color: #27ae60; }
+        
+        .day-header {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .location-badge {
+            display: inline-block;
+            background: #e8f4f8;
+            color: #2980b9;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .schedule-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .time {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 0.9em;
+        }
+        
+        .activity {
+            margin-top: 5px;
+            font-size: 1em;
+            color: #2c3e50;
+        }
+        
+        .transport {
+            background: #fff3cd;
+            color: #856404;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-top: 5px;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .transport-info {
+            background: #e8f5e8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .transport-info h3 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+        
+        .pass-option {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid #27ae60;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .tips {
+            background: #f0f8ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .tips h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        .tip-item {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .tip-item:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .day-container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗾 간사이 3박 4일 여행</h1>
+            <p>8월 3일(토) - 8월 6일(화) | 오사카 ↔ 교토 ↔ 고베</p>
+        </div>
+        
+        <div class="transport-info">
+            <h3>🚅 교통패스 추천</h3>
+            <div class="pass-option">
+                <strong>JR 간사이 패스 3일권</strong>
+                <div class="price">5,800엔</div>
+                <div>✅ 간사이공항 ↔ 시내 하루카 포함</div>
+                <div>✅ 오사카-교토-고베 모든 JR 무제한</div>
+            </div>
+            <div class="pass-option">
+                <strong>대안: 개별 결제</strong>
+                <div>• 간사이공항 ↔ 난바: 920엔 (난카이 공항급행)</div>
+                <div>• 오사카 ↔ 고베: 410엔 (한신전철)</div>
+                <div>• 오사카 ↔ 교토: 580엔 (JR 신쾌속)</div>
+            </div>
+        </div>
+        
+        <div class="day-container">
+            <div class="day-card day1">
+                <div class="day-header">📅 8월 3일 (토) - 첫째날</div>
+                <div class="location-badge">🏨 오사카 숙박</div>
+                
+                <div class="schedule-item">
+                    <div class="time">14:00-15:30</div>
+                    <div class="activity">✈️ 간사이공항 도착</div>
+                    <div class="transport">🚊 간사이공항 → 난바: 난카이 공항급행 (44분, 920엔) 또는 리무진버스 (48분, 650엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">15:30-16:30</div>
+                    <div class="activity">🏨 호텔 체크인 & 짐 정리</div>
+                    <div class="transport">🚶 난바역 → 호텔: 도보 5분 (호텔 위치에 따라 다름)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">16:30-18:00</div>
+                    <div class="activity">🛍️ 오사카 파르코 지브리샵 (신사이바시)</div>
+                    <div class="transport">🚇 난바 → 신사이바시: 도보 10분 또는 오사카 지하철 미도스지선 (2분, 120엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">18:00-19:00</div>
+                    <div class="activity">🍽️ 도톤보리 저녁식사</div>
+                    <div class="transport">🚇 신사이바시 → 도톤보리: 도보 5분 또는 오사카 지하철 미도스지선 (2분, 120엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">19:00-20:30</div>
+                    <div class="activity">🏢 우메다 공중정원 석양&야경</div>
+                    <div class="transport">🚇 도톤보리 → 우메다: 오사카 지하철 미도스지선 (10분, 180엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">20:30-21:30</div>
+                    <div class="activity">🚢 도톤보리 원더크루즈 야경 투어</div>
+                    <div class="transport">🚇 우메다 → 도톤보리: 오사카 지하철 미도스지선 (10분, 180엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">21:30-22:00</div>
+                    <div class="activity">🏨 호텔 복귀</div>
+                    <div class="transport">🚶 도톤보리 → 난바 호텔: 도보 5-10분</div>
+                </div>
+            </div>
+            
+            <div class="day-card day2">
+                <div class="day-header">📅 8월 4일 (일) - 둘째날</div>
+                <div class="location-badge">🏨 오사카 숙박</div>
+                
+                <div class="schedule-item">
+                    <div class="time">08:00-08:30</div>
+                    <div class="activity">🍽️ 호텔 조식 & 출발 준비</div>
+                    <div class="transport">🚶 호텔 → 난바역: 도보 5분</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">08:30-09:30</div>
+                    <div class="activity">🚊 오사카 → 고베 이동</div>
+                    <div class="transport">🚇 난바 → 우메다: 오사카 지하철 미도스지선 (10분, 180엔) + 한신전철 우메다 → 산노미야 (32분, 410엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">09:30-12:00</div>
+                    <div class="activity">🚠 고베 로프웨이 + 누노비키 허브원</div>
+                    <div class="transport">🚇 산노미야 → 신고베: 도보 10분 또는 시내버스 7번 (5분, 210엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">12:00-13:00</div>
+                    <div class="activity">☕ 스타벅스 기타노이진칸점 & 이쿠타신사</div>
+                    <div class="transport">🚇 신고베 → 산노미야: 도보 10분 또는 시내버스 7번 (5분, 210엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">13:00-14:30</div>
+                    <div class="activity">🍣 오우세이 스시집 점심</div>
+                    <div class="transport">🚶 이쿠타신사 → 오우세이: 도보 8분</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">14:30-16:30</div>
+                    <div class="activity">🛍️ 모토마치 상점가 소품샵 쇼핑</div>
+                    <div class="transport">🚇 오우세이 → 모토마치: 도보 5분 또는 JR 산노미야 → 모토마치 (2분, 120엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">16:30-18:30</div>
+                    <div class="activity">🌅 하버랜드공원 & 모자이크몰</div>
+                    <div class="transport">🚇 모토마치 → 하버랜드: 도보 10분 또는 JR 모토마치 → 하버랜드 (3분, 120엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">18:30-20:00</div>
+                    <div class="activity">🌃 히가시유엔치 야경</div>
+                    <div class="transport">🚇 하버랜드 → 히가시유엔치: JR 하버랜드 → 산노미야 (3분, 120엔) + 한큐 고베선 → 히가시유엔치 (5분, 150엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">20:00-21:00</div>
+                    <div class="activity">🚊 고베 → 오사카 복귀</div>
+                    <div class="transport">🚇 히가시유엔치 → 산노미야: 한큐 고베선 (5분, 150엔) + 한신전철 → 우메다 (32분, 410엔) + 오사카 지하철 미도스지선 → 난바 (10분, 180엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">21:00-21:30</div>
+                    <div class="activity">🏨 호텔 도착 & 휴식</div>
+                    <div class="transport">🚶 난바역 → 호텔: 도보 5분</div>
+                </div>
+            </div>
+            
+            <div class="day-card day3">
+                <div class="day-header">📅 8월 5일 (월) - 셋째날</div>
+                <div class="location-badge">🏨 교토 숙박</div>
+                
+                <div class="schedule-item">
+                    <div class="time">08:30-09:00</div>
+                    <div class="activity">🍽️ 호텔 조식 & 체크아웃</div>
+                    <div class="transport">🚶 호텔 → 난바역: 도보 5분</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">09:00-11:00</div>
+                    <div class="activity">🏯 오사카성 관광</div>
+                    <div class="transport">🚇 난바 → 오사카조코엔마에: 오사카 지하철 다니마치선 (13분, 230엔) 또는 센니치마에선 (10분, 180엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">11:00-12:30</div>
+                    <div class="activity">🐠 해유관 관광</div>
+                    <div class="transport">🚇 오사카조코엔마에 → 오사카코: 오사카 지하철 츄오선 (15분, 200엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">12:30-13:30</div>
+                    <div class="activity">🚊 오사카 → 교토 이동</div>
+                    <div class="transport">🚇 오사카코 → 오사카: 오사카 지하철 츄오선 (15분, 240엔) + 🚄 JR 오사카 → 교토: 신쾌속 (29분, 580엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">13:30-14:30</div>
+                    <div class="activity">🏨 교토 호텔 체크인 & 점심식사</div>
+                    <div class="transport">🚶 교토역 → 호텔: 도보 또는 택시 (호텔 위치에 따라 다름)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">14:30-16:00</div>
+                    <div class="activity">⛩️ 후시미이나리 신사 (여우신사)</div>
+                    <div class="transport">🚄 JR 교토 → 이나리: JR 나라선 (5분, 150엔) 또는 게이한 본선 교토 → 후시미이나리 (7분, 160엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">16:00-17:30</div>
+                    <div class="activity">🏛️ 청수사</div>
+                    <div class="transport">🚄 이나리 → 교토: JR 나라선 (5분, 150엔) + 🚌 교토 → 청수도: 교토 시내버스 100번 (20분, 230엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">17:30-19:00</div>
+                    <div class="activity">🍽️ 기온 일대 저녁식사</div>
+                    <div class="transport">🚌 청수도 → 기온시조: 교토 시내버스 206번 (10분, 230엔) 또는 도보 15분</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">19:00-19:30</div>
+                    <div class="activity">🏨 호텔 복귀</div>
+                    <div class="transport">🚌 기온시조 → 교토역: 교토 시내버스 205번 (15분, 230엔) 또는 게이한 본선 → JR 교토 (10분, 160엔)</div>
+                </div>
+            </div>
+            
+            <div class="day-card day4">
+                <div class="day-header">📅 8월 6일 (화) - 넷째날</div>
+                <div class="location-badge">✈️ 출발일</div>
+                
+                <div class="schedule-item">
+                    <div class="time">07:30-08:00</div>
+                    <div class="activity">🍽️ 호텔 조식 & 체크아웃</div>
+                    <div class="transport">🚶 호텔 → 교토역: 도보 또는 택시 (호텔 위치에 따라 다름)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">08:00-09:30</div>
+                    <div class="activity">⛩️ 금각사 관광</div>
+                    <div class="transport">🚌 교토역 → 금각사미치: 교토 시내버스 101번 (25분, 230엔) 또는 205번 (30분, 230엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">09:30-11:30</div>
+                    <div class="activity">🎋 아라시야마 죽림 & 대나무숲 산책</div>
+                    <div class="transport">🚌 금각사 → 아라시야마: 교토 시내버스 59번 (30분, 230엔) 또는 JR 하나조노 → 아라시야마 (15분, 200엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">11:30-12:30</div>
+                    <div class="activity">🍽️ 아라시야마 점심식사</div>
+                    <div class="transport">🚶 죽림 → 아라시야마 상점가: 도보 5분</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">12:30-13:30</div>
+                    <div class="activity">🏛️ 헤이안신궁</div>
+                    <div class="transport">🚌 아라시야마 → 헤이안신궁마에: 교토 시내버스 93번 (35분, 230엔) 또는 게이후쿠 아라시야마선 → 게이한 본선 (40분, 360엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">13:30-14:00</div>
+                    <div class="activity">🧳 교토역 복귀 & 짐 정리</div>
+                    <div class="transport">🚌 헤이안신궁 → 교토역: 교토 시내버스 5번 (15분, 230엔) 또는 지하철 도자이선 → 가라스마선 (12분, 260엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">14:00-15:30</div>
+                    <div class="activity">🚊 교토 → 간사이공항</div>
+                    <div class="transport">🚄 JR 교토 → 간사이공항: 하루카 직통 (1시간 15분, 1,880엔) 또는 JR 교토 → 신오사카 (15분, 580엔) + 난카이 신오사카 → 간사이공항 (50분, 1,190엔)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">15:30-16:30</div>
+                    <div class="activity">✈️ 공항 수속 & 출발</div>
+                    <div class="transport">🚶 간사이공항 터미널 내 이동 및 출국 수속</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tips">
+            <h3>💡 여행 꿀팁</h3>
+            <div class="tip-item">
+                <span class="highlight">교통패스</span>: JR 간사이 패스 3일권(5,800엔) vs 개별결제 비교 후 선택
+            </div>
+            <div class="tip-item">
+                <span class="highlight">예약 필수</span>: 오우세이 스시집은 사전 예약 필수
+            </div>
+            <div class="tip-item">
+                <span class="highlight">이른 아침</span>: 후시미이나리는 셋째날 오후 방문으로 변경, 금각사는 넷째날 아침 8시 방문
+            </div>
+            <div class="tip-item">
+                <span class="highlight">교토 일정</span>: 후시미이나리→청수사→기온은 동선상 연결, 금각사→아라시야마→헤이안신궁은 북서쪽 루트
+            </div>
+            <div class="tip-item">
+                <span class="highlight">해유관 이동</span>: 오사카성 관광 후 바로 방문하여 교토 이동 전 시간 절약
+            </div>
+            <div class="tip-item">
+                <span class="highlight">날씨 체크</span>: 고베 로프웨이는 날씨에 따라 운행 중단 가능
+            </div>
+            <div class="tip-item">
+                <span class="highlight">교통앱</span>: Google Maps 또는 Hyperdia 앱으로 실시간 교통편 확인 권장
+            </div>
+        </div>
+    </div>
+</body>
+</html>
