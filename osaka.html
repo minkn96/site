@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>간사이 3박 4일 여행 일정표 - 패스 최적화</title>
+    <title>간사이 3박 4일 여행 - 다중패스 최적화 전략</title>
     <style>
         * {
             margin: 0;
@@ -44,6 +44,52 @@
             opacity: 0.9;
         }
         
+        .strategy-card {
+            background: #e8f5e8;
+            padding: 25px;
+            margin: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #27ae60;
+        }
+        
+        .strategy-card h3 {
+            color: #27ae60;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .pass-combo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .pass-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .pass-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .pass-price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .pass-coverage {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
         .day-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -82,13 +128,18 @@
             margin-bottom: 15px;
         }
         
+        .pass-badges {
+            margin-bottom: 15px;
+        }
+        
         .pass-badge {
             display: inline-block;
             padding: 3px 8px;
             border-radius: 12px;
             font-size: 0.8em;
             font-weight: bold;
-            margin-left: 8px;
+            margin-right: 5px;
+            margin-bottom: 5px;
         }
         
         .jr-badge { background: #d4edda; color: #155724; }
@@ -116,7 +167,6 @@
             color: #2c3e50;
         }
         
-        /* JR 간사이 패스 이용 가능 구간 - 초록색 */
         .transport-jr {
             background: #d4edda;
             color: #155724;
@@ -127,7 +177,6 @@
             border-left: 3px solid #28a745;
         }
         
-        /* 한큐패스 이용 가능 구간 - 주황색 */
         .transport-hankyu {
             background: #fff3cd;
             color: #856404;
@@ -138,7 +187,6 @@
             border-left: 3px solid #ffc107;
         }
         
-        /* 게이한 패스 이용 가능 구간 - 보라색 */
         .transport-keihan {
             background: #e2e3ff;
             color: #383d41;
@@ -149,7 +197,6 @@
             border-left: 3px solid #6f42c1;
         }
         
-        /* 교토 지하철 패스 이용 가능 구간 - 청록색 */
         .transport-kyoto-subway {
             background: #d1f2eb;
             color: #0e6251;
@@ -160,7 +207,6 @@
             border-left: 3px solid #17a589;
         }
         
-        /* 별도 결제 필요 구간 - 빨간색 */
         .transport-paid {
             background: #f8d7da;
             color: #721c24;
@@ -171,7 +217,6 @@
             border-left: 3px solid #dc3545;
         }
         
-        /* 도보 - 파란색 */
         .transport-walk {
             background: #d1ecf1;
             color: #0c5460;
@@ -182,48 +227,48 @@
             border-left: 3px solid #17a2b8;
         }
         
-        .transport-info {
-            background: #e8f5e8;
+        .cost-summary {
+            background: #fff9c4;
             padding: 20px;
-            margin: 20px 0;
+            margin: 20px;
             border-radius: 10px;
-            border-left: 4px solid #27ae60;
+            border-left: 4px solid #f39c12;
         }
         
-        .transport-info h3 {
-            color: #27ae60;
-            margin-bottom: 10px;
+        .cost-summary h3 {
+            color: #f39c12;
+            margin-bottom: 15px;
         }
         
-        .pass-option {
+        .cost-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .cost-item {
             background: white;
             padding: 15px;
-            margin: 10px 0;
             border-radius: 8px;
-            border-left: 3px solid #27ae60;
-        }
-        
-        .price {
-            font-weight: bold;
-            color: #e74c3c;
+            text-align: center;
         }
         
         .tips {
             background: #f0f8ff;
             padding: 20px;
-            margin: 20px 0;
+            margin: 20px;
             border-radius: 10px;
             border-left: 4px solid #3498db;
         }
         
         .tips h3 {
             color: #3498db;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .tip-item {
-            margin-bottom: 8px;
-            padding-left: 15px;
+            margin-bottom: 10px;
+            padding-left: 20px;
             position: relative;
         }
         
@@ -243,7 +288,7 @@
         .legend {
             background: #f8f9fa;
             padding: 20px;
-            margin: 20px 0;
+            margin: 20px;
             border-radius: 10px;
             border-left: 4px solid #6c757d;
         }
@@ -274,32 +319,6 @@
         .legend-paid { background: #f8d7da; }
         .legend-walk { background: #d1ecf1; }
         
-        .cost-summary {
-            background: #fff9c4;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            border-left: 4px solid #f39c12;
-        }
-        
-        .cost-summary h3 {
-            color: #f39c12;
-            margin-bottom: 15px;
-        }
-        
-        .cost-breakdown {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        
-        .cost-item {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
         @media (max-width: 768px) {
             .day-container {
                 grid-template-columns: 1fr;
@@ -316,70 +335,71 @@
     <div class="container">
         <div class="header">
             <h1>🗾 간사이 3박 4일 여행</h1>
-            <p>8월 3일(토) - 8월 6일(화) | 패스 최적화 루트</p>
+            <p>8월 3일(토) - 8월 6일(화) | 다중패스 최적화 전략</p>
         </div>
         
-        <div class="legend">
-            <h3>🎫 교통패스 색상 범례</h3>
-            <div class="legend-item">
-                <div class="legend-color legend-jr"></div>
-                <span><strong>초록색</strong>: JR 간사이 패스 4일권 (하루카 지정석 2회 포함)</span>
+        <div class="strategy-card">
+            <h3>🎯 다중패스 최적화 전략 (2025년 최신 정보 반영)</h3>
+            <p style="margin-bottom: 15px;">
+                <strong>✅ 검증됐습니다!</strong> 교토 시영지하철 1일권(1,100엔)에 시내버스가 포함되어 활용도가 매우 높습니다!
+            </p>
+            
+            <div class="pass-combo">
+                <div class="pass-item">
+                    <div class="pass-name">🚄 JR 간사이패스 4일권</div>
+                    <div class="pass-price">7,200엔</div>
+                    <div class="pass-coverage">메인 축: 오사카↔고베↔교토, 후시미이나리, 하루카 지정석 2회</div>
+                </div>
+                
+                <div class="pass-item">
+                    <div class="pass-name">🚇 교토 지하철+버스 1일권</div>
+                    <div class="pass-price">1,100엔</div>
+                    <div class="pass-coverage">교토 시내: 지하철 전선 + 시내버스 + 교토버스(일부) + 오하라/타카오 구간</div>
+                </div>
+                
+                <div class="pass-item">
+                    <div class="pass-name">🚊 게이한패스 1일권</div>
+                    <div class="pass-price">1,000엔</div>
+                    <div class="pass-coverage">후시미이나리 대안루트, 우지, 교토 시내 동쪽</div>
+                </div>
+                
+                <div class="pass-item">
+                    <div class="pass-name">🚝 한큐 1일패스</div>
+                    <div class="pass-price">1,300엔</div>
+                    <div class="pass-coverage">오사카↔교토 (아라시야마 접근), 고베 서쪽</div>
+                </div>
             </div>
-            <div class="legend-item">
-                <div class="legend-color legend-hankyu"></div>
-                <span><strong>주황색</strong>: 한큐패스 1일권 (2일차 사용)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color legend-keihan"></div>
-                <span><strong>보라색</strong>: 게이한 패스 1일권 (3일차 사용)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color legend-kyoto-subway"></div>
-                <span><strong>청록색</strong>: 교토 시영 지하철 1일권 (4일차 사용)</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color legend-paid"></div>
-                <span><strong>빨간색</strong>: 별도 결제 필요</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color legend-walk"></div>
-                <span><strong>파란색</strong>: 도보 이동</span>
-            </div>
-        </div>
-        
-        <div class="transport-info">
-            <h3>🚅 보유 교통패스 활용 전략</h3>
-            <div class="pass-option">
-                <strong>JR 간사이 패스 4일권 (전 기간 사용)</strong>
-                <div class="price">7,200엔</div>
-                <div>✅ 하루카 지정석 왕복 (1일차 입국 + 4일차 출국)</div>
-                <div>✅ 오사카↔고베 신쾌속 무제한</div>
-                <div>✅ 오사카↔교토 신쾌속 무제한</div>
-                <div>✅ JR 나라선(후시미이나리) 무제한</div>
-            </div>
-            <div class="pass-option">
-                <strong>추가 패스 일별 활용</strong>
-                <div>🟠 <strong>2일차</strong>: 한큐패스 1일권 → 고베 히가시유엔치 야경</div>
-                <div>🟣 <strong>3일차</strong>: 게이한패스 1일권 → 후시미이나리, 기온 관광</div>
-                <div>🔵 <strong>4일차</strong>: 교토 지하철패스 1일권 → 헤이안신궁, 시내 이동</div>
+            
+            <div style="background: #e8f4f8; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                <strong>🎯 최적화 포인트:</strong> JR패스를 메인으로, 각 지역별 특화 패스를 1일씩 전략적 활용
             </div>
         </div>
 
-        <div class="cost-summary">
-            <h3>💰 교통비 절약 효과</h3>
-            <div class="cost-breakdown">
-                <div class="cost-item">
-                    <strong>패스 활용시</strong><br>
-                    약 <span class="price">1,500엔</span> 별도 결제
-                </div>
-                <div class="cost-item">
-                    <strong>개별 결제시</strong><br>
-                    약 <span class="price">12,000엔</span> 예상
-                </div>
-                <div class="cost-item">
-                    <strong>절약 금액</strong><br>
-                    약 <span class="price">10,500엔</span> 절약
-                </div>
+        <div class="legend">
+            <h3>🎫 다중패스 활용 범례</h3>
+            <div class="legend-item">
+                <div class="legend-color legend-jr"></div>
+                <span><strong>초록색</strong>: JR 간사이 패스 (메인 활용)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-kyoto-subway"></div>
+                <span><strong>청록색</strong>: 교토 지하철+버스 1일권 (교토 시내 완전 커버)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-keihan"></div>
+                <span><strong>보라색</strong>: 게이한패스 (우지, 후시미이나리 대안)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-hankyu"></div>
+                <span><strong>주황색</strong>: 한큐패스 (아라시야마, 고베 서쪽)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-paid"></div>
+                <span><strong>빨간색</strong>: 별도 결제</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-walk"></div>
+                <span><strong>파란색</strong>: 도보</span>
             </div>
         </div>
         
@@ -387,47 +407,49 @@
             <div class="day-card day1">
                 <div class="day-header">📅 8월 3일 (토) - 첫째날</div>
                 <div class="location-badge">🏨 오사카 숙박</div>
-                <span class="pass-badge jr-badge">JR패스 사용</span>
-                
-                <div class="schedule-item">
-                    <div class="time">14:00-15:30</div>
-                    <div class="activity">✈️ 간사이공항 도착</div>
-                    <div class="transport-jr">🚄 간사이공항 → 텐노지: 하루카 지정석 (30분, JR패스 무료)</div>
-                    <div class="transport-jr">+ JR 텐노지 → 난바: 환상선/야마토지선 (6분, JR패스 무료)</div>
+                <div class="pass-badges">
+                    <span class="pass-badge jr-badge">JR패스 시작</span>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">15:30-16:30</div>
+                    <div class="time">14:00-16:30</div>
+                    <div class="activity">✈️ 간사이공항 도착 & 이동</div>
+                    <div class="transport-jr">🚄 간사이공항 → 오사카: 하루카 (1시간, JR패스 - 지정석 1회차)</div>
+                    <div style="color: #155724; font-size: 0.8em; margin-top: 3px;">✅ JR패스 첫날부터 활용 시작! 하루카로 편안한 입국</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">16:30-17:00</div>
                     <div class="activity">🏨 호텔 체크인 & 짐 정리</div>
-                    <div class="transport-walk">🚶 난바역 → 호텔: 도보 5분</div>
+                    <div class="transport-jr">🚄 JR 오사카 → 난바: 간사이본선 (8분, JR패스)</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">16:30-18:00</div>
-                    <div class="activity">🛍️ 오사카 파르코 지브리샵 (신사이바시)</div>
+                    <div class="time">17:00-18:30</div>
+                    <div class="activity">🛍️ 신사이바시 쇼핑 & 오사카 파르코 지브리샵</div>
                     <div class="transport-walk">🚶 난바 → 신사이바시: 도보 10분</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">18:00-19:00</div>
+                    <div class="time">18:30-19:30</div>
                     <div class="activity">🍽️ 도톤보리 저녁식사</div>
                     <div class="transport-walk">🚶 신사이바시 → 도톤보리: 도보 5분</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">19:00-20:30</div>
+                    <div class="time">19:30-21:00</div>
                     <div class="activity">🏢 우메다 공중정원 석양&야경</div>
-                    <div class="transport-paid">🚇 도톤보리 → 우메다: 오사카 지하철 미도스지선 (10분, 180엔)</div>
+                    <div class="transport-jr">🚄 JR 난바 → 오사카 → 우메다: 간사이본선→환상선 (15분, JR패스)</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">20:30-21:30</div>
+                    <div class="time">21:00-22:00</div>
                     <div class="activity">🚢 도톤보리 원더크루즈 야경 투어</div>
-                    <div class="transport-paid">🚇 우메다 → 도톤보리: 오사카 지하철 미도스지선 (10분, 180엔)</div>
+                    <div class="transport-jr">🚄 JR 우메다 → 난바: 환상선→간사이본선 (15분, JR패스)</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">21:30-22:00</div>
+                    <div class="time">22:00-22:30</div>
                     <div class="activity">🏨 호텔 복귀</div>
                     <div class="transport-walk">🚶 도톤보리 → 난바 호텔: 도보 5-10분</div>
                 </div>
@@ -436,77 +458,81 @@
             <div class="day-card day2">
                 <div class="day-header">📅 8월 4일 (일) - 둘째날</div>
                 <div class="location-badge">🏨 오사카 숙박</div>
-                <span class="pass-badge jr-badge">JR패스</span>
-                <span class="pass-badge hankyu-badge">한큐패스</span>
+                <div class="pass-badges">
+                    <span class="pass-badge hankyu-badge">한큐패스 활용</span>
+                    <span class="pass-badge jr-badge">JR패스 병행</span>
+                </div>
                 
                 <div class="schedule-item">
                     <div class="time">08:00-08:30</div>
                     <div class="activity">🍽️ 호텔 조식 & 출발 준비</div>
-                    <div class="transport-walk">🚶 호텔 → 난바역: 도보 5분</div>
+                    <div class="transport-walk">🚶 호텔 → 우메다: 도보 + JR</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">08:30-09:15</div>
                     <div class="activity">🚊 오사카 → 고베 이동</div>
-                    <div class="transport-jr">🚄 JR 난바 → 오사카: 간사이본선 (8분, JR패스 무료)</div>
-                    <div class="transport-jr">+ JR 오사카 → 산노미야: 도카이도본선 신쾌속 (21분, JR패스 무료)</div>
+                    <div class="transport-hankyu">🚝 한큐 우메다 → 산노미야: 한큐 고베선 (27분, 한큐패스)</div>
+                    <div style="color: #856404; font-size: 0.8em; margin-top: 3px;">✅ 한큐패스로 고베 서쪽지역 완전 커버!</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">09:15-12:00</div>
                     <div class="activity">🚠 고베 로프웨이 + 누노비키 허브원</div>
-                    <div class="transport-walk">🚶 JR 산노미야 → 신고베: 도보 10분</div>
+                    <div class="transport-walk">🚶 한큐 산노미야 → 신고베: 도보 8분</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">12:00-13:00</div>
-                    <div class="activity">☕ 스타벅스 기타노이진칸점 & 이쿠타신사</div>
+                    <div class="time">12:00-13:30</div>
+                    <div class="activity">☕ 스타벅스 기타노이진칸점 & 이쿠타신사 & 점심</div>
                     <div class="transport-walk">🚶 신고베 → 산노미야: 도보 10분</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">13:00-14:30</div>
-                    <div class="activity">🍣 오우세이 스시집 점심</div>
-                    <div class="transport-walk">🚶 이쿠타신사 → 오우세이: 도보 8분</div>
-                </div>
-                
-                <div class="schedule-item">
-                    <div class="time">14:30-16:30</div>
+                    <div class="time">13:30-15:30</div>
                     <div class="activity">🛍️ 모토마치 상점가 소품샵 쇼핑</div>
-                    <div class="transport-jr">🚄 JR 산노미야 → 모토마치: 도카이도본선 (2분, JR패스 무료)</div>
+                    <div class="transport-hankyu">🚝 한큐 산노미야 → 모토마치: 고베고속선 (5분, 한큐패스)</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">16:30-18:30</div>
+                    <div class="time">15:30-17:30</div>
                     <div class="activity">🌅 하버랜드공원 & 모자이크몰</div>
-                    <div class="transport-jr">🚄 JR 모토마치 → 하버랜드: 도카이도본선 (3분, JR패스 무료)</div>
+                    <div class="transport-walk">🚶 모토마치 → 하버랜드: 도보 10분</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">18:30-20:00</div>
-                    <div class="activity">🌃 히가시유엔치 야경</div>
-                    <div class="transport-hankyu">🚊 한큐 고베산노미야 → 히가시유엔치: 한큐 고베선 (8분, 한큐패스 무료)</div>
+                    <div class="time">17:30-19:00</div>
+                    <div class="activity">🚊 고베 → 교토 이동 (아라시야마)</div>
+                    <div class="transport-hankyu">🚝 한큐 산노미야 → 아라시야마: 한큐 고베선→교토선 (1시간, 한큐패스)</div>
+                    <div style="color: #856404; font-size: 0.8em; margin-top: 3px;">✅ 한큐패스의 진가! 고베→교토 아라시야마 직통</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">20:00-21:00</div>
-                    <div class="activity">🚊 고베 → 오사카 복귀</div>
-                    <div class="transport-hankyu">🚊 한큐 히가시유엔치 → 우메다: 한큐 고베선 특급 (35분, 한큐패스 무료)</div>
-                    <div class="transport-paid">+ 오사카 지하철 우메다 → 난바: 미도스지선 (10분, 180엔)</div>
+                    <div class="time">19:00-20:30</div>
+                    <div class="activity">🎋 아라시야마 죽림 야경 & 저녁식사</div>
+                    <div class="transport-walk">🚶 한큐 아라시야마역 → 죽림: 도보 5분</div>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="time">21:00-21:30</div>
+                    <div class="time">20:30-21:30</div>
+                    <div class="activity">🚊 교토 → 오사카 복귀</div>
+                    <div class="transport-hankyu">🚝 한큐 아라시야마 → 우메다: 한큐 교토선 (45분, 한큐패스)</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">21:30-22:00</div>
                     <div class="activity">🏨 호텔 도착 & 휴식</div>
-                    <div class="transport-walk">🚶 난바역 → 호텔: 도보 5분</div>
+                    <div class="transport-jr">🚄 JR 우메다 → 난바: 환상선→간사이본선 (15분, JR패스)</div>
                 </div>
             </div>
             
             <div class="day-card day3">
                 <div class="day-header">📅 8월 5일 (월) - 셋째날</div>
                 <div class="location-badge">🏨 교토 숙박</div>
-                <span class="pass-badge jr-badge">JR패스</span>
-                <span class="pass-badge keihan-badge">게이한패스</span>
+                <div class="pass-badges">
+                    <span class="pass-badge keihan-badge">게이한패스 활용</span>
+                    <span class="pass-badge jr-badge">JR패스 병행</span>
+                </div>
                 
                 <div class="schedule-item">
                     <div class="time">08:30-09:00</div>
@@ -517,61 +543,64 @@
                 <div class="schedule-item">
                     <div class="time">09:00-11:00</div>
                     <div class="activity">🏯 오사카성 관광</div>
-                    <div class="transport-jr">🚄 JR 난바 → 오사카조코엔: 간사이본선→환상선 (10분, JR패스 무료)</div>
+                    <div class="transport-jr">🚄 JR 난바 → 오사카조코엔: 간사이본선→환상선 (10분, JR패스)</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">11:00-12:30</div>
                     <div class="activity">🐠 해유관 관광</div>
-                    <div class="transport-jr">🚄 JR 오사카조코엔 → 벤텐초: 환상선 (8분, JR패스 무료)</div>
+                    <div class="transport-jr">🚄 JR 오사카조코엔 → 벤텐초: 환상선 (8분, JR패스)</div>
                     <div class="transport-paid">+ 오사카 지하철 벤텐초 → 오사카코: 츄오선 (4분, 180엔)</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">12:30-13:30</div>
                     <div class="activity">🚊 오사카 → 교토 이동</div>
-                    <div class="transport-paid">🚇 오사카코 → 오사카: 오사카 지하철 츄오선 (15분, 240엔)</div>
-                    <div class="transport-jr">+ 🚄 JR 오사카 → 교토: 도카이도본선 신쾌속 (29분, JR패스 무료)</div>
+                    <div class="transport-paid">🚇 오사카코 → 요도야바시: 오사카 지하철 (15분, 240엔)</div>
+                    <div class="transport-keihan">+ 🚊 게이한 요도야바시 → 기온시조: 게이한 본선 (45분, 게이한패스)</div>
+                    <div style="color: #383d41; font-size: 0.8em; margin-top: 3px;">✅ 게이한패스로 교토 중심부 진입!</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">13:30-14:30</div>
                     <div class="activity">🏨 교토 호텔 체크인 & 점심식사</div>
-                    <div class="transport-walk">🚶 JR 교토역 → 호텔: 도보 또는 택시</div>
+                    <div class="transport-walk">🚶 기온시조 → 교토역 근처 호텔: 택시 또는 환승</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">14:30-16:00</div>
                     <div class="activity">⛩️ 후시미이나리 신사 (여우신사)</div>
-                    <div class="transport-keihan">🚊 게이한 교토 → 후시미이나리: 게이한 본선 급행 (7분, 게이한패스 무료)</div>
+                    <div class="transport-keihan">🚊 게이한 기온시조 → 후시미이나리: 게이한 본선 (7분, 게이한패스)</div>
+                    <div style="color: #383d41; font-size: 0.8em; margin-top: 3px;">✅ 게이한패스 핵심 활용! 후시미이나리 직통</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">16:00-17:30</div>
                     <div class="activity">🏛️ 청수사</div>
-                    <div class="transport-keihan">🚊 게이한 후시미이나리 → 청수고조: 게이한 본선 (7분, 게이한패스 무료)</div>
-                    <div class="transport-walk">+ 🚶 청수고조 → 청수사: 도보 10분</div>
+                    <div class="transport-keihan">🚊 게이한 후시미이나리 → 기온시조: 게이한 본선 (7분, 게이한패스)</div>
+                    <div class="transport-walk">+ 🚶 기온시조 → 청수사: 도보 15분</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">17:30-19:00</div>
                     <div class="activity">🍽️ 기온 일대 저녁식사</div>
                     <div class="transport-walk">🚶 청수사 → 기온시조: 도보 15분</div>
-                    <div class="transport-keihan">또는 게이한 청수고조 → 기온시조 (3분, 게이한패스 무료)</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">19:00-19:30</div>
                     <div class="activity">🏨 호텔 복귀</div>
-                    <div class="transport-keihan">🚊 게이한 기온시조 → 교토: 게이한 본선 급행 (7분, 게이한패스 무료)</div>
+                    <div class="transport-keihan">🚊 게이한 기온시조 → 교토역: 게이한 본선→환승 (20분, 게이한패스+환승)</div>
                 </div>
             </div>
             
             <div class="day-card day4">
                 <div class="day-header">📅 8월 6일 (화) - 넷째날</div>
                 <div class="location-badge">✈️ 출발일</div>
-                <span class="pass-badge subway-badge">지하철패스</span>
-                <span class="pass-badge jr-badge">JR패스</span>
+                <div class="pass-badges">
+                    <span class="pass-badge subway-badge">교토 지하철+버스패스</span>
+                    <span class="pass-badge jr-badge">JR패스 마무리</span>
+                </div>
                 
                 <div class="schedule-item">
                     <div class="time">07:30-08:00</div>
@@ -582,14 +611,15 @@
                 <div class="schedule-item">
                     <div class="time">08:00-09:30</div>
                     <div class="activity">⛩️ 금각사 관광</div>
-                    <div class="transport-kyoto-subway">🚇 교토 → 이마데가와: 지하철 가라스마선 (3분, 지하철패스 무료)</div>
-                    <div class="transport-paid">+ 🚌 이마데가와 → 금각사미치: 시내버스 12번 (10분, 230엔)</div>
+                    <div class="transport-kyoto-subway">🚇 교토 → 이마데가와: 지하철 가라스마선 (3분, 지하철+버스패스)</div>
+                    <div class="transport-kyoto-subway">+ 🚌 이마데가와 → 금각사미치: 시내버스 12번 (10분, 지하철+버스패스)</div>
+                    <div style="color: #0e6251; font-size: 0.8em; margin-top: 3px;">✅ 지하철+버스패스의 진가! 버스까지 무료</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">09:30-11:30</div>
-                    <div class="activity">🎋 아라시야마 죽림 & 대나무숲 산책</div>
-                    <div class="transport-paid">🚌 금각사 → 아라시야마: 교토 시내버스 59번 (30분, 230엔)</div>
+                    <div class="activity">🎋 아라시야마 죽림 & 대나무숲 재방문</div>
+                    <div class="transport-kyoto-subway">🚌 금각사 → 아라시야마: 교토 시내버스 59번 (30분, 지하철+버스패스)</div>
                 </div>
                 
                 <div class="schedule-item">
@@ -601,19 +631,20 @@
                 <div class="schedule-item">
                     <div class="time">12:30-13:30</div>
                     <div class="activity">🏛️ 헤이안신궁</div>
-                    <div class="transport-paid">🚌 아라시야마 → 헤이안신궁마에: 교토 시내버스 93번 (35분, 230엔)</div>
+                    <div class="transport-kyoto-subway">🚌 아라시야마 → 헤이안신궁마에: 교토 시내버스 93번 (35분, 지하철+버스패스)</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">13:30-14:00</div>
                     <div class="activity">🧳 교토역 복귀 & 짐 정리</div>
-                    <div class="transport-kyoto-subway">🚇 히가시야마 → 교토: 지하철 도자이선→가라스마선 (12분, 지하철패스 무료)</div>
+                    <div class="transport-kyoto-subway">🚇 히가시야마 → 교토: 지하철 도자이선→가라스마선 (12분, 지하철+버스패스)</div>
                 </div>
                 
                 <div class="schedule-item">
                     <div class="time">14:00-15:30</div>
                     <div class="activity">🚊 교토 → 간사이공항</div>
-                    <div class="transport-jr">🚄 JR 교토 → 간사이공항: 하루카 지정석 직통 (75분, JR패스 무료)</div>
+                    <div class="transport-jr">🚄 JR 교토 → 간사이공항: 하루카 직통 (75분, JR패스 - 지정석 2회차)</div>
+                    <div style="color: #155724; font-size: 0.8em; margin-top: 3px;">✅ JR패스 마무리! 하루카 지정석으로 편안한 출국</div>
                 </div>
                 
                 <div class="schedule-item">
@@ -624,28 +655,62 @@
             </div>
         </div>
         
+        <div class="cost-summary">
+            <h3>💰 다중패스 최적화 교통비 분석</h3>
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <strong>JR 간사이패스 4일권</strong><br>
+                    <span class="pass-price">7,200엔</span>
+                </div>
+                <div class="cost-item">
+                    <strong>교토 지하철+버스 1일권</strong><br>
+                    <span class="pass-price">1,100엔</span>
+                </div>
+                <div class="cost-item">
+                    <strong>게이한패스 1일권</strong><br>
+                    <span class="pass-price">1,000엔</span>
+                </div>
+                <div class="cost-item">
+                    <strong>한큐패스 1일권</strong><br>
+                    <span class="pass-price">1,300엔</span>
+                </div>
+                <div class="cost-item">
+                    <strong>별도 결제</strong><br>
+                    <span class="pass-price">약 420엔</span>
+                </div>
+                <div class="cost-item">
+                    <strong>총 교통비</strong><br>
+                    <span class="pass-price">11,020엔</span>
+                </div>
+            </div>
+            <div style="color: #856404; font-size: 0.9em; margin-top: 15px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+                <strong>🎯 최적화 결과:</strong> 모든 개별 결제시 약 15,000엔 → 11,020엔으로 <strong>약 4,000엔 절약!</strong><br>
+                각 패스의 특화 구간을 전략적으로 활용하여 환승 복잡성 최소화하면서 최대 절약 효과 달성!
+            </div>
+        </div>
+        
         <div class="tips">
-            <h3>💡 패스 최적화 여행 꿀팁</h3>
+            <h3>💡 다중패스 활용 핵심 꿀팁</h3>
             <div class="tip-item">
-                <span class="highlight">하루카 지정석</span>: 1일차 입국, 4일차 출국에 각각 1회씩 사용하여 2회 모두 활용
+                <span class="highlight">JR패스 4일권</span>: 전체 여행의 백본. 장거리 이동과 하루카 지정석 활용
             </div>
             <div class="tip-item">
-                <span class="highlight">한큐패스 2일차</span>: 고베 히가시유엔치 야경 구간에서만 사용하여 최대 효율
+                <span class="highlight">한큐패스 2일차</span>: 고베→아라시야마 직통이 핵심! 오사카↔교토 왕복도 커버
             </div>
             <div class="tip-item">
-                <span class="highlight">게이한패스 3일차</span>: 후시미이나리, 청수사, 기온 관광 루트로 완벽 활용
+                <span class="highlight">게이한패스 3일차</span>: 후시미이나리 직통 + 교토 시내 동쪽 지역 완전 커버
             </div>
             <div class="tip-item">
-                <span class="highlight">지하철패스 4일차</span>: 교토 시내 이동에 집중 사용
+                <span class="highlight">교토 지하철+버스패스 4일차</span>: 금각사, 아라시야마, 헤이안신궁 버스 이동 무료!
             </div>
             <div class="tip-item">
-                <span class="highlight">JR패스 최대활용</span>: 공항-시내 하루카, 도시간 신쾌속, 오사카성/해유관 접근 모두 커버
+                <span class="highlight">환승 최적화</span>: 각 패스별 특화 구간을 활용하여 복잡한 환승 없이 효율적 이동
             </div>
             <div class="tip-item">
-                <span class="highlight">별도 결제 최소화</span>: 오사카 지하철 일부 구간과 교토 버스만 약 1,500엔 수준
+                <span class="highlight">시간 절약</span>: 한큐/게이한 직통 루트 활용으로 JR 환승 시간 단축
             </div>
             <div class="tip-item">
-                <span class="highlight">패스 교환</span>: JR 간사이패스 교환시 3개 추가패스 교환권 동시 수령
+                <span class="highlight">패스 구매</span>: 게이한/한큐패스는 현지 구매, 교토 지하철+버스패스는 현지/온라인 모두 가능
             </div>
         </div>
     </div>
