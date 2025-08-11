@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>링고시티 랜딩페이지</title>
+  <style>
+    :root {
+      --cta-height: 64px;               /* 플로팅바 높이 */
+      --brand-blue: #2463eb;
+      --brand-yellow: #ffd93b;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }    /* 기본 스무스 스크롤 */
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #fff;
+      color: #111;
+      padding-bottom: calc(var(--cta-height) + var(--safe-bottom)); /* 플로팅바에 가려지지 않도록 */
+    }
+    .landing-image {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+      height: auto;
+    }
+
+    /* 플로팅바 */
+    .floating-cta {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 9999;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px calc(10px + var(--safe-bottom));
+      background: rgba(255,255,255,0.96);
+      border-top: 1px solid #eaeaea;
+      backdrop-filter: saturate(180%) blur(8px);
+      -webkit-backdrop-filter: saturate(180%) blur(8px);
+      transition: transform .25s ease;
+    }
+    .floating-cta.hidden {
+      transform: translateY(110%);
+    }
+    .floating-cta__title {
+      font-weight: 700;
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 52%;
+    }
+    .floating-cta__btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      border-radius: 9999px;
+      padding: 14px 20px;
+      font-weight: 800;
+      font-size: 16px;
+      color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    }
+    .floating-cta__btn:active { transform: translateY(1px); }
+
+    /* 넓은 화면 보정 */
+    @media (min-width: 768px) {
+      :root { --cta-height: 72px; }
+      .floating-cta { justify-content: center; }
+      .floating-cta__title { font-size: 16px; max-width: none; }
+      .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
+    }
+
+    /* 모션 최소화 사용자의 경우 즉시 스크롤 */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    /* 신청폼 앵커 여백(플로팅바 높이만큼 위에 공간) */
+    #apply-anchor {
+      position: relative;
+      top: -12px;            /* 살짝 위로 보이게 */
+      height: 1px;
+      width: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 랜딩페이지 이미지 (같은 폴더에 "링고시티_웹.png" 배치) -->
+  <img src="링고시티_웹.png" alt="링고시티 랜딩페이지" class="landing-image" />
+
+  <!-- ★ 스크롤 타겟: 신청폼 바로 위에 앵커 배치 -->
+  <span id="apply-anchor"></span>
+
+  <!-- Tenping 광고/신청 폼 -->
+  <tenping
+    id="apply-form"
+    class="adsbytenping"
+    style="width:100%; margin:0 auto; display:block;"
+    tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
+    tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
+    tenping-ad-campaign="2024112916100001"
+    tenping-ad-distributionAddID="2025081123490001"
+    tenping-ad-contain_image="false"
+    tenping-ad-contain_logo="false"
+    tenping-ad-contain_Plugin="false"
+    tenping-ad-contain_TpCall="false"
+    tenping-ad-theme="default_button">
+  </tenping>
+  <script async src="https://ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+
+  <!-- 하단 플로팅바 -->
+  <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
+    <div class="floating-cta__title">아이가 즐기는 영어공부!</div>
+    <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">지금 시작하기</button>
+  </div>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('go-apply');
+      const anchor = document.getElementById('apply-anchor');
+      const bar = document.querySelector('.floating-cta');
+      const form = document.getElementById('apply-form');
+
+      // CTA 클릭 시 앵커로 부드럽게 스크롤
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        // prefers-reduced-motion 사용자는 즉시 스크롤
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (anchor && 'scrollIntoView' in anchor) {
+          anchor.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+        } else {
+          window.location.hash = '#apply-anchor';
+        }
+      });
+
+      // 신청 폼이 화면에 보이면 플로팅바를 살짝 숨겨 겹침 방지 (선택)
+      if ('IntersectionObserver' in window && form) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              bar.classList.add('hidden');
+            } else {
+              bar.classList.remove('hidden');
+            }
+          });
+        }, { threshold: 0.15 });
+        io.observe(form);
+      }
+    })();
+  </script>
+</body>
+</html>
