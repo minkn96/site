@@ -6,7 +6,7 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
   <!-- End Google Tag Manager -->
   
   <!-- Google tag (gtag.js) -->
@@ -19,7 +19,7 @@
   </script>
 
   <!-- MS Clarity -->
-  <script type="text/javascript">
+  <script>
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -69,12 +69,21 @@
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
   </style>
+
+  <!-- ★ 텐핑 제출완료 콜백: 메타 맞춤이벤트 전송 (전역, 스크립트 위) -->
+  <script>
+    window.conversionCallback = function () {
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'lingocity_CTA', { source: 'tenping_form', page: 'landing' });
+      }
+      // console.log('[Tenping] conversionCallback fired');
+    };
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->   
 
   <!-- 랜딩페이지 이미지 -->
   <img src="lingocity.png" alt="링고시티 랜딩페이지" class="landing-image" />
@@ -102,24 +111,6 @@
     <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">지금 시작하기</button>
   </div>
 
-  <!-- Meta Pixel (※ GTM에서 이미 설치했다면 이 블록 삭제) -->
-  <script>
-    (function(w,d){
-      if (w.fbq) return; // 중복 설치 방지
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
-      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
-    }(w,d,'script','https://connect.facebook.net/en_US/fbevents.js');
-    })(window,document);
-    if (typeof fbq === 'function' && !window.__PIXEL_INITED__) {
-      fbq('init', '1377330030217069');   // ← 사용 픽셀 ID 확인
-      fbq('track', 'PageView');
-      window.__PIXEL_INITED__ = true;
-    }
-  </script>
-
   <script>
     (function () {
       const btn = document.getElementById('go-apply');
@@ -127,19 +118,20 @@
       const bar = document.querySelector('.floating-cta');
       const form = document.querySelector('.adsbytenping');
 
-      // 클릭 시 맞춤 이벤트 + 스크롤
+      // (선택) 클릭 탐색 이벤트도 보려면 파라미터 달아 전송
       function sendMetaCTA() {
         if (typeof fbq === 'function') {
-          fbq('trackCustom', 'lingocity_CTA');
-          // console.log('Meta Custom Event Sent: lingocity_CTA');
+          fbq('trackCustom', 'lingocity_CTA', { source: 'floating_cta', page: 'landing' });
         }
       }
 
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        sendMetaCTA();
+        // 원하면 아래 한 줄을 주석 해제(탐색 클릭도 수집)
+        // sendMetaCTA();
+
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (anchor?.scrollIntoView) {
+        if (anchor && anchor.scrollIntoView) {
           anchor.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
         } else {
           window.location.hash = '#apply-anchor';
