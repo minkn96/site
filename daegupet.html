@@ -21,6 +21,15 @@
   <!-- 라이트 모드 강제 -->
   <meta name="color-scheme" content="light">
   <meta name="supported-color-schemes" content="light">    
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "st7wj6aj7b");
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>케이펫페어 대구 2025 - 무료 사전등록</title>
@@ -400,6 +409,28 @@
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
+
+        /* FOMO 강화 추가 스타일 */
+        @keyframes liveIndicator {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.7; 
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes progressGlow {
+            0% { box-shadow: 0 0 5px rgba(78, 205, 196, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(78, 205, 196, 0.8); }
+        }
+
+        @keyframes countUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
         
         @media (max-width: 768px) {
             .hero h1 {
@@ -713,7 +744,7 @@
                 </div>
             </div>
             
-            <!-- 실시간 등록 알림 -->
+            <!-- FOMO 강화된 실시간 등록 알림 섹션 -->
             <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 20px; padding: 40px; margin-top: 50px; text-align: center; color: white; position: relative; overflow: hidden;">
                 <h3 style="font-size: 24px; margin-bottom: 15px;">🚨 지금 이 순간도...</h3>
                 <p style="font-size: 18px; margin-bottom: 20px;">다른 반려인들이 계속 무료 등록하고 있어요</p>
@@ -722,13 +753,40 @@
                 <div id="liveNotifications" style="position: fixed; top: 50%; right: 20px; width: 250px; z-index: 999; transform: translateY(-50%);">
                 </div>
                 
-                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; display: inline-block; margin-bottom: 20px;">
-                    <div style="font-size: 36px; font-weight: 800; color: #4ecdc4;" id="totalCounter">67</div>
-                    <div style="font-size: 14px;">최근 1시간 등록자 수</div>
+                <!-- FOMO 강화된 카운터 섹션 -->
+                <div style="background: linear-gradient(135deg, #ff416c, #ff4b2b); border-radius: 15px; padding: 25px; display: inline-block; margin-bottom: 25px; position: relative; box-shadow: 0 10px 30px rgba(255, 65, 108, 0.3);">
+                    <!-- 깜빡이는 LIVE 표시 -->
+                    <div style="position: absolute; top: -8px; right: -8px; background: #ff1744; color: white; font-size: 10px; padding: 4px 8px; border-radius: 10px; font-weight: 800; animation: liveIndicator 1.5s infinite;">
+                        🔴 LIVE
+                    </div>
+                    
+                    <!-- 메인 카운터 -->
+                    <div style="font-size: 48px; font-weight: 800; color: #fff; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);" id="totalCounter">127</div>
+                    
+                    <!-- 강화된 설명 텍스트 -->
+                    <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">⚡ 최근 1시간 등록자</div>
+                    <div style="font-size: 11px; opacity: 0.9; background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 20px; display: inline-block;">
+                        지금도 매 30초마다 등록 중
+                    </div>
                 </div>
-                <p style="font-size: 15px; opacity: 1.0;">
-                    망설이는 사이 <strong>10,000원 → 무료</strong> 기회가 사라져요 💸
-                </p>
+                
+                <!-- 긴급성 강화 메시지 -->
+                <div style="margin: 25px 0;">
+                    <p style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #ffeb3b;">
+                        ⏰ 이 속도라면 내일까지 <span style="color: #ff6b6b;">1,000명</span> 돌파!
+                    </p>
+                    <p style="font-size: 15px; opacity: 0.95;">
+                        망설이는 사이 <strong style="color: #4ecdc4;">10,000원 → 무료</strong> 기회가 사라져요 💸
+                    </p>
+                </div>
+                
+                <!-- 프로그레스 바 추가 -->
+                <div style="background: rgba(255,255,255,0.2); border-radius: 10px; height: 8px; margin: 20px auto; max-width: 300px; overflow: hidden;">
+                    <div style="background: linear-gradient(90deg, #4ecdc4, #44a08d); height: 100%; width: 73%; border-radius: 10px; animation: progressGlow 2s ease-in-out infinite alternate;"></div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.8; margin-top: 10px;">
+                    📈 목표 대비 73% 달성 (예상보다 빠른 속도!)
+                </div>
             </div>
         </div>
     </section>
@@ -837,7 +895,7 @@
         
         const pets = ["🐕 몽이", "🐱 나비", "🐕 코코", "🐱 루루", "🐕 바둑이", "🐱 치즈", "🐕 두부", "🐱 로빈"];
         
-        let currentCount = 67;
+        let currentCount = 127; // 67에서 127로 상향
         
         // 이름 마스킹 함수
         function maskName(name) {
@@ -897,13 +955,38 @@
             }
         }
 
+        // FOMO 강화 추가 함수들
+        // 카운터 증가 애니메이션
+        function animateCounter() {
+            const counter = document.getElementById('totalCounter');
+            if (!counter) return;
+            
+            // 랜덤하게 1-3씩 증가
+            const increase = Math.floor(Math.random() * 3) + 1;
+            const currentValue = parseInt(counter.textContent.replace(',', ''));
+            const newValue = currentValue + increase;
+            
+            // 애니메이션 효과
+            counter.style.animation = 'countUp 0.5s ease-out';
+            counter.textContent = newValue.toLocaleString();
+            
+            // 애니메이션 후 초기화
+            setTimeout(() => {
+                counter.style.animation = '';
+            }, 500);
+        }
+
         // 초기화
         updateCountdown();
         setInterval(updateCountdown, 1000);
         setInterval(showLiveNotification, 8000); // 8초마다 실시간 알림
         
-        // 페이지 로드 후 첫 알림은 3초 후
+        // 15-25초마다 카운터 증가
+        setInterval(animateCounter, Math.random() * 10000 + 15000);
+        
+        // 페이지 로드 후 첫 알림과 카운터 증가
         setTimeout(showLiveNotification, 3000);
+        setTimeout(animateCounter, 5000);
         
         trackPageView();
     </script>

@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7B92596QT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P7B92596QT');
+  </script>
+  <!-- 라이트 모드 강제 -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">   
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "st7wj6aj7b");
+    </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>링고시티 랜딩페이지</title>
   <style>
     :root {
-      --cta-height: 64px;               /* 플로팅바 높이 */
+      --cta-height: 64px;
       --brand-blue: #2463eb;
       --brand-yellow: #ffd93b;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }    /* 기본 스무스 스크롤 */
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       background: #fff;
       color: #111;
-      padding-bottom: calc(var(--cta-height) + var(--safe-bottom)); /* 플로팅바에 가려지지 않도록 */
+      padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
     }
     .landing-image {
       width: 100%;
@@ -26,8 +55,6 @@
       margin: 0 auto;
       height: auto;
     }
-
-    /* 플로팅바 */
     .floating-cta {
       position: fixed;
       left: 0; right: 0; bottom: 0;
@@ -67,24 +94,18 @@
       box-shadow: 0 6px 16px rgba(0,0,0,.12);
     }
     .floating-cta__btn:active { transform: translateY(1px); }
-
-    /* 넓은 화면 보정 */
     @media (min-width: 768px) {
       :root { --cta-height: 72px; }
       .floating-cta { justify-content: center; }
       .floating-cta__title { font-size: 16px; max-width: none; }
       .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
     }
-
-    /* 모션 최소화 사용자의 경우 즉시 스크롤 */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
     }
-
-    /* 신청폼 앵커 여백(플로팅바 높이만큼 위에 공간) */
     #apply-anchor {
       position: relative;
-      top: -12px;            /* 살짝 위로 보이게 */
+      top: -12px;
       height: 1px;
       width: 100%;
       display: block;
@@ -92,33 +113,34 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->   
 
-  <!-- 랜딩페이지 이미지 (같은 폴더에 "lingocity.png" 배치) -->
-  <img src="lingocity.png" alt="링고시티 랜딩페이지" class="landing-image" />
+  <!-- 랜딩페이지 이미지 -->
+  <img src="링고시티_웹.png" alt="링고시티 랜딩페이지" class="landing-image" />
 
-  <!-- ★ 스크롤 타겟: 신청폼 바로 위에 앵커 배치 -->
+  <!-- 신청폼 앵커 -->
   <span id="apply-anchor"></span>
 
-  <!-- Tenping 광고/신청 폼 -->
-  <tenping
-    id="apply-form"
-    class="adsbytenping"
-    style="width:100%; margin:0 auto; display:block;"
-    tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
-    tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
-    tenping-ad-campaign="2024112916100001"
-    tenping-ad-distributionAddID="2025081123490001"
-    tenping-ad-contain_image="false"
-    tenping-ad-contain_logo="false"
-    tenping-ad-contain_Plugin="false"
-    tenping-ad-contain_TpCall="false"
-    tenping-ad-theme="default_button">
+  <!-- 새 텐핑 광고 코드 -->
+  <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
+    tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
+    tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
+    tenping-ad-campaign="2024112916100001" 
+    tenping-ad-distributionAddID="2025081123490001" 
+    tenping-ad-contain_image="false" 
+    tenping-ad-contain_logo="false" 
+    tenping-ad-contain_Plugin="false" 
+    tenping-ad-contain_TpCall="false" 
+    tenping-ad-theme="default">
   </tenping>
-  <script async src="https://ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+  <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
-    <div class="floating-cta__title">아이가 즐기는 영어공부!</div>
+    <div class="floating-cta__title">이번 주부터 아이가 스스로 영어를!</div>
     <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">지금 시작하기</button>
   </div>
 
@@ -127,12 +149,10 @@
       const btn = document.getElementById('go-apply');
       const anchor = document.getElementById('apply-anchor');
       const bar = document.querySelector('.floating-cta');
-      const form = document.getElementById('apply-form');
+      const form = document.querySelector('.adsbytenping');
 
-      // CTA 클릭 시 앵커로 부드럽게 스크롤
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        // prefers-reduced-motion 사용자는 즉시 스크롤
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (anchor && 'scrollIntoView' in anchor) {
           anchor.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
@@ -141,7 +161,6 @@
         }
       });
 
-      // 신청 폼이 화면에 보이면 플로팅바를 살짝 숨겨 겹침 방지 (선택)
       if ('IntersectionObserver' in window && form) {
         const io = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
