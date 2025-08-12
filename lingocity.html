@@ -158,7 +158,7 @@
     tenping-ad-contain_TpCall="false"
     tenping-ad-theme="default">
   </tenping>
-  $1
+  <script async src="https://ads.tenping.kr/scripts/adsbytenping.min.js"></script>
 
   <!-- 최근 등록 현황 테이블 -->
   <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
@@ -285,7 +285,7 @@
 
       // 잔여석/프로그레스
       const dailyQuota = 40;
-      let seatsRemaining = Math.max(3, Math.floor(10 + Math.random()*8)); // 10~18로 시작
+      let seatsRemaining = Math.max(3, Math.floor(20 + Math.random()*8)); // 20~28로 시작
       function updateSeatsUI(){
         if (seatsEl) seatsEl.textContent = String(seatsRemaining);
         if (fillEl) fillEl.style.width = Math.max(0, Math.min(100, ((dailyQuota - seatsRemaining)/dailyQuota)*100)) + '%';
@@ -345,12 +345,12 @@
 
         // 테이블/잔여석 업데이트
         addRow(name, city, nowKST(), true);
-        seatsRemaining = Math.max(0, seatsRemaining - 1);
+        if (seatsRemaining > 1) seatsRemaining -= 1; // 잔여 1에서 더 줄지 않게 고정
         updateSeatsUI();
       }
 
       function schedule(){
-        const delay = rand(6500, 13500); // 6.5~13.5초 간격
+        const delay = rand(6500, 19500); // 6.5~19.5초 간격
         setTimeout(() => { createToast(); schedule(); }, delay);
       }
       schedule();
@@ -362,7 +362,7 @@
         const name = maskedName();
         const city = cities[rand(0, cities.length-1)];
         addRow(name, city, nowKST(), true);
-        seatsRemaining = Math.max(0, seatsRemaining - 1);
+        if (seatsRemaining > 1) seatsRemaining -= 1; // 잔여 1에서 더 줄지 않게 고정
         updateSeatsUI();
       };
     })();
