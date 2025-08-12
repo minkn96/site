@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7B92596QT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P7B92596QT');
+  </script>
+
+  <!-- MS Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "st7wj6aj7b");
+  </script>
+
+  <!-- 라이트 모드 강제 -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">   
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>닥터모락 랜딩페이지</title>
+
+  <style>
+    :root { --cta-height: 64px; --brand-blue: #2463eb; --brand-yellow: #ffd93b; --safe-bottom: env(safe-area-inset-bottom, 0px); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #fff; color: #111; padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
+    }
+    .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
+    .floating-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
+      display: flex; gap: 8px; align-items: center; justify-content: center;
+      padding: 10px 14px calc(10px + var(--safe-bottom));
+      background: rgba(255,255,255,0.96); border-top: 1px solid #eaeaea;
+      backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px);
+      transition: transform .25s ease;
+    }
+    .floating-cta.hidden { transform: translateY(110%); }
+    .floating-cta__title { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 52%; }
+    .floating-cta__btn {
+      appearance: none; border: 0; cursor: pointer; border-radius: 9999px;
+      padding: 14px 20px; font-weight: 800; font-size: 16px; color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    }
+    .floating-cta__btn:active { transform: translateY(1px); }
+    @media (min-width: 768px) {
+      :root { --cta-height: 72px; }
+      .floating-cta__title { font-size: 16px; max-width: none; }
+      .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
+  </style>
+
+  <!-- 이 캠페인 전용 설정 -->
+  <script>
+    window.CAMPAIGN = {
+      name: 'morak',                              // 캠페인 식별용(내부)
+      pixelEvent: 'morak_CTA',                    // FB Pixel 커스텀 이벤트명(캠페인별로 유니크)
+      tenpingCampaign: '2024060516490001',        // tenping-ad-campaign 값과 동일
+      tenpingDistribution: '2025081110300001'     // tenping-ad-distributionAddID 값과 동일
+    };
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- 랜딩페이지 이미지 -->
+  <img src="morak.png" alt="닥터모락 랜딩페이지" class="landing-image" />
+
+  <!-- 신청폼 앵커 -->
+  <span id="apply-anchor"></span>
+
+  <!-- Tenping 폼 (이 캠페인용) -->
+  <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;"
+    tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
+    tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
+    tenping-ad-campaign="2024060516490001"
+    tenping-ad-distributionAddID="2025081110300001"
+    tenping-ad-contain_image="false"
+    tenping-ad-contain_logo="false"
+    tenping-ad-contain_Plugin="false"
+    tenping-ad-contain_TpCall="false"
+    tenping-ad-theme="default">
+  </tenping>
+  <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+
+  <!-- Facebook Pixel (캠페인 공용 ID 사용 가능, 커스텀 이벤트만 분리) -->
+  <script>
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;
+    n=f.fbq=function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
+    if(!f._fbq)f._fbq=n;
+    n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=!0; t.src=v;
+    s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1377330030217069');
+  fbq('track', 'PageView');
+  </script>
+
+  <!-- Tenping 제출 완료 콜백: 이 캠페인만의 이벤트/파라미터로 전송 -->
+  <script>
+    function conversionCallback(){
+      try {
+        var cfg = (window.CAMPAIGN || {});
+        fbq('trackCustom', cfg.pixelEvent || 'morak_CTA', {
+          source: 'tenping_form',
+          page: 'landing',
+          campaign: cfg.tenpingCampaign,
+          distributionAddID: cfg.tenpingDistribution
+        });
+      } catch(e) { /* no-op */ }
+    }
+  </script>
+
+  <!-- 하단 플로팅바 -->
+  <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
+    <div class="floating-cta__title">탈모 문제 해결</div>
+    <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">지금 해결하기</button>
+  </div>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('go-apply');
+      const anchor = document.getElementById('apply-anchor');
+      const bar = document.querySelector('.floating-cta');
+      const form = document.querySelector('.adsbytenping');
+
+      // (선택) 클릭 탐색 이벤트도 같은 캠페인 이벤트로 전송하려면 주석 해제
+      function sendPixelCTA(source){
+        var cfg = (window.CAMPAIGN || {});
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', cfg.pixelEvent || 'morak_CTA', {
+            source: source || 'floating_cta',
+            page: 'landing',
+            campaign: cfg.tenpingCampaign,
+            distributionAddID: cfg.tenpingDistribution
+          });
+        }
+      }
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        // sendPixelCTA('floating_cta'); // ← 필요 시 주석 해제
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (anchor && anchor.scrollIntoView) {
+          anchor.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+        } else {
+          window.location.hash = '#apply-anchor';
+        }
+      });
+
+      if ('IntersectionObserver' in window && form) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) bar.classList.add('hidden');
+            else bar.classList.remove('hidden');
+          });
+        }, { threshold: 0.15 });
+        io.observe(form);
+      }
+    })();
+  </script>
+</body>
+</html>
