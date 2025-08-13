@@ -44,6 +44,52 @@
       background: #fff; color: #111; padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
     }
     .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
+    
+    /* ▼▼ 유튜브 영상 스타일 ▼▼ */
+    .video-section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 14px;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 비율 */
+      background: #f8fafc;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 12px;
+    }
+    .video-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #0b1a3a;
+      margin: 16px 0;
+    }
+    @media (min-width: 768px) {
+      .video-section {
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+      .video-title {
+        font-size: 20px;
+        margin: 20px 0;
+      }
+    }
+    /* ▲▲ 유튜브 영상 스타일 ▲▲ */
+    
     .floating-cta {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
       display: flex; gap: 8px; align-items: center; justify-content: center;
@@ -143,6 +189,19 @@
   <!-- 랜딩페이지 이미지 -->
   <img src="lingocity.png" alt="링고시티 랜딩페이지" class="landing-image" />
 
+  <!-- 유튜브 영상 섹션 -->
+  <section class="video-section">
+    <h2 class="video-title">🎬 링고시티 체험영상</h2>
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/embed/cw3pM-BBK2U" 
+        title="링고시티 체험영상"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
   <!-- 신청폼 앵커 -->
   <span id="apply-anchor"></span>
 
@@ -175,8 +234,8 @@
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
-    <div class="floating-cta__title">아이가 즐기는 영어공부</div>
-    <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">지금 시작하기</button>
+    <div class="floating-cta__title">아이도 재밌는 초등영어</div>
+    <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">무료 체험하기</button>
   </div>
 
   <!-- 실시간 신청 토스트 컨테이너 -->
