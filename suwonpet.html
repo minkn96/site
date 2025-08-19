@@ -69,7 +69,19 @@
     .floating-button{background:rgba(255,255,255,.2);border:none;color:#fff;padding:12px 24px;border-radius:25px;font-weight:600;cursor:pointer;transition:.3s}
     .floating-button:hover{background:rgba(255,255,255,.3);transform:scale(1.05)}
     @media(max-width:768px){.hero h1{font-size:24px}.countdown{gap:10px}.countdown-number{font-size:20px;padding:8px 6px;min-width:45px}.cta-button{padding:15px 30px;font-size:16px}.container{padding:0 15px}.floating-cta-content{flex-direction:column;gap:10px}}
-  </style>
+  
+  /* ===== Desktop에서도 모바일처럼 보이기(고정 폭) ===== */
+  @media (min-width: 769px){
+    body{ background:#0f1115; }
+    .mobile-viewport{ width:420px; min-height:100vh; margin:0 auto; background:#fff; box-shadow:0 10px 30px rgba(0,0,0,.2); }
+    .container{ max-width:100%; padding:0 15px; }
+    /* 플로팅바를 좁은 뷰포트에 맞춰 중앙 하단 고정 */
+    .floating-cta{ left:50% !important; right:auto !important; width:420px; transform:translateX(-50%) translateY(100%); }
+    .floating-cta.show{ transform:translateX(-50%) translateY(0); }
+    /* 실시간 알림은 모바일 뷰포트 오른쪽 바깥 20px 지점 */
+    #liveNotifications{ right:auto; left:calc(50% + 230px); }
+  }
+</style>
 
   <!-- Open Graph -->
   <meta property="og:title" content="수원 펫박람회 - 사전등록시 무료 입장권 지급">
@@ -81,6 +93,7 @@
   <meta property="og:image:height" content="1080">
 </head>
 <body>
+  <div class="mobile-viewport">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -234,7 +247,7 @@
     // === 고정값 & 초기 잔여 ===
     const CAPACITY  = 100;     // 게이지 기준(100명)
     const MIN_FLOOR = 3;       // 잔여 하한
-    const BASE = 20;           // 시작 잔여: 20~28
+    const BASE = 10;           // 시작 잔여: 10~18
     const EXTRA = Math.floor(Math.random()*9);
     const DAILY_QUOTA = BASE + EXTRA;
     let seatsRemaining = DAILY_QUOTA; // ✅ 잔여 표시 로직은 그대로 유지
@@ -334,5 +347,6 @@
     }
   })();
 </script>
+  </div>
 </body>
 </html>
