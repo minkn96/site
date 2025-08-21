@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드라마 오디션 신청</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            /* 기본 그라디언트 - 이미지로 바꾸려면 아래 주석을 해제하고 위 라인을 주석처리 하세요 */
+            background: linear-gradient(to bottom right, #3b82f6, #8b5cf6, #ec4899);
+            /* 배경 이미지 사용시 아래 라인들의 주석을 해제하세요 */
+            /* background-image: url('your-image-url.jpg'); */
+            /* background-size: cover; */
+            /* background-position: center; */
+            /* background-repeat: no-repeat; */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 24rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #e5e7eb;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            width: 0%;
+            transition: width 0.5s ease-out;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: #f3f4f6;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: none;
+        }
+        
+        .back-btn:hover {
+            background: #e5e7eb;
+        }
+        
+        .content {
+            padding-top: 2rem;
+        }
+        
+        .title {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            line-height: 1.625;
+            text-align: center;
+        }
+        
+        .question-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .gradient-btn {
+            width: 100%;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .gradient-btn:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+        }
+        
+        .gradient-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .option-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #f9fafb;
+            border: 2px solid transparent;
+            border-radius: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .option-btn:hover {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .icon-circle {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+        }
+        
+        .option-btn:hover .icon-circle {
+            background: #bfdbfe;
+        }
+        
+        .option-label {
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .option-btn:hover .option-label {
+            color: #1d4ed8;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            transition: border-color 0.2s ease;
+            outline: none;
+        }
+        
+        .form-input:focus {
+            border-color: #3b82f6;
+        }
+        
+        .success-icon {
+            width: 5rem;
+            height: 5rem;
+            background: #dcfce7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <button class="back-btn" id="backBtn" onclick="goBack()">
+            <svg width="20" height="20" fill="none" stroke="#6b7280" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        
+        <div class="content">
+            <div id="pageContent" class="fade-in">
+                <!-- 초기 환영 페이지 -->
+                <div class="title">드라마 오디션 신청! 🎬</div>
+                <div class="subtitle">자녀의 꿈을 응원해주세요. 몇 가지 질문으로 맞춤 정보를 확인해드릴게요</div>
+                <button class="gradient-btn" onclick="nextStep()">
+                    시작하기
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        let answers = {};
+
+        const questions = [
+            {
+                id: 'welcome',
+                title: '드라마 오디션 신청! 🎬',
+                subtitle: '자녀의 꿈을 응원해주세요. 몇 가지 질문으로 맞춤 정보를 확인해드릴게요',
+                type: 'welcome'
+            },
+            {
+                id: 'childAge',
+                title: '자녀의 출생년도를 선택해주세요',
+                type: 'choice',
+                options: [
+                    { value: '2007', label: '2007년생 (만 17-18세)' },
+                    { value: '2008', label: '2008년생 (만 16-17세)' },
+                    { value: '2009', label: '2009년생 (만 15-16세)' },
+                    { value: '2010', label: '2010년생 (만 14-15세)' },
+                    { value: '2011', label: '2011년생 (만 13-14세)' },
+                    { value: '2012', label: '2012년생 (만 12-13세)' }
+                ]
+            },
+            {
+                id: 'overseasShooting',
+                title: '합격 시 해외로컬 촬영이 가능한가요?',
+                type: 'choice',
+                options: [
+                    { value: 'possible', label: '네, 가능합니다' },
+                    { value: 'difficult', label: '어려울 것 같아요' },
+                    { value: 'discuss', label: '상황에 따라 협의 가능' },
+                    { value: 'impossible', label: '불가능합니다' }
+                ]
+            },
+            {
+                id: 'genre',
+                title: '어떤 장르에 관심이 있으신가요?',
+                type: 'choice',
+                options: [
+                    { value: 'horror', label: '공포/호러' },
+                    { value: 'fantasy', label: '판타지' },
+                    { value: 'webvariety', label: '웹예능' }
+                ]
+            },
+            {
+                id: 'tenping',
+                title: '신청서 작성하기',
+                subtitle: '아래 폼을 작성해주세요',
+                type: 'tenping'
+            }
+        ];
+
+        function updateProgress() {
+            const progress = (currentStep / (questions.length - 1)) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showBackButton() {
+            const backBtn = document.getElementById('backBtn');
+            if (currentStep > 0) {
+                backBtn.style.display = 'block';
+            } else {
+                backBtn.style.display = 'none';
+            }
+        }
+
+        function renderPage() {
+            const content = document.getElementById('pageContent');
+            const question = questions[currentStep];
+
+            // 텐핑 폼이 마지막 단계이므로 완료 페이지는 표시하지 않음
+            if (!question) {
+                return;
+            }
+
+            let html = '';
+
+            if (question.type === 'welcome') {
+                html = `
+                    <div class="title">${question.title}</div>
+                    <div class="subtitle">${question.subtitle}</div>
+                    <button class="gradient-btn" onclick="nextStep()">
+                        시작하기
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                `;
+            } else if (question.type === 'choice') {
+                html = `<div class="question-title">${question.title}</div>`;
+                question.options.forEach(option => {
+                    const iconHtml = option.icon || '<div style="width:20px;height:20px;background:#2563eb;border-radius:50%;"></div>';
+                    html += `
+                        <button class="option-btn" onclick="selectAnswer('${question.id}', '${option.value}')">
+                            <div class="icon-circle">${iconHtml}</div>
+                            <span class="option-label">${option.label}</span>
+                        </button>
+                    `;
+                });
+            } else if (question.type === 'tenping') {
+                html = `
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div class="question-title">${question.title}</div>
+                        <div class="subtitle">${question.subtitle}</div>
+                    </div>
+                    
+                    <!-- Tenping Ad Code -->
+                    <div style="width:100%; margin:0 auto;">
+                        <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" tenping-ad-campaign="2025082009030001" tenping-ad-distributionAddID="2025082117360007" tenping-ad-contain_image="false" tenping-ad-contain_logo="false" tenping-ad-contain_Plugin="false" tenping-ad-contain_TpCall="false" tenping-ad-theme="default"></tenping>
+                    </div>
+                `;
+                
+                // 텐핑 스크립트 동적 로딩
+                if (!document.querySelector('script[src*="adsbytenping"]')) {
+                    const script = document.createElement('script');
+                    script.src = '//ads.tenping.kr/scripts/adsbytenping.min.js';
+                    script.async = true;
+                    document.head.appendChild(script);
+                }
+                
+                // 메타픽셀 컨버전 트래킹 (GTM이 있을 경우)
+                setTimeout(() => {
+                    window.conversionCallback = function () {
+                        if (typeof fbq === 'function') {
+                            fbq('trackCustom', 'drama_CTA', { source: 'tenping_form', page: 'landing' });
+                        }
+                    };
+                }, 1000);
+            }
+
+            content.innerHTML = html;
+            content.className = 'fade-in';
+            updateProgress();
+            showBackButton();
+        }
+
+        function nextStep() {
+            currentStep++;
+            renderPage();
+        }
+
+        function goBack() {
+            if (currentStep > 0) {
+                currentStep--;
+                renderPage();
+            }
+        }
+
+        function selectAnswer(questionId, answer) {
+            answers[questionId] = answer;
+            nextStep();
+        }
+
+        function restart() {
+            currentStep = 0;
+            answers = {};
+            renderPage();
+        }
+
+        // 초기 렌더링
+        renderPage();
+    </script>
+</body>
+</html>
