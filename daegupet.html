@@ -33,7 +33,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>케이펫페어 대구 2025 - 무료 사전등록</title>
+  <title>케이펫페어 수원 2025 - 무료 사전등록</title>
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -69,18 +69,31 @@
     .floating-button{background:rgba(255,255,255,.2);border:none;color:#fff;padding:12px 24px;border-radius:25px;font-weight:600;cursor:pointer;transition:.3s}
     .floating-button:hover{background:rgba(255,255,255,.3);transform:scale(1.05)}
     @media(max-width:768px){.hero h1{font-size:24px}.countdown{gap:10px}.countdown-number{font-size:20px;padding:8px 6px;min-width:45px}.cta-button{padding:15px 30px;font-size:16px}.container{padding:0 15px}.floating-cta-content{flex-direction:column;gap:10px}}
-  </style>
+  
+  /* ===== Desktop에서도 모바일처럼 보이기(고정 폭) ===== */
+  @media (min-width: 769px){
+    body{ background:#0f1115; }
+    .mobile-viewport{ width:420px; min-height:100vh; margin:0 auto; background:#fff; box-shadow:0 10px 30px rgba(0,0,0,.2); }
+    .container{ max-width:100%; padding:0 15px; }
+    /* 플로팅바를 좁은 뷰포트에 맞춰 중앙 하단 고정 */
+    .floating-cta{ left:50% !important; right:auto !important; width:420px; transform:translateX(-50%) translateY(100%); }
+    .floating-cta.show{ transform:translateX(-50%) translateY(0); }
+    /* 실시간 알림은 모바일 뷰포트 오른쪽 바깥 20px 지점 */
+    #liveNotifications{ right:auto; left:calc(50% + 230px); }
+  }
+</style>
 
   <!-- Open Graph -->
-  <meta property="og:title" content="대구 펫박람회 - 사전등록시 무료 입장권 지급">
-  <meta property="og:description" content="8.29(금)~31(일) 엑스코에서 열리는 펫박람회에 사전 등록하고 무료 입장하세요!">
-  <meta property="og:image" content="https://minkn96.github.io/site/daegu-pet.png">
-  <meta property="og:url" content="https://minkn96.github.io/site/daegupet.html">
+  <meta property="og:title" content="수원 펫박람회 - 사전등록시 무료 입장권 지급">
+  <meta property="og:description" content="9.12(금)~14(일) 수원메쎄에서 열리는 펫박람회에 사전 등록하고 무료 입장하세요!">
+  <meta property="og:image" content="https://minkn96.github.io/site/suwon-pet.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/suwonpet.html">
   <meta property="og:type" content="website">
   <meta property="og:image:width" content="1080">
   <meta property="og:image:height" content="1080">
 </head>
 <body>
+  <div class="mobile-viewport">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -102,9 +115,9 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="event-badge">🐾 대구 엑스코 펫박람회 - 편리한세상</div>
-        <h1>2025 케이펫페어 대구 엑스코<br>사전등록 무료 입장권 지급</h1>
-        <p class="subtitle">8월 여름휴가에 딱! 시원한 반려용품 할인혜택 🏖️</p>
+        <div class="event-badge">🐾 수원 펫박람회 - 편리한세상</div>
+        <h1>2025 케이펫페어 수원<br>사전등록 무료 입장권 지급</h1>
+        <p class="subtitle">9월 반려용품 할인혜택 🏖️</p>
 
         <div class="countdown-container">
           <div class="countdown-title">⏰ 무료 사전등록 마감까지</div>
@@ -114,11 +127,11 @@
             <div class="countdown-item"><span class="countdown-number" id="minutes">30</span><span class="countdown-label">분</span></div>
             <div class="countdown-item"><span class="countdown-number" id="seconds">45</span><span class="countdown-label">초</span></div>
           </div>
-          <div class="urgent-text">🔥 8/28(목) 23시 59분 마감!</div>
+          <div class="urgent-text">🔥 9/11(목) 23시 59분 마감!</div>
         </div>
 
         <div class="price-highlight">입장료 3일 <span class="original-price">30,000원</span> → <span class="free-price">0원</span></div>
-        <a href="https://Athog.me/t737kh6e0i" class="cta-button" onclick="trackInitiateCheckout('hero')">무료입장 신청하기 🎯</a>
+        <a href="https://k-pet.co.kr/member/?c=JOIN&a=EsMemberJoin&fair_id=752/?ir_cd=10ping%40Banner%40PreRegistration%40250818_JEJ%40hp_pre&utm_source=10ping&utm_medium=Banner&utm_campaign=PreRegistration&utm_term=250818_JEJ&utm_content=hp_pre&jid=2025082216050006&uid=0&cid=2025081810570001&rd=15&at=2&did=2025081913160001" class="cta-button" onclick="trackInitiateCheckout('hero')">무료입장 신청하기 🎯</a>
       </div>
     </div>
   </section>
@@ -126,7 +139,7 @@
   <!-- 상세 섹션을 통이미지로 교체 -->
   <section class="content-section">
     <div class="container">
-      <img src="daegupet.png" alt="케이펫페어 상세 콘텐츠" style="width:100%;height:auto;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);" />
+      <img src="suwonpet.png" alt="케이펫페어 상세 콘텐츠" style="width:100%;height:auto;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);" />
     </div>
   </section>
 
@@ -146,9 +159,12 @@
 
   <!-- 기존 스크립트 (카운트다운/실시간 알림/트래킹) -->
   <script>
+    // === [변경 사항 1] 메인/플로팅 카운트다운을 9/11(목) 23:59:59 KST로 고정 ===
+    const MAIN_DEADLINE_KST = '2025-09-11T23:59:59+09:00';
+
     // 카운트다운 타이머 (메인 박스 + 플로팅 CTA)
     function updateCountdown() {
-      const deadline = new Date('2025-08-28T23:59:59+09:00').getTime();
+      const deadline = new Date(MAIN_DEADLINE_KST).getTime();
       const now = Date.now();
       const distance = deadline - now;
 
@@ -162,10 +178,8 @@
       const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
       const seconds = Math.floor((distance%(1000*60))/1000);
 
-      document.getElementById('days').textContent = String(days).padStart(2,'0');
-      document.getElementById('hours').textContent = String(hours).padStart(2,'0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = String(v).padStart(2,'0'); };
+      set('days', days); set('hours', hours); set('minutes', minutes); set('seconds', seconds);
 
       const ft=document.getElementById('floatingTimer');
       if(ft) ft.textContent = `${days}일 ${hours}시간`;
@@ -185,7 +199,7 @@
 
     function redirectToRegistration(source){
       trackInitiateCheckout(source);
-      window.open('https://Athog.me/t737kh6e0i', '_blank');
+      window.open('https://k-pet.co.kr/member/?c=JOIN&a=EsMemberJoin&fair_id=752/?ir_cd=10ping%40Banner%40PreRegistration%40250818_JEJ%40hp_pre&utm_source=10ping&utm_medium=Banner&utm_campaign=PreRegistration&utm_term=250818_JEJ&utm_content=hp_pre&jid=2025082216050006&uid=0&cid=2025081810570001&rd=15&at=2&did=2025081913160001', '_blank');
     }
 
     let viewContentTracked=false;
@@ -220,114 +234,119 @@
       const counter=document.getElementById('totalCounter'); if(counter){ counter.textContent=currentCount.toLocaleString(); }
     }
 
-    // 초기화
+    // 초기화 (메인/플로팅 카운트다운)
     updateCountdown(); setInterval(updateCountdown,1000);
     setInterval(showLiveNotification,8000);
     setTimeout(showLiveNotification,3000);
     trackPageView();
   </script>
 
-  <!-- 상단 잔여석 + 진행바 + 감소 로직 (100~108 랜덤 시작 / 3에서 고정) -->
-  <script>
-    (function(){
-      // 1) 시작 잔여석과 정원: 100~108 랜덤
-      const BASE = 100;
-      const EXTRA = Math.floor(Math.random()*9); // 0~8 → 100~108
-      const DAILY_QUOTA = BASE + EXTRA;
-      let seatsRemaining = DAILY_QUOTA;
+  <!-- 상단 잔여석 + 진행바 + 감소 로직  -->
+<script>
+  (function(){
+    // === 고정값 & 초기 잔여 ===
+    const CAPACITY  = 100;     // 게이지 기준(100명)
+    const MIN_FLOOR = 3;       // 잔여 하한
+    const BASE = 20;           // 시작 잔여: 20~28
+    const EXTRA = Math.floor(Math.random()*9);
+    const DAILY_QUOTA = BASE + EXTRA;
+    let seatsRemaining = DAILY_QUOTA; // ✅ 잔여 표시 로직은 그대로 유지
 
-      // 2) 핸들
-      const seatsEl = document.getElementById('kd-seats');
-      const fillEl  = document.getElementById('kd-fill');
-      const cdEl    = document.getElementById('kd-countdown');
+    // 엘리먼트
+    const seatsEl = document.getElementById('kd-seats');
+    const fillEl  = document.getElementById('kd-fill');
+    const cdEl    = document.getElementById('kd-countdown');
 
-      function updateSeatsUI(){
-        if (seatsEl) seatsEl.textContent = String(seatsRemaining);
-        if (fillEl) {
-          const p = Math.max(0, Math.min(100, ((DAILY_QUOTA - seatsRemaining)/DAILY_QUOTA)*100));
-          fillEl.style.width = p + '%';
+    // 게이지/잔여 표시 업데이트
+    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+    function updateSeatsUI(){
+      // 잔여 숫자: 10~18에서 시작해 클릭/알림 때만 감소
+      if (seatsEl) seatsEl.textContent = String(seatsRemaining);
+      // 게이지: 사용(채워진) 비율 기준으로 '늘어나는' 느낌
+      if (fillEl) {
+        const used = CAPACITY - seatsRemaining; // 100 기준으로 얼마나 찼는지
+        const percent = clamp((used / CAPACITY) * 100, 0, 100);
+        fillEl.style.width = percent + '%';
+      }
+    }
+    updateSeatsUI();
+
+    // 상단 HH:MM:SS → 오늘 자정(브라우저 로컬)까지 카운트다운
+    function pad(n){return String(n).padStart(2,'0');}
+    function updateTopBarCountdown(){
+      const now = new Date();
+      const eod = new Date(now);
+      eod.setHours(23,59,59,999);
+      let dist = eod.getTime() - now.getTime();
+      if (dist < 0) {
+        const next = new Date();
+        next.setHours(23,59,59,999);
+        dist = next.getTime() - Date.now();
+      }
+      const h = Math.floor(dist/(1000*60*60));
+      const m = Math.floor((dist%(1000*60*60))/(1000*60));
+      const s = Math.floor((dist%(1000*60))/1000);
+      if (cdEl) cdEl.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+    }
+    updateTopBarCountdown();
+    setInterval(updateTopBarCountdown, 1000);
+
+    // 감소 로직(중복 방지 + 하한 유지)
+    let lastDec = 0;
+    function decSeatOnce(){
+      const now = Date.now();
+      if (now - lastDec < 600) return; // 0.6초 이내 중복 방지
+      lastDec = now;
+      if (seatsRemaining > MIN_FLOOR) {
+        seatsRemaining -= 1;   // 잔여만 감소
+        updateSeatsUI();       // 게이지는 자연히 증가
+      }
+    }
+
+    // CTA 클릭 시 감소(함수 후킹 or fallback)
+    function hookRedirect(){
+      if (typeof window.redirectToRegistration === 'function' && !window.redirectToRegistration.__patched){
+        const orig = window.redirectToRegistration;
+        window.redirectToRegistration = function(){
+          try { return orig.apply(this, arguments); }
+          finally { decSeatOnce(); }
+        };
+        window.redirectToRegistration.__patched = true;
+        return true;
+      }
+      return false;
+    }
+    if (!hookRedirect()){
+      document.querySelectorAll('.cta-button, .floating-button').forEach(el=>{
+        el.addEventListener('click', decSeatOnce, { passive:true });
+      });
+    }
+
+    // 실시간 알림 발생 시 감소(후킹 + MutationObserver)
+    function hookLive(){
+      if (typeof window.showLiveNotification === 'function' && !window.showLiveNotification.__patched){
+        const orig = window.showLiveNotification;
+        window.showLiveNotification = function(){
+          try { return orig.apply(this, arguments); }
+          finally { decSeatOnce(); }
+        };
+        window.showLiveNotification.__patched = true;
+        return true;
+      }
+      return false;
+    }
+    const hooked = hookLive();
+    const container = document.getElementById('liveNotifications');
+    if (container && 'MutationObserver' in window){
+      const mo = new MutationObserver(muts => {
+        for (const m of muts){
+          if (m.addedNodes && m.addedNodes.length){ decSeatOnce(); break; }
         }
-      }
-      updateSeatsUI();
-
-      // 3) 상단 HH:MM:SS 카운트다운 (메인 박스 값 우선)
-      function pad(n){return String(n).padStart(2,'0');}
-      function tick(){
-        const dEl=document.getElementById('days');
-        const hEl=document.getElementById('hours');
-        const mEl=document.getElementById('minutes');
-        const sEl=document.getElementById('seconds');
-        let d=0,h=0,m=0,s=0;
-        if(dEl&&hEl&&mEl&&sEl){
-          d=parseInt(dEl.textContent)||0; h=parseInt(hEl.textContent)||0; m=parseInt(mEl.textContent)||0; s=parseInt(sEl.textContent)||0;
-        }else{
-          const deadline = new Date('2025-08-28T23:59:59+09:00').getTime();
-          const dist=Math.max(0, deadline - Date.now());
-          d=Math.floor(dist/(1000*60*60*24));
-          h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
-          m=Math.floor((dist%(1000*60*60))/(1000*60));
-          s=Math.floor((dist%(1000*60))/1000);
-        }
-        const totalH = d*24 + h;
-        if (cdEl) cdEl.textContent = `${pad(totalH)}:${pad(m)}:${pad(s)}`;
-      }
-      tick(); setInterval(tick, 1000);
-
-      // 4) 잔여석 3에서 고정 + 중복감소 방지(간단 스로틀)
-      let lastDec = 0;
-      function decSeatOnce(){
-        const now = Date.now();
-        if (now - lastDec < 600) return; // 0.6초 내 중복 이벤트 방지
-        lastDec = now;
-        if (seatsRemaining > 3) {
-          seatsRemaining -= 1;
-          updateSeatsUI();
-        }
-      }
-
-      // 5) CTA 클릭 시 감소: 함수 후킹이 되면 그걸 사용하고, 안 되면 버튼 클릭 fallback
-      function hookRedirect(){
-        if (typeof window.redirectToRegistration === 'function' && !window.redirectToRegistration.__patched){
-          const orig = window.redirectToRegistration;
-          window.redirectToRegistration = function(){
-            try { return orig.apply(this, arguments); }
-            finally { decSeatOnce(); }
-          };
-          window.redirectToRegistration.__patched = true;
-          return true;
-        }
-        return false;
-      }
-      if (!hookRedirect()){
-        document.querySelectorAll('.cta-button, .floating-button, a[href*="Athog.me"]').forEach(el=>{
-          el.addEventListener('click', decSeatOnce, { passive:true });
-        });
-      }
-
-      // 6) 실시간 알림 때 감소: 함수 후킹 + DOM 변화를 감지하는 fallback (둘 다 있을 때는 스로틀로 1회 처리)
-      function hookLive(){
-        if (typeof window.showLiveNotification === 'function' && !window.showLiveNotification.__patched){
-          const orig = window.showLiveNotification;
-          window.showLiveNotification = function(){
-            try { return orig.apply(this, arguments); }
-            finally { decSeatOnce(); }
-          };
-          window.showLiveNotification.__patched = true;
-          return true;
-        }
-        return false;
-      }
-      const hooked = hookLive();
-      const container = document.getElementById('liveNotifications');
-      if (container && 'MutationObserver' in window){
-        const mo = new MutationObserver(muts => {
-          for (const m of muts){
-            if (m.addedNodes && m.addedNodes.length){ decSeatOnce(); break; }
-          }
-        });
-        mo.observe(container, { childList:true });
-      }
-    })();
-  </script>
+      });
+      mo.observe(container, { childList:true });
+    }
+  })();
+</script>
+  </div>
 </body>
 </html>
