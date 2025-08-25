@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Open Graph -->
+  <meta property="og:title" content="최대 500만원 혜택 - 한샘 인테리어">
+  <meta property="og:description" content="견적만 받아도 전원 최대 500만원 혜택 증정">
+  <meta property="og:image" content="https://minkn96.github.io/site/hanssemsmall.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/hanssem.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7B92596QT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}    
+    gtag('js', new Date());
+    gtag('config', 'G-P7B92596QT');
+  </script>
+
+  <!-- MS Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "st7wj6aj7b");
+  </script>
+
+  <!-- 라이트 모드 강제 -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">   
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HANSSEMI-III - 리모델링 인테리어</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('./hanssem.png');
+            background-position: center top;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            
+            /* 모든 모바일 기기에서 화면 너비를 꽉 채움, 상단부터 보이게 */
+            background-size: 100vw auto;
+        }
+        
+        /* 화면이 이미지보다 가로로 넓은 경우 (가로모드, 태블릿 등) */
+        @media (min-aspect-ratio: 9/16) {
+            .hero-section {
+                background-size: auto 100vh;
+                background-color: #f5f5f5;
+                background-position: center top;
+            }
+        }
+        
+        /* 매우 긴 화면 (Galaxy S 시리즈 등) */
+        @media (max-aspect-ratio: 1/2) {
+            .hero-section {
+                background-size: 100vw auto;
+                background-position: center top;
+            }
+        }
+        
+        .hero-overlay {
+            display: none;
+        }
+        
+        /* 상단 카운트다운 배너 */
+        .countdown-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #ff4444, #ff6666);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .countdown-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .countdown-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+        
+        .countdown-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+        
+        .countdown-timer {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        
+        .remaining-count {
+            background: rgba(255,255,255,0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* 토스트 알림 */
+        .toast-container {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            z-index: 1001;
+            pointer-events: none;
+        }
+        
+        .toast {
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transform: translateX(300px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .toast-icon {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .toast-location {
+            color: #FFB74D;
+            font-weight: 600;
+        }
+        
+        /* 하단 플로팅바 */
+        .floating-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fdfdfd;
+            color: #333;
+            padding: 15px 25px;
+            text-align: center;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .floating-bar::before {
+            display: none;
+        }
+        
+        .floating-bar:hover {
+            box-shadow: 0 -6px 25px rgba(0,0,0,0.2);
+        }
+        
+        .floating-bar:active {
+            transform: none;
+        }
+        
+        .floating-bar-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .floating-bar-main {
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .floating-bar-sub {
+            background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 4px 15px rgba(255, 68, 68, 0.3),
+                0 2px 6px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+        
+        .floating-bar:hover .floating-bar-sub {
+            background: linear-gradient(135deg, #ff6666 0%, #ff4444 100%);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(255, 68, 68, 0.4),
+                0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-content {
+            position: fixed;
+            top: 300px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            width: 100%;
+            max-width: 400px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        .cta-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: clamp(16px, 4.5vw, 20px);
+            font-weight: bold;
+            box-shadow: 
+                0 8px 25px rgba(255, 82, 82, 0.4),
+                0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            min-width: 280px;
+            /* 확실히 보이도록 추가 스타일 */
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 35px rgba(255, 82, 82, 0.5),
+                0 6px 18px rgba(0,0,0,0.25);
+            background: linear-gradient(135deg, #ff5252 0%, #ff4444 100%);
+        }
+        
+        .cta-button:active {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 6px 20px rgba(255, 82, 82, 0.4),
+                0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 480px) {
+            .countdown-banner {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+            
+            .countdown-text {
+                max-width: 100%;
+            }
+            
+            .countdown-left, .countdown-right {
+                font-size: 12px;
+                gap: 6px;
+            }
+            
+            .countdown-timer, .remaining-count {
+                padding: 3px 8px;
+                font-size: 11px;
+                border-radius: 10px;
+            }
+            
+            .toast-container {
+                top: 50px;
+                right: 15px;
+                left: 15px;
+            }
+            
+            .toast {
+                font-size: 13px;
+                padding: 10px 14px;
+                transform: translateY(-50px);
+            }
+            
+            .toast.show {
+                transform: translateY(0);
+            }
+            
+            .hero-content {
+                top: 500px;
+                padding: 0 15px;
+            }
+            
+            .cta-button {
+                min-width: 250px;
+                padding: 16px 30px;
+            }
+            
+            .floating-bar {
+                padding: 12px 20px;
+            }
+            
+            .floating-bar-main {
+                font-size: 15px;
+            }
+            
+            .floating-bar-sub {
+                font-size: 16px;
+                padding: 10px 25px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .countdown-banner {
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+            
+            .countdown-left, .countdown-right {
+                font-size: 11px;
+                gap: 5px;
+            }
+            
+            .countdown-timer, .remaining-count {
+                padding: 2px 6px;
+                font-size: 10px;
+            }
+            
+            .toast {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+            
+            .hero-content {
+                top: 450px;
+                padding: 0 12px;
+            }
+            
+            .cta-button {
+                min-width: 220px;
+                padding: 14px 25px;
+            }
+            
+            .floating-bar {
+                padding: 10px 15px;
+            }
+            
+            .floating-bar-main {
+                font-size: 14px;
+            }
+            
+            .floating-bar-sub {
+                font-size: 15px;
+                padding: 9px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+     
+    <!-- 상단 카운트다운 배너 -->
+    <div class="countdown-banner">
+        <div class="countdown-text">
+            <div class="countdown-left">
+                <span>🔥 오늘 마감!</span>
+                <span class="countdown-timer" id="countdown">23:59:59</span>
+            </div>
+            <div class="countdown-right">
+                <span>잔여 신청</span>
+                <span class="remaining-count" id="remaining-count">17명</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 토스트 알림 컨테이너 -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <div class="container">
+        <div class="hero-section">
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <div class="cta-section">
+                    <a href="https://Athog.me/t737ss48e7" class="cta-button">
+                        지금 신청하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 하단 플로팅바 -->
+    <div class="floating-bar" onclick="window.open('https://Athog.me/t737ss48e7', '_blank')">
+        <div class="floating-bar-content">
+            <div class="floating-bar-main">전원 최대 500만원 증정</div>
+            <div class="floating-bar-sub">무료 견적받기</div>
+        </div>
+    </div>
+    
+    <script>
+        // 초기 잔여 신청 수
+        let remainingCount = 17;
+        
+        // 가상의 지역과 이름 데이터
+        const locations = [
+            '서울시 강남구', '서울시 서초구', '서울시 마포구', '서울시 종로구', '서울시 중구',
+            '경기도 성남시', '경기도 수원시', '경기도 안양시', '경기도 부천시', '경기도 고양시',
+            '인천시 연수구', '인천시 남동구', '부산시 해운대구', '부산시 사하구', '대구시 수성구',
+            '광주시 서구', '대전시 유성구', '울산시 남구', '세종시', '경기도 용인시'
+        ];
+        
+        const names = [
+            '김**', '이**', '박**', '최**', '정**', '강**', '조**', '윤**', '장**', '임**',
+            '한**', '오**', '서**', '신**', '권**', '황**', '안**', '송**', '류**', '전**',
+            '홍**', '고**', '문**', '양**', '손**', '배**', '조**', '백**', '허**', '유**'
+        ];
+        
+        // 카운트다운 타이머
+        function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            
+            const timeLeft = tomorrow - now;
+            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 잔여 신청 수 업데이트
+        function updateRemainingCount() {
+            document.getElementById('remaining-count').textContent = `${remainingCount}명`;
+        }
+        
+        // 토스트 알림 생성
+        function showToast() {
+            if (remainingCount <= 3) return; // 3명 이하일 때는 토스트 중단
+            
+            const location = locations[Math.floor(Math.random() * locations.length)];
+            const name = names[Math.floor(Math.random() * names.length)];
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <span class="toast-icon">✓</span>
+                <span class="toast-location">${location}</span> ${name}님이 견적신청 완료
+            `;
+            
+            document.getElementById('toast-container').appendChild(toast);
+            
+            // 애니메이션 시작
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // 잔여 신청 수 감소
+            remainingCount--;
+            updateRemainingCount();
+            
+            // 3초 후 토스트 제거
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // 랜덤 시간마다 토스트 표시 (4-11초 간격)
+        function scheduleNextToast() {
+            const delay = Math.random() * 7000 + 4000; // 4-11초
+            setTimeout(() => {
+                showToast();
+                scheduleNextToast();
+            }, delay);
+        }
+        
+        // 초기화
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        updateRemainingCount();
+        
+        // 첫 번째 토스트 스케줄링 (페이지 로드 후 2-5초 후 시작)
+        setTimeout(() => {
+            scheduleNextToast();
+        }, Math.random() * 3000 + 2000);
+    </script>
+</body>
+</html>
