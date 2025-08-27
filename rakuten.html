@@ -61,18 +61,25 @@
       transition: transform .25s ease;
     }
     .Floating-cta.hidden, .floating-cta.hidden { transform: translateY(110%); }
-    .floating-cta__title { font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 52%; color: var(--ink); }
+    .floating-cta__title { 
+      font-weight: 800; 
+      font-size: 14px; 
+      white-space: nowrap; 
+      color: var(--ink); 
+      flex-shrink: 0;
+    }
     .floating-cta__btn, .primary-cta-btn {
       appearance: none; border: 0; cursor: pointer; border-radius: 9999px;
       padding: 14px 20px; font-weight: 800; font-size: 16px; color: var(--ink);
       background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
       box-shadow: 0 6px 16px rgba(0,0,0,.12);
       text-decoration: none; display: inline-block; text-align: center;
+      flex-shrink: 0;
     }
     .floating-cta__btn:active, .primary-cta-btn:active { transform: translateY(1px); }
     @media (min-width: 768px) {
       :root { --cta-height: 72px; }
-      .floating-cta__title { font-size: 16px; max-width: none; }
+      .floating-cta__title { font-size: 15px; }
       .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -184,8 +191,8 @@
     </div>
 
     <div class="cta-card">
-      <h2 class="cta-title">빠르게 시작해 보세요</h2>
-      <a id="primary-cta" class="primary-cta-btn" href="https://Athog.me/t733y9ipbs" aria-label="설문알바 가입하기">설문알바 가입하기</a>
+      <h2 class="cta-title">지금 시작해 보세요</h2>
+      <a id="primary-cta" class="primary-cta-btn" href="https://Athog.me/t733y9ipbs" aria-label="설문알바 시작하기">설문알바 시작하기</a>
     </div>
   </section>
 
@@ -204,8 +211,8 @@
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
-    <div class="floating-cta__title">마감 00:00:00 · 잔여 12명</div>
-    <a id="go-apply" class="floating-cta__btn" href="https://Athog.me/t733y9ipbs" aria-label="가입 링크로 이동">바로 가입하기</a>
+    <div class="floating-cta__title">누구나 가능한 간단한 설문알바</div>
+    <a id="go-apply" class="floating-cta__btn" href="https://Athog.me/t733y9ipbs" aria-label="가입 링크로 이동">나도 시작하기</a>
   </div>
 
   <!-- 실시간 신청 토스트 컨테이너 -->
@@ -224,7 +231,6 @@
       const billboard = document.getElementById('urgency-billboard');
       const countdownEl = document.getElementById('countdown');
       const tbody = document.getElementById('signup-tbody');
-      const floatingTitle = document.querySelector('.floating-cta__title');
 
       // ===== 🔁 사이트 전역 동기화를 위한 경량 스토어 =====
       const UrgencySync = (function(){
@@ -285,16 +291,10 @@
         // 위험 상태 토글
         if (billboard) billboard.classList.toggle('bb-danger', shouldStop());
         if (bbNoteEl) bbNoteEl.textContent = shouldStop() ? '마감 임박 — 잔여 2명' : '원활할 때 지금 신청하세요';
-        refreshFloatingTitle();
       }
       function updateCountdownUI(){
         if (countdownEl) countdownEl.textContent = lastCountdownStr;
         document.querySelectorAll('[data-urgency="countdown"]').forEach(el => el.textContent = lastCountdownStr);
-        refreshFloatingTitle();
-      }
-      function refreshFloatingTitle(){
-        if (!floatingTitle) return;
-        floatingTitle.textContent = shouldStop() ? `마감 임박 · 잔여 ${seatsRemaining}명` : `마감 ${lastCountdownStr} · 잔여 ${seatsRemaining}명`;
       }
 
       // ===== 초기 동기화 =====
@@ -419,7 +419,7 @@
 
       function schedule(){
         if (shouldStop()) return; // 2 이하이면 스케줄 중단
-        const delay = rand(6500, 19500); // 6.5~19.5초 간격
+        const delay = rand(3500, 10500); // 3.5~10.5초 간격
         setTimeout(() => {
           if (shouldStop()) return;
           createToast();
