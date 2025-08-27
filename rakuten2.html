@@ -256,8 +256,8 @@
     </div>
 
     <div class="cta-card">
-      <h2 class="cta-title">지금 시작해 보세요</h2>
-      <a id="primary-cta" class="primary-cta-btn" href="https://Athog.me/t733y9ipbs" aria-label="설문알바 시작하기">설문알바 시작하기</a>
+      <h2 class="cta-title">빠르게 시작해 보세요</h2>
+      <a id="primary-cta" class="primary-cta-btn" href="https://Athog.me/t733y9ipbs" aria-label="설문알바 가입하기">설문알바 가입하기</a>
     </div>
   </section>
 
@@ -276,8 +276,8 @@
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
-    <div class="floating-cta__title">간단한 설문알바</div>
-    <a id="go-apply" class="floating-cta__btn" href="https://Athog.me/t733y9ipbs" aria-label="가입 링크로 이동">나도 시작하기</a>
+    <div class="floating-cta__title">마감 00:00:00 · 잔여 12명</div>
+    <a id="go-apply" class="floating-cta__btn" href="https://Athog.me/t733y9ipbs" aria-label="가입 링크로 이동">바로 가입하기</a>
   </div>
 
   <!-- 실시간 신청 토스트 컨테이너 -->
@@ -304,9 +304,29 @@
           <label for="reason3">가입하고 싶지 않습니다.</label>
         </div>
         
+        <div class="exit-option" data-value="confusing">
+          <input type="radio" id="reason4" name="exitReason" value="confusing">
+          <label for="reason4">내용이 이해되지 않습니다.</label>
+        </div>
+        
+        <div class="exit-option" data-value="comparing">
+          <input type="radio" id="reason5" name="exitReason" value="comparing">
+          <label for="reason5">다른 사이트와 비교해보려고 합니다.</label>
+        </div>
+        
+        <div class="exit-option" data-value="later">
+          <input type="radio" id="reason6" name="exitReason" value="later">
+          <label for="reason6">나중에 다시 오겠습니다.</label>
+        </div>
+        
+        <div class="exit-option" data-value="slow">
+          <input type="radio" id="reason7" name="exitReason" value="slow">
+          <label for="reason7">사이트 로딩이 느립니다.</label>
+        </div>
+        
         <div class="exit-option" data-value="custom">
           <input type="radio" id="reason8" name="exitReason" value="custom">
-          <label for="reason8">직접 쓰기</label>
+          <label for="reason8">직접 기재</label>
         </div>
         
         <input type="text" id="customReason" class="exit-custom-input" placeholder="이탈 이유를 직접 입력해주세요..." maxlength="100">
@@ -402,7 +422,7 @@
       }
       function refreshFloatingTitle(){
         if (!floatingTitle) return;
-        floatingTitle.textContent = shouldStop() ? `마감 임박 · 잔여 ${seatsRemaining}명` : `마감 ${lastCountdownStr} · 잔여 ${seatsRemaining}명`;
+        floatingTitle.textContent = '간단한 설문알바';
       }
 
       // ===== 초기 동기화 =====
@@ -597,6 +617,21 @@
         exitModal.classList.add('show');
         document.body.style.overflow = 'hidden';
         
+        // 확인 버튼 초기 비활성화
+        confirmBtn.classList.remove('enabled');
+        
+        // 커스텀 입력창 숨기기
+        customInput.style.display = 'none';
+        customInput.value = '';
+        
+        // 모든 선택 초기화
+        document.querySelectorAll('.exit-option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+        document.querySelectorAll('input[name="exitReason"]').forEach(radio => {
+          radio.checked = false;
+        });
+        
         // 첫 번째 라디오 버튼에 포커스
         const firstRadio = exitForm.querySelector('input[type="radio"]');
         if (firstRadio) {
@@ -613,6 +648,8 @@
       // 라디오 버튼 선택 처리
       exitForm.addEventListener('change', function(e) {
         if (e.target.type === 'radio') {
+          console.log('Radio button selected:', e.target.value); // 디버그용
+          
           // 모든 옵션에서 selected 클래스 제거
           document.querySelectorAll('.exit-option').forEach(opt => {
             opt.classList.remove('selected');
@@ -628,7 +665,12 @@
           if (e.target.value === 'custom') {
             customInput.style.display = 'block';
             customInput.focus();
-            confirmBtn.classList.remove('enabled');
+            // 입력값이 있는지 확인
+            if (customInput.value.trim().length > 0) {
+              confirmBtn.classList.add('enabled');
+            } else {
+              confirmBtn.classList.remove('enabled');
+            }
           } else {
             customInput.style.display = 'none';
             confirmBtn.classList.add('enabled');
@@ -638,8 +680,9 @@
 
       // 커스텀 입력 필드 처리
       customInput.addEventListener('input', function() {
+        console.log('Custom input changed:', this.value); // 디버그용
         const customRadio = document.getElementById('reason8');
-        if (customRadio.checked) {
+        if (customRadio && customRadio.checked) {
           if (this.value.trim().length > 0) {
             confirmBtn.classList.add('enabled');
           } else {
