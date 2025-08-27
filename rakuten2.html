@@ -184,14 +184,6 @@
       cursor: pointer; font-size: 14px; color: var(--ink);
       font-weight: 500; flex: 1;
     }
-    .exit-custom-input {
-      width: 100%; padding: 10px; border: 2px solid #e2e8f0;
-      border-radius: 6px; font-size: 14px; margin-top: 8px;
-      display: none;
-    }
-    .exit-custom-input:focus {
-      outline: none; border-color: var(--brand-blue);
-    }
     .exit-modal-buttons {
       display: flex; gap: 12px; justify-content: center;
     }
@@ -276,7 +268,7 @@
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
-    <div class="floating-cta__title">마감 00:00:00 · 잔여 12명</div>
+    <div class="floating-cta__title">간단한 설문알바</div>
     <a id="go-apply" class="floating-cta__btn" href="https://Athog.me/t733y9ipbs" aria-label="가입 링크로 이동">바로 가입하기</a>
   </div>
 
@@ -326,10 +318,8 @@
         
         <div class="exit-option" data-value="custom">
           <input type="radio" id="reason8" name="exitReason" value="custom">
-          <label for="reason8">직접 기재</label>
+          <label for="reason8">기타</label>
         </div>
-        
-        <input type="text" id="customReason" class="exit-custom-input" placeholder="이탈 이유를 직접 입력해주세요..." maxlength="100">
       </form>
 
       <div class="exit-modal-buttons">
@@ -563,7 +553,6 @@
 
       const exitModal = document.getElementById('exitModal');
       const exitForm = document.getElementById('exitReasonForm');
-      const customInput = document.getElementById('customReason');
       const cancelBtn = document.getElementById('exitModalCancel');
       const confirmBtn = document.getElementById('exitModalConfirm');
 
@@ -578,9 +567,23 @@
       document.addEventListener('scroll', detectInteraction);
       document.addEventListener('keydown', detectInteraction);
 
-      // 페이지 이탈 감지 (beforeunload)
+      // 인스타그램 인앱 브라우저 감지
+      function isInstagramBrowser() {
+        const ua = navigator.userAgent || '';
+        return ua.includes('Instagram');
+      }
+
+      // 페이지 이탈 감지 (beforeunload) - 인스타그램 대응 강화
       window.addEventListener('beforeunload', function(e) {
         if (!userHasInteracted || allowExit || isExitIntentShown) return;
+        
+        // 인스타그램에서는 더 강력한 방법 사용
+        if (isInstagramBrowser()) {
+          e.preventDefault();
+          e.returnValue = '정말 나가시겠습니까?';
+          showExitModal();
+          return '정말 나가시겠습니까?';
+        }
         
         // 표준 방식 (브라우저가 자체 메시지 표시)
         e.preventDefault();
@@ -596,20 +599,60 @@
         return '';
       });
 
-      // 뒤로가기 버튼 감지
+      // 뒤로가기 버튼 감지 - 인스타그램 대응
       let isPopStateHandled = false;
       window.addEventListener('popstate', function(e) {
         if (!userHasInteracted || allowExit || isExitIntentShown || isPopStateHandled) return;
         
         isPopStateHandled = true;
-        history.pushState(null, '', window.location.href);
-        showExitModal();
+        
+        // 인스타그램에서는 즉시 팝업 표시
+        if (isInstagramBrowser()) {
+          showExitModal();
+          history.pushState(null, '', window.location.href);
+        } else {
+          history.pushState(null, '', window.location.href);
+          showExitModal();
+        }
         
         setTimeout(() => { isPopStateHandled = false; }, 1000);
       });
 
-      // 페이지 로드 시 히스토리 엔트리 추가
+      // 페이지 로드 시 히스토리 엔트리 추가 - 인스타그램용 강화
       history.pushState(null, '', window.location.href);
+      
+      // 인스타그램에서 추가 히스토리 엔트리 생성
+      if (isInstagramBrowser()) {
+        setTimeout(() => {
+          history.pushState(null, '', window.location.href);
+          history.pushState(null, '', window.location.href);
+        }, 1000);
+      }
+
+      // 인스타그램용 추가 이벤트 리스너
+      if (isInstagramBrowser()) {
+        // pagehide 이벤트 (모바일 브라우저용)
+        window.addEventListener('pagehide', function(e) {
+          if (!userHasInteracted || allowExit || isExitIntentShown) return;
+          showExitModal();
+        });
+        
+        // visibilitychange 이벤트
+        document.addEventListener('visibilitychange', function() {
+          if (document.visibilityState === 'hidden' && userHasInteracted && !allowExit && !isExitIntentShown) {
+            // 약간의 지연 후 체크 (실제 페이지 이탈인지 확인)
+            setTimeout(() => {
+              if (document.visibilityState === 'hidden' && !allowExit) {
+                showExitModal();
+              }
+            }, 100);
+          }
+        });
+        
+        // 터치 이벤트로 사용자 인터랙션 감지 강화
+        document.addEventListener('touchstart', detectInteraction);
+        document.addEventListener('touchend', detectInteraction);
+      }
 
       function showExitModal() {
         if (isExitIntentShown) return;
@@ -619,10 +662,6 @@
         
         // 확인 버튼 초기 비활성화
         confirmBtn.classList.remove('enabled');
-        
-        // 커스텀 입력창 숨기기
-        customInput.style.display = 'none';
-        customInput.value = '';
         
         // 모든 선택 초기화
         document.querySelectorAll('.exit-option').forEach(opt => {
@@ -646,48 +685,32 @@
       }
 
       // 라디오 버튼 선택 처리
-      exitForm.addEventListener('change', function(e) {
-        if (e.target.type === 'radio') {
-          console.log('Radio button selected:', e.target.value); // 디버그용
-          
-          // 모든 옵션에서 selected 클래스 제거
-          document.querySelectorAll('.exit-option').forEach(opt => {
-            opt.classList.remove('selected');
-          });
-          
-          // 선택된 옵션에 selected 클래스 추가
-          const selectedOption = e.target.closest('.exit-option');
+      function handleRadioSelection(radioValue) {
+        console.log('Selection changed to:', radioValue);
+        
+        // 모든 옵션에서 selected 클래스 제거
+        document.querySelectorAll('.exit-option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+        
+        // 선택된 옵션 찾기
+        const selectedRadio = document.querySelector(`input[name="exitReason"][value="${radioValue}"]`);
+        if (selectedRadio) {
+          selectedRadio.checked = true;
+          const selectedOption = selectedRadio.closest('.exit-option');
           if (selectedOption) {
             selectedOption.classList.add('selected');
           }
-          
-          // 직접 기재 옵션 처리
-          if (e.target.value === 'custom') {
-            customInput.style.display = 'block';
-            customInput.focus();
-            // 입력값이 있는지 확인
-            if (customInput.value.trim().length > 0) {
-              confirmBtn.classList.add('enabled');
-            } else {
-              confirmBtn.classList.remove('enabled');
-            }
-          } else {
-            customInput.style.display = 'none';
-            confirmBtn.classList.add('enabled');
-          }
         }
-      });
+        
+        // 모든 옵션에서 확인 버튼 활성화
+        confirmBtn.classList.add('enabled');
+      }
 
-      // 커스텀 입력 필드 처리
-      customInput.addEventListener('input', function() {
-        console.log('Custom input changed:', this.value); // 디버그용
-        const customRadio = document.getElementById('reason8');
-        if (customRadio && customRadio.checked) {
-          if (this.value.trim().length > 0) {
-            confirmBtn.classList.add('enabled');
-          } else {
-            confirmBtn.classList.remove('enabled');
-          }
+      // 라디오 버튼 change 이벤트
+      exitForm.addEventListener('change', function(e) {
+        if (e.target.type === 'radio') {
+          handleRadioSelection(e.target.value);
         }
       });
 
@@ -695,9 +718,8 @@
       document.querySelectorAll('.exit-option').forEach(option => {
         option.addEventListener('click', function(e) {
           const radio = this.querySelector('input[type="radio"]');
-          if (radio && e.target !== radio) {
-            radio.checked = true;
-            radio.dispatchEvent(new Event('change'));
+          if (radio) {
+            handleRadioSelection(radio.value);
           }
         });
       });
@@ -719,10 +741,6 @@
           timestamp: new Date().toISOString(),
           page: window.location.pathname
         };
-        
-        if (selectedReason.value === 'custom') {
-          exitData.customReason = customInput.value.trim();
-        }
         
         // 데이터 저장/전송 (여기서 서버로 전송하거나 로컬 스토리지에 저장)
         saveExitData(exitData);
@@ -811,6 +829,10 @@
         console.table(stats);
         return stats;
       };
+
+      // 디버깅용 함수들을 전역에 노출
+      window.showExitModal = showExitModal;
+      window.hideExitModal = hideExitModal;
 
     })();
   </script>
