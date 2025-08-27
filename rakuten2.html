@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <!-- Open Graph -->
+  <meta property="og:title" content="간단한 설문 알바 - 라쿠텐 인사이트">
+  <meta property="og:description" content="매일 출근 길 점심 값 벌 수 있는 설문 알바">
+  <meta property="og:image" content="https://minkn96.github.io/site/rakuten2.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/rakuten.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7B92596QT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}    
+    gtag('js', new Date());
+    gtag('config', 'G-P7B92596QT');
+  </script>
+
+  <!-- MS Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "st7wj6aj7b");
+  </script>
+
+  <!-- 라이트 모드 강제 -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">   
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>라쿠텐 인사이트 - 설문알바</title>
+
+  <style>
+    :root { --cta-height: 64px; --brand-blue: #2463eb; --brand-yellow: #ffd93b; --safe-bottom: env(safe-area-inset-bottom, 0px); --danger: #ef4444; --ink:#0b1a3a; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #fff; color: #111; padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
+    }
+    .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
+    .floating-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
+      display: flex; gap: 8px; align-items: center; justify-content: center;
+      padding: 10px 14px calc(10px + var(--safe-bottom));
+      background: rgba(255,255,255,0.96); border-top: 1px solid #eaeaea;
+      backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px);
+      transition: transform .25s ease;
+    }
+    .Floating-cta.hidden, .floating-cta.hidden { transform: translateY(110%); }
+    .floating-cta__title { font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 52%; color: var(--ink); }
+    .floating-cta__btn, .primary-cta-btn {
+      appearance: none; border: 0; cursor: pointer; border-radius: 9999px;
+      padding: 14px 20px; font-weight: 800; font-size: 16px; color: var(--ink);
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
+      text-decoration: none; display: inline-block; text-align: center;
+    }
+    .floating-cta__btn:active, .primary-cta-btn:active { transform: translateY(1px); }
+    @media (min-width: 768px) {
+      :root { --cta-height: 72px; }
+      .floating-cta__title { font-size: 16px; max-width: none; }
+      .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
+
+    /* ▼▼ 실시간 신청 토스트 스타일 ▼▼ */
+    .live-signup {
+      position: fixed; left: 12px; bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
+      z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+    }
+    .live-toast { display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+      background: rgba(255,255,255,0.96); border: 1px solid #eaeaea; border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.12); transform: translateX(-8px); opacity: 0;
+      will-change: transform, opacity; animation: toast-in .36s ease forwards, toast-out .36s ease forwards 5.5s; }
+    .live-avatar { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex: 0 0 28px; background: #eee; }
+    .live-badge { display:flex; align-items:center; gap:6px; font-size: 12px; color: var(--ink); }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-blue); box-shadow: 0 0 0 0 rgba(36,99,235,.5); animation: pulse 2s infinite; }
+    .live-meta { font-size: 12px; opacity: .58; margin-top: 2px; }
+    @keyframes toast-in { to { transform: translateX(0); opacity: 1; } }
+    @keyframes toast-out { to { transform: translateX(-8px); opacity: 0; } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(36,99,235,.5); } 70% { box-shadow: 0 0 0 12px rgba(36,99,235,0); } 100% { box-shadow: 0 0 0 0 rgba(36,99,235,0); } }
+    @media (prefers-reduced-motion: reduce) { .live-toast { animation: none; opacity: 1; } .live-dot { animation: none; } }
+    /* ▲▲ 실시간 신청 토스트 스타일 ▲▲ */
+
+    /* ▼▼ 마감 임박 바 & 등록 테이블 ▼▼ */
+    .urgency-bar { position: sticky; top: 0; z-index: 999; padding: 10px 14px; background: #0b1a3a; color:#fff; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .urgency-text { font-weight: 800; font-size: 14px; letter-spacing: .2px; }
+    .urgency-text strong { color: var(--brand-yellow); }
+    .urgency-progress { height: 6px; background: rgba(255,255,255,.25); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .urgency-progress span { display:block; height:100%; width: 60%; background: var(--brand-yellow); box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); transition: width .6s ease; }
+    .recent-signups { padding: 18px 14px 6px; }
+    .recent-signups h2 { margin: 8px 0 10px; font-size: 16px; }
+    .table-wrap { border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
+    .signup-table { width:100%; border-collapse: collapse; font-size: 14px; }
+    .signup-table thead th { background:#f8fafc; text-align:left; padding:10px; border-bottom: 1px solid #eaeaea; }
+    .signup-table tbody td { padding:10px; border-bottom: 1px solid #f1f5f9; }
+    .signup-table tbody tr:last-child td { border-bottom: 0; }
+    .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
+    @keyframes rowflash { 0% { background:#fff9db; } 100% { background: transparent; } }
+
+    /* ▼▼ 중앙 대형 마감/잔여 빌보드 ▼▼ */
+    .cta-section { padding: 18px 14px 26px; }
+    .urgency-billboard { position: relative; margin: 16px auto 16px; max-width: 720px; width: min(92vw, 720px); border-radius: 20px; border: 1px solid #eaeaea; background: #ffffff; box-shadow: 0 10px 24px rgba(0,0,0,.08); display: grid; place-items: center; padding: 16px; }
+    .urgency-billboard.square { aspect-ratio: 1/1; }
+    .urgency-billboard.rect { aspect-ratio: 16/9; }
+    .bb-wrap { display: grid; gap: 16px; width: 100%; height: 100%; grid-template-rows: 1fr auto; }
+    .bb-row { display: grid; gap: 14px; align-items: center; justify-items: center; height: 100%; grid-template-columns: 1fr; }
+    .bb-item { display: grid; gap: 6px; text-align: center; }
+    .bb-label { font-weight: 800; font-size: clamp(14px, 2.6vw, 18px); color: var(--ink); opacity: .85; letter-spacing: .2px; }
+    .bb-value { font-weight: 900; font-variant-numeric: tabular-nums; font-size: clamp(36px, 12vw, 72px); letter-spacing: .5px; color: var(--ink); }
+    .bb-value .bb-unit { font-weight: 800; font-size: clamp(16px, 3.6vw, 22px); margin-left: 6px; opacity: .85; }
+    .bb-foot { display: grid; gap: 8px; }
+    .bb-progress { height: 10px; background: #f1f5f9; border-radius: 999px; overflow: hidden; }
+    .bb-progress span { display:block; height: 100%; width: 60%; background: var(--brand-yellow); transition: width .6s ease; }
+    .bb-note { text-align: center; font-size: 13px; color: #334155; }
+    @media (min-width: 720px) {
+      .bb-row { grid-template-columns: 1fr 1fr; }
+      .bb-value { font-size: clamp(44px, 6.8vw, 88px); }
+      .urgency-billboard { border-radius: 24px; }
+    }
+    /* 위험 상태 */
+    .bb-danger .bb-value { color: var(--danger); }
+    .bb-danger .bb-progress span { background: var(--danger); }
+
+    /* ▼▼ CTA 카드 ▼▼ */
+    .cta-card { border: 1px solid #eaeaea; border-radius: 16px; padding: 18px; background: #fff; box-shadow: 0 6px 16px rgba(0,0,0,.06); }
+    .cta-title { font-size: 18px; font-weight: 800; margin: 0 0 10px; color: var(--ink); }
+    .primary-cta-btn { padding: 14px 22px; width: 100%; }
+
+    /* ▼▼ 페이지 이탈 팝업 스타일 ▼▼ */
+    .exit-modal {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      z-index: 99999; display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .exit-modal.show { display: flex; }
+    .exit-modal-content {
+      background: white; border-radius: 16px; padding: 24px;
+      max-width: 400px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: modalSlideIn 0.3s ease-out;
+    }
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .exit-modal-title {
+      font-size: 18px; font-weight: 800; color: var(--ink);
+      margin: 0 0 20px; text-align: center;
+    }
+    .exit-options {
+      display: grid; gap: 12px; margin-bottom: 20px;
+    }
+    .exit-option {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px; border: 2px solid #f1f5f9; border-radius: 8px;
+      cursor: pointer; transition: all 0.2s ease;
+    }
+    .exit-option:hover {
+      border-color: var(--brand-blue); background: #f8fafc;
+    }
+    .exit-option.selected {
+      border-color: var(--brand-blue); background: #eff6ff;
+    }
+    .exit-option input[type="radio"] {
+      margin: 0; accent-color: var(--brand-blue);
+    }
+    .exit-option label {
+      cursor: pointer; font-size: 14px; color: var(--ink);
+      font-weight: 500; flex: 1;
+    }
+    .exit-custom-input {
+      width: 100%; padding: 10px; border: 2px solid #e2e8f0;
+      border-radius: 6px; font-size: 14px; margin-top: 8px;
+      display: none;
+    }
+    .exit-custom-input:focus {
+      outline: none; border-color: var(--brand-blue);
+    }
+    .exit-modal-buttons {
+      display: flex; gap: 12px; justify-content: center;
+    }
+    .exit-modal-btn {
+      padding: 12px 24px; border-radius: 8px; font-weight: 600;
+      border: 0; cursor: pointer; font-size: 14px; transition: all 0.2s;
+    }
+    .exit-modal-btn.cancel {
+      background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0;
+    }
+    .exit-modal-btn.cancel:hover { background: #f1f5f9; }
+    .exit-modal-btn.confirm {
+      background: var(--brand-blue); color: white;
+      opacity: 0.5; cursor: not-allowed;
+    }
+    .exit-modal-btn.confirm.enabled {
+      opacity: 1; cursor: pointer;
+    }
+    .exit-modal-btn.confirm.enabled:hover {
+      background: #1d4ed8;
+    }
+  </style>
+
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- 마감 임박 스티키 바 (사이트 공통 상단과 동기화 대상) -->
+  <div class="urgency-bar" role="status" aria-live="polite">
+    <div class="urgency-text">오늘 마감까지 <span id="countdown">00:00:00</span> · 예상 잔여 <strong><span id="seats-left">12</span>명</strong></div>
+    <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
+  </div>
+
+  <!-- 랜딩페이지 이미지 -->
+  <img src="rakuten.png" alt="설문알바 랜딩 이미지" class="landing-image" />
+
+  <!-- 신청폼 앵커 (필요 시 스크롤 앵커로 사용) -->
+  <span id="apply-anchor"></span>
+
+  <!-- CTA 버튼 섹션 -->
+  <section id="cta-section" class="cta-section" aria-label="가입 안내">
+    <!-- ✅ 중앙 대형 빌보드 (정사각형 기본) -->
+    <div class="urgency-billboard square" role="status" aria-live="polite" id="urgency-billboard">
+      <div class="bb-wrap">
+        <div class="bb-row">
+          <div class="bb-item">
+            <div class="bb-label">오늘 마감까지</div>
+            <div class="bb-value" data-urgency="countdown">00:00:00</div>
+          </div>
+          <div class="bb-item">
+            <div class="bb-label">예상 잔여</div>
+            <div class="bb-value"><span data-urgency="seats">12</span><span class="bb-unit">명</span></div>
+          </div>
+        </div>
+        <div class="bb-foot">
+          <div class="bb-progress"><span id="bb-fill" style="width:70%"></span></div>
+          <div class="bb-note" id="bb-note">원활할 때 지금 신청하세요</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <h2 class="cta-title">지금 시작해 보세요</h2>
+      <a id="primary-cta" class="primary-cta-btn" href="https://Athog.me/t733y9ipbs" aria-label="설문알바 시작하기">설문알바 시작하기</a>
+    </div>
+  </section>
+
+  <!-- 최근 등록 현황 테이블 -->
+  <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
+    <h2>최근 등록 현황</h2>
+    <div class="table-wrap">
+      <table class="signup-table" aria-live="polite">
+        <thead>
+          <tr><th scope="col">이름</th><th scope="col">지역</th><th scope="col">등록 시각</th></tr>
+        </thead>
+        <tbody id="signup-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 하단 플로팅바 -->
+  <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
+    <div class="floating-cta__title">간단한 설문알바</div>
+    <a id="go-apply" class="floating-cta__btn" href="https://Athog.me/t733y9ipbs" aria-label="가입 링크로 이동">나도 시작하기</a>
+  </div>
+
+  <!-- 실시간 신청 토스트 컨테이너 -->
+  <div class="live-signup" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ▼▼ 페이지 이탈 팝업 모달 ▼▼ -->
+  <div id="exitModal" class="exit-modal" role="dialog" aria-labelledby="exitModalTitle" aria-modal="true">
+    <div class="exit-modal-content">
+      <h3 id="exitModalTitle" class="exit-modal-title">이 홈페이지에서 나가시는 이유를 선택해 주세요</h3>
+      
+      <form id="exitReasonForm" class="exit-options">
+        <div class="exit-option" data-value="completed">
+          <input type="radio" id="reason1" name="exitReason" value="completed">
+          <label for="reason1">가입완료했습니다.</label>
+        </div>
+        
+        <div class="exit-option" data-value="signup-failed">
+          <input type="radio" id="reason2" name="exitReason" value="signup-failed">
+          <label for="reason2">회원가입이 되지 않습니다.</label>
+        </div>
+        
+        <div class="exit-option" data-value="not-interested">
+          <input type="radio" id="reason3" name="exitReason" value="not-interested">
+          <label for="reason3">가입하고 싶지 않습니다.</label>
+        </div>
+        
+        <div class="exit-option" data-value="custom">
+          <input type="radio" id="reason8" name="exitReason" value="custom">
+          <label for="reason8">직접 쓰기</label>
+        </div>
+        
+        <input type="text" id="customReason" class="exit-custom-input" placeholder="이탈 이유를 직접 입력해주세요..." maxlength="100">
+      </form>
+
+      <div class="exit-modal-buttons">
+        <button type="button" id="exitModalCancel" class="exit-modal-btn cancel">계속 둘러보기</button>
+        <button type="button" id="exitModalConfirm" class="exit-modal-btn confirm">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 실시간 신청 + 마감/테이블 스크립트 (사이트 상단과 동기화 포함) -->
+  <script>
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const container = document.querySelector('.live-signup');
+      const ctaBar = document.querySelector('.floating-cta');
+      const seatsEl = document.getElementById('seats-left');
+      const fillEl = document.getElementById('urgency-fill');
+      const bbFillEl = document.getElementById('bb-fill');
+      const bbNoteEl = document.getElementById('bb-note');
+      const billboard = document.getElementById('urgency-billboard');
+      const countdownEl = document.getElementById('countdown');
+      const tbody = document.getElementById('signup-tbody');
+      const floatingTitle = document.querySelector('.floating-cta__title');
+
+      // ===== 🔁 사이트 전역 동기화를 위한 경량 스토어 =====
+      const UrgencySync = (function(){
+        const KEYS = { seats: 'ituim:urgency:seats', deadline: 'ituim:urgency:deadline' };
+        const CHANNEL = 'ituim:urgency';
+        const bc = ('BroadcastChannel' in window) ? new BroadcastChannel(CHANNEL) : null;
+        function read(){
+          const s = parseInt(localStorage.getItem(KEYS.seats), 10);
+          const d = parseInt(localStorage.getItem(KEYS.deadline), 10);
+          return { seats: isFinite(s) ? s : null, deadlineTs: isFinite(d) ? d : null };
+        }
+        function emit(detail){ window.dispatchEvent(new CustomEvent('urgency:update', { detail })); }
+        function write(state){
+          if (state.seats != null) localStorage.setItem(KEYS.seats, String(state.seats));
+          if (state.deadlineTs != null) localStorage.setItem(KEYS.deadline, String(state.deadlineTs));
+          emit({ seats: state.seats ?? null, deadlineTs: state.deadlineTs ?? null });
+          if (bc) bc.postMessage({ seats: state.seats ?? null, deadlineTs: state.deadlineTs ?? null });
+        }
+        if (bc) bc.onmessage = (e) => emit(e.data || {});
+        window.addEventListener('storage', (e) => {
+          if (!e.key || (e.key.indexOf('ituim:urgency:') !== 0)) return;
+          emit(read());
+        });
+        function on(cb){ window.addEventListener('urgency:update', (e)=> cb(e.detail || {})); }
+        return { read, write, on };
+      })();
+
+      // ===== 유틸 =====
+      function nowKST(){ return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' })); }
+      function midnightNextKST(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()+1, 0, 0, 0); }
+      function sameYMD(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+      function formatRel(dt){
+        const n = nowKST();
+        const diff = n - dt; const mins = Math.floor(diff/60000);
+        if (mins < 1) return '방금';
+        if (mins < 60) return mins + '분 전';
+        const hrs = Math.floor(mins/60);
+        if (hrs < 24) return hrs + '시간 전';
+        return dt.toLocaleDateString('ko-KR', { month:'numeric', day:'numeric', timeZone:'Asia/Seoul' });
+      }
+      function formatTime(dt){ return dt.toLocaleTimeString('ko-KR', { hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Asia/Seoul' }); }
+
+      // ===== 상태 =====
+      const dailyQuota = 40;
+      let seatsRemaining = 0;
+      let deadlineTs = 0; // 자정 timestamp(ms)
+      let lastCountdownStr = '00:00:00';
+
+      function shouldStop(){ return seatsRemaining <= 2; }
+
+      // ===== DOM 갱신 (멀티 미러 지원) =====
+      function updateSeatsUI(){
+        if (seatsEl) seatsEl.textContent = String(seatsRemaining);
+        document.querySelectorAll('[data-urgency="seats"]').forEach(el => el.textContent = String(seatsRemaining));
+        const fillPct = Math.max(0, Math.min(100, ((dailyQuota - seatsRemaining)/dailyQuota)*100));
+        if (fillEl) fillEl.style.width = fillPct + '%';
+        if (bbFillEl) bbFillEl.style.width = fillPct + '%';
+        // 위험 상태 토글
+        if (billboard) billboard.classList.toggle('bb-danger', shouldStop());
+        if (bbNoteEl) bbNoteEl.textContent = shouldStop() ? '마감 임박 — 잔여 2명' : '원활할 때 지금 신청하세요';
+        refreshFloatingTitle();
+      }
+      function updateCountdownUI(){
+        if (countdownEl) countdownEl.textContent = lastCountdownStr;
+        document.querySelectorAll('[data-urgency="countdown"]').forEach(el => el.textContent = lastCountdownStr);
+        refreshFloatingTitle();
+      }
+      function refreshFloatingTitle(){
+        if (!floatingTitle) return;
+        floatingTitle.textContent = shouldStop() ? `마감 임박 · 잔여 ${seatsRemaining}명` : `마감 ${lastCountdownStr} · 잔여 ${seatsRemaining}명`;
+      }
+
+      // ===== 초기 동기화 =====
+      (function initState(){
+        const now = nowKST();
+        const stored = UrgencySync.read();
+        const todayMidnight = +midnightNextKST(now);
+        // 마감 시간은 오늘 자정 기준 유지(저장된 값이 오늘 것이라면 사용)
+        if (stored.deadlineTs && sameYMD(new Date(stored.deadlineTs - 1), now)) {
+          deadlineTs = stored.deadlineTs;
+        } else {
+          deadlineTs = todayMidnight;
+        }
+        // ✅ 새로고침 시 잔여석은 항상 새로 랜덤 초기화 (20~28)
+        seatsRemaining = Math.max(3, Math.floor(20 + Math.random()*8));
+
+        // 헤더/다른 탭 동기화를 위해 현재 값을 방송/기록(좌석은 매 로드마다 덮어씀)
+        UrgencySync.write({ seats: seatsRemaining, deadlineTs });
+        updateSeatsUI();
+      })();
+
+      // ===== 카운트다운 =====
+      function tickCountdown(){
+        const now = nowKST().getTime();
+        const total = Math.max(0, Math.floor((deadlineTs - now)/1000));
+        const h = Math.floor(total/3600);
+        const m = Math.floor((total%3600)/60);
+        const s = Math.floor(total%60);
+        lastCountdownStr = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        updateCountdownUI();
+      }
+      tickCountdown();
+      setInterval(tickCountdown, 1000);
+
+      // ===== 상단/다른 탭에서 오는 상태 변경 수신 =====
+      UrgencySync.on(({ seats, deadlineTs: dl }) => {
+        let changed = false;
+        if (typeof seats === 'number' && seats !== seatsRemaining) { seatsRemaining = Math.max(0, Math.min(dailyQuota, seats)); changed = true; }
+        if (typeof dl === 'number' && dl !== deadlineTs) { deadlineTs = dl; changed = true; }
+        if (changed) { updateSeatsUI(); tickCountdown(); }
+      });
+
+      // ===== CTA 표시 여부에 따라 토스트 위치 자동 보정 =====
+      function updateBottom(){
+        if (!ctaBar || !container) return;
+        container.style.bottom = ctaBar.classList.contains('hidden')
+          ? '12px'
+          : 'calc(var(--cta-height) + var(--safe-bottom) + 12px)';
+      }
+      updateBottom();
+      if (window.MutationObserver && ctaBar) {
+        new MutationObserver(updateBottom).observe(ctaBar, { attributes:true, attributeFilter:['class'] });
+      }
+
+      // ===== 더미 데이터(마스킹 이름/도시) =====
+      const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
+      const firstNames = ['서준','하준','도윤','시후','지호','현우','하율','서연','지우','서윤','하윤','지민','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
+      const cities = ['서울','부산','인천','대구','대전','광주','수원','성남','용인','울산','창원','고양','용산','파주','김포','의정부','세종'];
+      function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+      function maskedName(){
+        const ln = lastNames[rand(0, lastNames.length-1)];
+        const fn = firstNames[rand(0, firstNames.length-1)];
+        const masked = fn.slice(0,1) + '○';
+        return ln + masked; // 김서○
+      }
+      function avatarDataURI(initial){
+        const palette = ['#E0F2FE','#FEE2E2','#F3E8FF','#FEF3C7','#E2FBE8'];
+        const bg = palette[rand(0, palette.length-1)];
+        const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56'>
+          <rect width='56' height='56' rx='28' fill='${bg}'/>
+          <text x='50%' y='56%' text-anchor='middle' font-family='Noto Sans KR, sans-serif' font-size='28' fill='#0b1a3a'>${initial}</text>
+        </svg>`;
+        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+      }
+
+      function addRow(name, city, dateObj, highlight){
+        if (!tbody) return;
+        const tr = document.createElement('tr');
+        if (highlight && !prefersReduced) tr.classList.add('highlight');
+        tr.innerHTML = `<td>${name}</td><td>${city}</td><td title="${formatTime(dateObj)}">${formatRel(dateObj)}</td>`;
+        tbody.insertBefore(tr, tbody.firstChild);
+        while (tbody.children.length > 20) tbody.removeChild(tbody.lastElementChild);
+      }
+
+      // 초기 더미 데이터(최근 60분 내)
+      const preCount = Math.floor(6 + Math.random()*6); // 6~11개
+      for (let i = preCount; i >= 1; i--) {
+        const minsAgo = rand(5, 60);
+        const when = new Date(nowKST().getTime() - minsAgo*60000);
+        const name = maskedName();
+        const city = cities[rand(0, cities.length-1)];
+        addRow(name, city, when, false);
+      }
+
+      // 토스트 생성 + 테이블/잔여석 갱신
+      function createToast(){
+        if (shouldStop()) return;
+        const name = maskedName();
+        const city = cities[rand(0, cities.length-1)];
+        const toast = document.createElement('div');
+        toast.className = 'live-toast';
+        toast.setAttribute('role','status');
+        toast.innerHTML = `
+          <div class="live-avatar"><img src="${avatarDataURI(name.charAt(0))}" alt="${name} 아바타" width="28" height="28" loading="lazy"></div>
+          <div>
+            <div class="live-badge"><span class="live-dot" aria-hidden="true"></span><strong>${name}</strong>님이 신청했어요</div>
+            <div class="live-meta">${city} · 방금</div>
+          </div>
+        `;
+
+        if (container && container.children.length >= 3) container.removeChild(container.firstElementChild);
+        if (container) container.appendChild(toast);
+        setTimeout(() => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 6200);
+
+        // 테이블/잔여석 업데이트
+        addRow(name, city, nowKST(), true);
+        seatsRemaining = Math.max(0, seatsRemaining - 1);
+        updateSeatsUI();
+        // 상단/다른 탭에도 반영
+        UrgencySync.write({ seats: seatsRemaining });
+      }
+
+      function schedule(){
+        if (shouldStop()) return; // 2 이하이면 스케줄 중단
+        const delay = rand(6500, 19500); // 6.5~19.5초 간격
+        setTimeout(() => {
+          if (shouldStop()) return;
+          createToast();
+          schedule();
+        }, delay);
+      }
+      schedule();
+
+      // ===== 🚪 페이지 이탈 팝업 기능 =====
+      let isExitIntentShown = false;
+      let allowExit = false;
+      let userHasInteracted = false;
+
+      const exitModal = document.getElementById('exitModal');
+      const exitForm = document.getElementById('exitReasonForm');
+      const customInput = document.getElementById('customReason');
+      const cancelBtn = document.getElementById('exitModalCancel');
+      const confirmBtn = document.getElementById('exitModalConfirm');
+
+      // 사용자 인터랙션 감지 (최초 한 번만)
+      function detectInteraction() {
+        userHasInteracted = true;
+        document.removeEventListener('click', detectInteraction);
+        document.removeEventListener('scroll', detectInteraction);
+        document.removeEventListener('keydown', detectInteraction);
+      }
+      document.addEventListener('click', detectInteraction);
+      document.addEventListener('scroll', detectInteraction);
+      document.addEventListener('keydown', detectInteraction);
+
+      // 페이지 이탈 감지 (beforeunload)
+      window.addEventListener('beforeunload', function(e) {
+        if (!userHasInteracted || allowExit || isExitIntentShown) return;
+        
+        // 표준 방식 (브라우저가 자체 메시지 표시)
+        e.preventDefault();
+        e.returnValue = '';
+        
+        // 커스텀 모달 표시 (약간의 지연 후)
+        setTimeout(() => {
+          if (!isExitIntentShown) {
+            showExitModal();
+          }
+        }, 50);
+        
+        return '';
+      });
+
+      // 뒤로가기 버튼 감지
+      let isPopStateHandled = false;
+      window.addEventListener('popstate', function(e) {
+        if (!userHasInteracted || allowExit || isExitIntentShown || isPopStateHandled) return;
+        
+        isPopStateHandled = true;
+        history.pushState(null, '', window.location.href);
+        showExitModal();
+        
+        setTimeout(() => { isPopStateHandled = false; }, 1000);
+      });
+
+      // 페이지 로드 시 히스토리 엔트리 추가
+      history.pushState(null, '', window.location.href);
+
+      function showExitModal() {
+        if (isExitIntentShown) return;
+        isExitIntentShown = true;
+        exitModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // 첫 번째 라디오 버튼에 포커스
+        const firstRadio = exitForm.querySelector('input[type="radio"]');
+        if (firstRadio) {
+          setTimeout(() => firstRadio.focus(), 100);
+        }
+      }
+
+      function hideExitModal() {
+        exitModal.classList.remove('show');
+        document.body.style.overflow = '';
+        isExitIntentShown = false;
+      }
+
+      // 라디오 버튼 선택 처리
+      exitForm.addEventListener('change', function(e) {
+        if (e.target.type === 'radio') {
+          // 모든 옵션에서 selected 클래스 제거
+          document.querySelectorAll('.exit-option').forEach(opt => {
+            opt.classList.remove('selected');
+          });
+          
+          // 선택된 옵션에 selected 클래스 추가
+          const selectedOption = e.target.closest('.exit-option');
+          if (selectedOption) {
+            selectedOption.classList.add('selected');
+          }
+          
+          // 직접 기재 옵션 처리
+          if (e.target.value === 'custom') {
+            customInput.style.display = 'block';
+            customInput.focus();
+            confirmBtn.classList.remove('enabled');
+          } else {
+            customInput.style.display = 'none';
+            confirmBtn.classList.add('enabled');
+          }
+        }
+      });
+
+      // 커스텀 입력 필드 처리
+      customInput.addEventListener('input', function() {
+        const customRadio = document.getElementById('reason8');
+        if (customRadio.checked) {
+          if (this.value.trim().length > 0) {
+            confirmBtn.classList.add('enabled');
+          } else {
+            confirmBtn.classList.remove('enabled');
+          }
+        }
+      });
+
+      // 옵션 클릭 처리 (라디오 버튼 외 영역 클릭시에도 선택)
+      document.querySelectorAll('.exit-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+          const radio = this.querySelector('input[type="radio"]');
+          if (radio && e.target !== radio) {
+            radio.checked = true;
+            radio.dispatchEvent(new Event('change'));
+          }
+        });
+      });
+
+      // 취소 버튼
+      cancelBtn.addEventListener('click', function() {
+        hideExitModal();
+      });
+
+      // 확인 버튼
+      confirmBtn.addEventListener('click', function() {
+        if (!this.classList.contains('enabled')) return;
+        
+        const selectedReason = exitForm.querySelector('input[name="exitReason"]:checked');
+        if (!selectedReason) return;
+        
+        let exitData = {
+          reason: selectedReason.value,
+          timestamp: new Date().toISOString(),
+          page: window.location.pathname
+        };
+        
+        if (selectedReason.value === 'custom') {
+          exitData.customReason = customInput.value.trim();
+        }
+        
+        // 데이터 저장/전송 (여기서 서버로 전송하거나 로컬 스토리지에 저장)
+        saveExitData(exitData);
+        
+        // 페이지 이탈 허용
+        allowExit = true;
+        hideExitModal();
+        
+        // 실제로 페이지를 떠나거나 뒤로가기 실행
+        if (history.length > 1) {
+          history.back();
+        } else {
+          window.close();
+        }
+      });
+
+      // 이탈 데이터 저장 함수
+      function saveExitData(data) {
+        // 로컬스토리지에 저장 (실제로는 서버 API로 전송)
+        let exitStats = JSON.parse(localStorage.getItem('exitReasons') || '[]');
+        exitStats.push(data);
+        localStorage.setItem('exitReasons', JSON.stringify(exitStats));
+        
+        console.log('Exit reason saved:', data);
+        
+        // 서버로 전송하는 예시 코드 (실제 구현시 사용)
+        /*
+        fetch('/api/exit-reasons', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).catch(err => console.error('Failed to send exit data:', err));
+        */
+      }
+
+      // ESC 키로 모달 닫기
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && exitModal.classList.contains('show')) {
+          hideExitModal();
+        }
+      });
+
+      // 모달 배경 클릭시 닫기
+      exitModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          hideExitModal();
+        }
+      });
+
+      // CTA 버튼 클릭 시 이탈 팝업 비활성화
+      function handleCtaClick() {
+        allowExit = true;
+        // 3초 후 다시 활성화 (다른 이탈 시도 대비)
+        setTimeout(() => { allowExit = false; }, 3000);
+      }
+
+      // CTA 버튼들에 이벤트 리스너 추가
+      const ctaButtons = [
+        document.getElementById('primary-cta'),    // 메인 가입 버튼
+        document.getElementById('go-apply')        // 플로팅 가입 버튼
+      ];
+
+      ctaButtons.forEach(btn => {
+        if (btn) {
+          btn.addEventListener('click', handleCtaClick);
+        }
+      });
+
+      // 모든 외부 링크 클릭 시에도 팝업 비활성화 (선택사항)
+      document.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        if (link && link.href) {
+          const currentDomain = window.location.hostname;
+          const linkDomain = new URL(link.href, window.location.href).hostname;
+          
+          // 외부 도메인으로의 링크인 경우 팝업 비활성화
+          if (linkDomain !== currentDomain) {
+            handleCtaClick();
+          }
+        }
+      });
+
+      // 이탈 통계 확인 함수 (개발자 도구에서 사용 가능)
+      window.getExitStats = function() {
+        const stats = JSON.parse(localStorage.getItem('exitReasons') || '[]');
+        console.table(stats);
+        return stats;
+      };
+
+    })();
+  </script>
+</body>
+</html>
