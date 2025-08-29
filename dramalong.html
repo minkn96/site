@@ -45,51 +45,6 @@
     }
     .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
     
-    /* ▼▼ 유튜브 영상 스타일 ▼▼ */
-    .video-section {
-      width: 100%;
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 0 14px;
-    }
-    .video-container {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%; /* 16:9 비율 */
-      background: #f8fafc;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      border-radius: 12px;
-    }
-    .video-title {
-      text-align: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #0b1a3a;
-      margin: 16px 0;
-    }
-    @media (min-width: 768px) {
-      .video-section {
-        margin: 30px auto;
-        padding: 0 20px;
-      }
-      .video-title {
-        font-size: 20px;
-        margin: 20px 0;
-      }
-    }
-    /* ▲▲ 유튜브 영상 스타일 ▲▲ */
-    
     .floating-cta {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
       display: flex; gap: 8px; align-items: center; justify-content: center;
@@ -164,6 +119,35 @@
     .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
     @keyframes rowflash { 0% { background:#fff9db; } 100% { background: transparent; } }
     /* ▲▲ 마감 임박 바 & 등록 테이블 ▲▲ */
+
+    /* ▼▼ 푸터 스타일 ▼▼ */
+    .footer {
+      margin-top: 40px;
+      padding: 24px 14px 32px;
+      background: #f8fafc;
+      border-top: 1px solid #eaeaea;
+      text-align: center;
+    }
+    .footer-content {
+      max-width: 400px;
+      margin: 0 auto;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .footer-content .company-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    .footer-content .business-number {
+      opacity: 0.8;
+    }
+    @media (min-width: 768px) {
+      .footer { padding: 32px 20px 40px; }
+      .footer-content { font-size: 14px; }
+    }
+    /* ▲▲ 푸터 스타일 ▲▲ */
   </style>
 
   <!-- ★ 텐핑 제출완료 콜백: 메타 맞춤이벤트 전송 (전역, 스크립트 위) -->
@@ -218,6 +202,14 @@
       </table>
     </div>
   </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="company-name">광고대행사 : (주)편리한세상</div>
+      <div class="business-number">사업자번호 : 722-26-01851</div>
+    </div>
+  </footer>
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
