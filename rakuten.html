@@ -148,6 +148,110 @@
     .cta-card { border: 1px solid #eaeaea; border-radius: 16px; padding: 18px; background: #fff; box-shadow: 0 6px 16px rgba(0,0,0,.06); }
     .cta-title { font-size: 18px; font-weight: 800; margin: 0 0 10px; color: var(--ink); }
     .primary-cta-btn { padding: 14px 22px; width: 100%; }
+
+    /* ▼▼ 미션 이벤트 팝업 스타일 ▼▼ */
+    .mission-popup-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10000;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .mission-popup-overlay.show {
+      opacity: 1; visibility: visible;
+    }
+    .mission-popup {
+      background: #fff; border-radius: 20px; padding: 24px; max-width: 400px; width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15); position: relative;
+      transform: scale(0.9) translateY(20px); transition: all 0.3s ease;
+    }
+    .mission-popup-overlay.show .mission-popup {
+      transform: scale(1) translateY(0);
+    }
+    .mission-close {
+      position: absolute; top: 16px; right: 16px; background: none; border: none;
+      font-size: 24px; cursor: pointer; color: #64748b; padding: 4px;
+      border-radius: 50%; transition: background 0.2s ease;
+    }
+    .mission-close:hover {
+      background: rgba(100,116,139,0.1);
+    }
+    .mission-header {
+      text-align: center; margin-bottom: 20px;
+    }
+    .mission-badge {
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+      background: linear-gradient(135deg, var(--brand-blue), #3b82f6);
+      color: white; border-radius: 20px; font-size: 12px; font-weight: 700;
+      margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .mission-title {
+      font-size: 22px; font-weight: 800; color: var(--ink);
+      margin: 0 0 8px; line-height: 1.3;
+    }
+    .mission-subtitle {
+      font-size: 14px; color: #64748b; margin: 0;
+    }
+    .mission-timer {
+      background: linear-gradient(135deg, #fef3c7, #fed7aa);
+      border: 2px solid #f59e0b; border-radius: 16px; padding: 16px;
+      text-align: center; margin: 20px 0;
+    }
+    .timer-label {
+      font-size: 14px; font-weight: 600; color: #92400e; margin-bottom: 8px;
+    }
+    .timer-display {
+      font-size: 32px; font-weight: 900; color: #92400e;
+      font-variant-numeric: tabular-nums; letter-spacing: 1px;
+    }
+    .mission-benefits {
+      background: #f8fafc; border-radius: 12px; padding: 16px; margin: 20px 0;
+    }
+    .benefit-item {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+    }
+    .benefit-item:last-child {
+      margin-bottom: 0;
+    }
+    .benefit-icon {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--brand-yellow); display: flex; align-items: center;
+      justify-content: center; font-weight: 800; font-size: 12px;
+      color: var(--ink);
+    }
+    .benefit-text {
+      font-size: 14px; color: var(--ink);
+    }
+    .mission-actions {
+      display: grid; gap: 10px;
+    }
+    .mission-btn {
+      appearance: none; border: 0; cursor: pointer; border-radius: 12px;
+      padding: 16px 20px; font-weight: 800; font-size: 16px;
+      text-decoration: none; display: block; text-align: center;
+      transition: all 0.2s ease;
+    }
+    .mission-btn.primary {
+      background: linear-gradient(135deg, var(--brand-yellow), #ffe47a);
+      color: var(--ink); box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    .mission-btn.primary:hover {
+      transform: translateY(-2px); box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    .mission-btn.primary:active {
+      transform: translateY(0);
+    }
+    .mission-btn.secondary {
+      background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0;
+    }
+    .mission-btn.secondary:hover {
+      background: #e2e8f0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mission-popup-overlay, .mission-popup { transition: none; }
+      .mission-btn { transition: none; }
+    }
+    /* ▲▲ 미션 이벤트 팝업 스타일 ▲▲ */
   </style>
 
 </head>
@@ -217,6 +321,51 @@
 
   <!-- 실시간 신청 토스트 컨테이너 -->
   <div class="live-signup" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ▼▼ 미션 이벤트 팝업 ▼▼ -->
+  <div class="mission-popup-overlay" id="mission-popup-overlay">
+    <div class="mission-popup">
+      <button class="mission-close" onclick="closeMissionPopup()" aria-label="팝업 닫기">&times;</button>
+      
+      <div class="mission-header">
+        <div class="mission-badge">
+          <span>🎯</span> 미션 이벤트
+        </div>
+        <h3 class="mission-title">⚠️ 단 한번뿐인 기회<br>3분 내 가입 시 특별 포인트! (평균 가입 소요시간 : 30초)</h3>
+        <p class="mission-subtitle">랜덤으로 제공되는 특별 이벤트입니다</p>
+      </div>
+
+      <div class="mission-timer">
+        <div class="timer-label">⏰ 미션 남은 시간</div>
+        <div class="timer-display" id="mission-timer">03:00</div>
+      </div>
+
+      <div class="mission-benefits">
+        <div class="benefit-item">
+          <div class="benefit-icon">+</div>
+          <div class="benefit-text">가입 완료 시 <strong>특별 포인트</strong> 지급</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-text">지금만 할 수 있는 <strong>특별 이벤트</strong></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">⏰</div>
+          <div class="benefit-text">3분 후 <strong>기회 완전 소멸</strong></div>
+        </div>
+      </div>
+
+      <div class="mission-actions">
+        <a href="https://Athog.me/t733y9ipbs" class="mission-btn primary" onclick="closeMissionPopup()">
+          🚀 포인트 받고 시작하기
+        </a>
+        <button class="mission-btn secondary" onclick="closeMissionPopup()">
+          이벤트 포기하기
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- ▲▲ 미션 이벤트 팝업 ▲▲ -->
 
   <!-- 실시간 신청 + 마감/테이블 스크립트 (사이트 상단과 동기화 포함) -->
   <script>
@@ -428,6 +577,68 @@
       }
       schedule();
     })();
+
+    // ===== 미션 팝업 관련 함수 =====
+    let missionTimerInterval;
+    let missionTimeLeft = 180; // 3분 = 180초
+
+    function showMissionPopup() {
+      const overlay = document.getElementById('mission-popup-overlay');
+      if (overlay) {
+        overlay.classList.add('show');
+        startMissionTimer();
+      }
+    }
+
+    function closeMissionPopup() {
+      const overlay = document.getElementById('mission-popup-overlay');
+      if (overlay) {
+        overlay.classList.remove('show');
+        if (missionTimerInterval) {
+          clearInterval(missionTimerInterval);
+          missionTimerInterval = null;
+        }
+      }
+    }
+
+    function startMissionTimer() {
+      const timerDisplay = document.getElementById('mission-timer');
+      if (!timerDisplay) return;
+
+      missionTimerInterval = setInterval(() => {
+        missionTimeLeft--;
+        
+        const minutes = Math.floor(missionTimeLeft / 60);
+        const seconds = missionTimeLeft % 60;
+        const timeString = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+        timerDisplay.textContent = timeString;
+        
+        // 시간이 다 되면 팝업 자동 닫기
+        if (missionTimeLeft <= 0) {
+          closeMissionPopup();
+        }
+      }, 1000);
+    }
+
+    // 페이지 로드 1초 후 팝업 표시
+    setTimeout(() => {
+      showMissionPopup();
+    }, 1000);
+
+    // 팝업 외부 클릭 시 닫기
+    document.getElementById('mission-popup-overlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeMissionPopup();
+      }
+    });
+
+    // ESC 키로 팝업 닫기
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeMissionPopup();
+      }
+    });
   </script>
 </body>
 </html>
