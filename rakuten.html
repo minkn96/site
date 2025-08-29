@@ -87,7 +87,7 @@
 
     /* ▼▼ 실시간 신청 토스트 스타일 ▼▼ */
     .live-signup {
-      position: fixed; left: 12px; bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
+      position: fixed; right: 12px; top: 80px;
       z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none;
     }
     .live-toast { display: flex; align-items: center; gap: 10px; padding: 10px 12px;
@@ -379,7 +379,7 @@
     <div class="notification-content">
       <div class="notification-icon">🎁</div>
       <div class="notification-text">
-        <div class="notification-title">가입 즉시 포인트 지급!</div>
+        <div class="notification-title">특별 이벤트 도착!</div>
         <div class="notification-subtitle">클릭해서 확인하기</div>
       </div>
       <button class="notification-close" onclick="event.stopPropagation(); hideEventNotification()" aria-label="알림 닫기">×</button>
@@ -551,17 +551,18 @@
         if (changed) { updateSeatsUI(); tickCountdown(); }
       });
 
-      // ===== CTA 표시 여부에 따라 토스트 위치 자동 보정 =====
-      function updateBottom(){
-        if (!ctaBar || !container) return;
-        container.style.bottom = ctaBar.classList.contains('hidden')
-          ? '12px'
-          : 'calc(var(--cta-height) + var(--safe-bottom) + 12px)';
-      }
-      updateBottom();
-      if (window.MutationObserver && ctaBar) {
-        new MutationObserver(updateBottom).observe(ctaBar, { attributes:true, attributeFilter:['class'] });
-      }
+      // ===== CTA 표시 여부에 따라 토스트 위치 자동 보정 (상단 이동으로 인해 불필요) =====
+      // 토스트가 상단으로 이동했으므로 CTA와의 위치 조정 로직 제거
+      // function updateBottom(){
+      //   if (!ctaBar || !container) return;
+      //   container.style.bottom = ctaBar.classList.contains('hidden')
+      //     ? '12px'
+      //     : 'calc(var(--cta-height) + var(--safe-bottom) + 12px)';
+      // }
+      // updateBottom();
+      // if (window.MutationObserver && ctaBar) {
+      //   new MutationObserver(updateBottom).observe(ctaBar, { attributes:true, attributeFilter:['class'] });
+      // }
 
       // ===== 더미 데이터(마스킹 이름/도시) =====
       const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
