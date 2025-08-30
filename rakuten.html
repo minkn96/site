@@ -389,7 +389,7 @@
         </div>
         <div class="bb-foot">
           <div class="bb-progress"><span id="bb-fill" style="width:70%"></span></div>
-          <div class="bb-note" id="bb-note">원활할 때 지금 신청하세요</div>
+          <div class="bb-note" id="bb-note">마감 전 지금 시작하세요</div>
         </div>
       </div>
     </div>
@@ -557,7 +557,7 @@
         if (bbFillEl) bbFillEl.style.width = fillPct + '%';
         // 위험 상태 토글
         if (billboard) billboard.classList.toggle('bb-danger', shouldStop());
-        if (bbNoteEl) bbNoteEl.textContent = shouldStop() ? '마감 임박 — 잔여 2명' : '원활할 때 지금 신청하세요';
+        if (bbNoteEl) bbNoteEl.textContent = shouldStop() ? '마감 임박 — 잔여 2명' : '마감 전 지금 시작하세요';
       }
       function updateCountdownUI(){
         if (countdownEl) countdownEl.textContent = lastCountdownStr;
@@ -655,7 +655,7 @@
         toast.innerHTML = `
           <div class="live-avatar"><img src="${avatarDataURI(name.charAt(0))}" alt="${name} 아바타" width="28" height="28" loading="lazy"></div>
           <div>
-            <div class="live-badge"><span class="live-dot" aria-hidden="true"></span><strong>${name}</strong>님이 신청했어요</div>
+            <div class="live-badge"><span class="live-dot" aria-hidden="true"></span><strong>${name}</strong>님이 가입했어요</div>
             <div class="live-meta">${city} · 방금</div>
           </div>
         `;
