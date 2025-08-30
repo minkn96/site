@@ -27,6 +27,8 @@
     })(window, document, "clarity", "script", "st7wj6aj7b");
   </script>
 
+  <!-- Danggeun Market Code는 GTM에서 관리됨 -->
+
   <!-- 라이트 모드 강제 -->
   <meta name="color-scheme" content="light">
   <meta name="supported-color-schemes" content="light">   
@@ -150,14 +152,13 @@
     /* ▲▲ 푸터 스타일 ▲▲ */
   </style>
 
-  <!-- ★ 텐핑 제출완료 콜백: 메타 맞춤이벤트 전송 (전역, 스크립트 위) -->
+  <!-- ★ 텐핑 제출완료 콜백: 당근 픽셀 이벤트 전송 -->
   <script>
-    window.conversionCallback = function () {
-      if (typeof fbq === 'function') {
-        fbq('trackCustom', 'drama_CTA', { source: 'tenping_form', page: 'landing' });
+    function conversionCallback() {
+      if (typeof window.karrotPixel !== 'undefined') {
+        window.karrotPixel.track("Lead");
       }
-      // console.log('[Tenping] conversionCallback fired');
-    };
+    }
   </script>
 </head>
 <body>
@@ -177,18 +178,18 @@
   <span id="apply-anchor"></span>
 
   <!-- Tenping 폼 -->
-  <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;"
-    tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
-    tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
-    tenping-ad-campaign="2025082009030001"
-    tenping-ad-distributionAddID="2025082814410002"
-    tenping-ad-contain_image="false"
-    tenping-ad-contain_logo="false"
-    tenping-ad-contain_Plugin="false"
-    tenping-ad-contain_TpCall="false"
+  <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
+    tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
+    tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
+    tenping-ad-campaign="2025082009030001" 
+    tenping-ad-distributionAddID="2025082818480001" 
+    tenping-ad-contain_image="false" 
+    tenping-ad-contain_logo="false" 
+    tenping-ad-contain_Plugin="false" 
+    tenping-ad-contain_TpCall="false" 
     tenping-ad-theme="default">
   </tenping>
-  <script async src="https://ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+  <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
 
   <!-- 최근 등록 현황 테이블 -->
   <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
@@ -227,17 +228,20 @@
       const bar = document.querySelector('.floating-cta');
       const form = document.querySelector('.adsbytenping');
 
-      // (선택) 클릭 탐색 이벤트도 보려면 파라미터 달아 전송
-      function sendMetaCTA() {
-        if (typeof fbq === 'function') {
-          fbq('trackCustom', 'drama_CTA', { source: 'floating_cta', page: 'landing' });
+      // 당근 픽셀 CTA 클릭 이벤트 전송
+      function sendKarrotCTA() {
+        if (typeof window.karrotPixel !== 'undefined') {
+          window.karrotPixel.track('ClickButton', {
+            button_type: 'floating_cta',
+            page: 'landing'
+          });
         }
       }
 
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         // 원하면 아래 한 줄을 주석 해제(탐색 클릭도 수집)
-        // sendMetaCTA();
+        // sendKarrotCTA();
 
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (anchor && anchor.scrollIntoView) {
@@ -396,7 +400,10 @@
       // 텐핑 실제 제출 콜백 훅킹: 전송 후 남은자리/테이블 갱신
       const prevConv = window.conversionCallback;
       window.conversionCallback = function(){
-        try { if (typeof prevConv === 'function') prevConv(); } catch (e){}
+        try { 
+          if (typeof prevConv === 'function') prevConv(); 
+        } catch (e){}
+        
         const name = maskedName();
         const age = ages[rand(0, ages.length-1)];
         addRow(name, age, nowKST(), true);
