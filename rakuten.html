@@ -420,61 +420,221 @@
     }
     /* ▲▲ 이벤트 알림 뱃지 스타일 ▲▲ */
 
-    /* ▼▼ 도움말 버튼 스타일 ▼▼ */
-    .help-button {
+    /* ▼▼ 토스트 메시지 스타일 ▼▼ */
+    .toast-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      z-index: 10003;
+      background: rgba(11, 26, 58, 0.95);
+      color: white;
+      padding: 20px 28px;
+      border-radius: 16px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      max-width: 320px;
+    }
+    .toast-message.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .toast-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .toast-subtitle {
+      font-size: 12px;
+      opacity: 0.8;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .toast-message {
+        transition: none;
+      }
+    }
+    /* ▲▲ 토스트 메시지 스타일 ▲▲ */
+
+    /* ▼▼ 공유하기 버튼 스타일 ▼▼ */
+    .share-button {
       position: fixed; 
       left: 12px; 
       bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
       z-index: 10001;
-      background: linear-gradient(135deg, #10b981, #34d399);
-      color: white;
+      background: linear-gradient(135deg, var(--brand-yellow), #ffe47a);
+      color: var(--ink);
       border: none;
       border-radius: 20px;
       padding: 10px 14px;
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 6px 16px rgba(255, 217, 59, 0.4);
       transition: all 0.3s ease;
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 6px;
       white-space: nowrap;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
     }
     
     /* PC에서 모바일 컨테이너 영역 내에 위치 */
     @media (min-width: 481px) {
-      .help-button {
+      .share-button {
         left: max(12px, calc(50vw - var(--mobile-max-width)/2 + 12px));
       }
     }
     
-    .help-button:hover {
+    .share-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
-      background: linear-gradient(135deg, #059669, #10b981);
+      box-shadow: 0 8px 20px rgba(255, 217, 59, 0.5);
+      background: linear-gradient(135deg, #ffd000, var(--brand-yellow));
     }
-    .help-button:active {
+    .share-button:active {
       transform: translateY(0);
     }
-    .help-button::before {
-      content: "💬";
+    .share-button::before {
+      content: "📢";
       font-size: 16px;
     }
     @media (max-width: 480px) {
-      .help-button {
+      .share-button {
         font-size: 12px;
         padding: 8px 12px;
       }
     }
     @media (prefers-reduced-motion: reduce) {
-      .help-button {
+      .share-button {
         transition: none;
       }
     }
-    /* ▲▲ 도움말 버튼 스타일 ▲▲ */
+
+    /* ▼▼ 공유 옵션 팝업 스타일 ▼▼ */
+    .share-popup-overlay {
+      position: fixed; 
+      top: 0; left: 0; right: 0; bottom: 0; 
+      z-index: 10002;
+      background: rgba(0,0,0,0.5); 
+      backdrop-filter: blur(8px);
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      padding: 20px; 
+      opacity: 0; 
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .share-popup-overlay.show {
+      opacity: 1; 
+      visibility: visible;
+    }
+    .share-popup {
+      background: #fff; 
+      border-radius: 20px; 
+      padding: 24px; 
+      max-width: 320px; 
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+      position: relative;
+      transform: scale(0.9) translateY(20px); 
+      transition: all 0.3s ease;
+    }
+    .share-popup-overlay.show .share-popup {
+      transform: scale(1) translateY(0);
+    }
+    .share-popup-header {
+      text-align: center; 
+      margin-bottom: 20px;
+    }
+    .share-popup-title {
+      font-size: 18px; 
+      font-weight: 800; 
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+    .share-popup-subtitle {
+      font-size: 14px; 
+      color: #64748b; 
+      margin: 0;
+    }
+    .share-options {
+      display: grid; 
+      gap: 12px;
+    }
+    .share-option {
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      padding: 12px 16px;
+      border: 2px solid #f1f5f9; 
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #fff;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .share-option:hover {
+      border-color: #e2e8f0;
+      background: #f8fafc;
+      transform: translateY(-1px);
+    }
+    .share-option:active {
+      transform: translateY(0);
+    }
+    .share-option-icon {
+      font-size: 24px;
+      width: 32px;
+      text-align: center;
+    }
+    .share-option-text {
+      flex: 1;
+    }
+    .share-option-title {
+      font-weight: 700;
+      font-size: 14px;
+      margin: 0 0 2px;
+    }
+    .share-option-desc {
+      font-size: 12px;
+      color: #64748b;
+      margin: 0;
+    }
+    .share-close {
+      position: absolute; 
+      top: 16px; 
+      right: 16px; 
+      background: none; 
+      border: none;
+      font-size: 24px; 
+      cursor: pointer; 
+      color: #64748b; 
+      padding: 4px;
+      border-radius: 50%; 
+      transition: background 0.2s ease;
+    }
+    .share-close:hover {
+      background: rgba(100,116,139,0.1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .share-popup-overlay, .share-popup, .share-option { 
+        transition: none; 
+      }
+    }
+    /* ▲▲ 공유하기 버튼 스타일 ▲▲ */
   </style>
 
 </head>
@@ -548,10 +708,10 @@
   <!-- 실시간 신청 토스트 컨테이너 -->
   <div class="live-signup" aria-live="polite" aria-atomic="false"></div>
 
-  <!-- 도움말 버튼 (왼쪽 하단) -->
-  <a href="http://pf.kakao.com/_xglIsn/chat" class="help-button" target="_blank" aria-label="가입 문의하기">
-    가입이 안되시나요?
-  </a>
+  <!-- 친구에게 알려주기 버튼 (왼쪽 하단) -->
+  <button class="share-button" onclick="openSharePopup()" aria-label="친구에게 알려주기">
+    친구에게 알려주기
+  </button>
 
   <!-- 이벤트 알림 뱃지 -->
   <div class="event-notification" id="event-notification" onclick="openMissionFromNotification()">
@@ -610,6 +770,56 @@
     </div>
   </div>
   <!-- ▲▲ 미션 이벤트 팝업 ▲▲ -->
+
+  <!-- ▼▼ 공유하기 팝업 ▼▼ -->
+  <div class="share-popup-overlay" id="share-popup-overlay">
+    <div class="share-popup">
+      <button class="share-close" onclick="closeSharePopup()" aria-label="팝업 닫기">&times;</button>
+      
+      <div class="share-popup-header">
+        <h3 class="share-popup-title">친구에게 알려주기</h3>
+        <p class="share-popup-subtitle">좋은 기회를 친구와 함께 나눠보세요</p>
+      </div>
+
+      <div class="share-options">
+        <a class="share-option" onclick="shareNative()">
+          <div class="share-option-icon">📱</div>
+          <div class="share-option-text">
+            <div class="share-option-title">앱으로 바로 공유</div>
+            <div class="share-option-desc">카카오톡, 인스타그램 등 설치된 앱 선택</div>
+          </div>
+        </a>
+
+        <a class="share-option" onclick="shareToKakao()">
+          <div class="share-option-icon">💬</div>
+          <div class="share-option-text">
+            <div class="share-option-title">카카오톡으로 공유</div>
+            <div class="share-option-desc">카카오톡 채팅으로 친구들에게 전송</div>
+          </div>
+        </a>
+        
+        <a class="share-option" onclick="copyToClipboard()">
+          <div class="share-option-icon">📋</div>
+          <div class="share-option-text">
+            <div class="share-option-title">링크 복사하기</div>
+            <div class="share-option-desc">카카오톡, 인스타그램 등에 붙여넣기</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- ▲▲ 공유하기 팝업 ▲▲ -->
+
+  <!-- 토스트 메시지 -->
+  <div class="toast-message" id="toast-message">
+    <div class="toast-title">
+      <span>📋</span>
+      <span>링크가 복사되었습니다!</span>
+    </div>
+    <div class="toast-subtitle">
+      카카오톡, 인스타그램 DM, 메신저 등에 붙여넣기해 친구들에게 공유해보세요!
+    </div>
+  </div>
 
   <!-- 실시간 신청 + 마감/테이블 스크립트 (사이트 상단과 동기화 포함) -->
   <script>
@@ -875,6 +1085,201 @@
       }, 1000);
     }
 
+    // ===== 공유 기능 =====
+    const shareUrl = 'https://bit.ly/41STwsL';
+    const shareText = '💰 매일 간단한 설문만으로 용돈 벌기! 지금 바로 시작해보세요';
+
+    // 토스트 메시지 표시 함수
+    function showToast() {
+      const toast = document.getElementById('toast-message');
+      if (toast) {
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000); // 3초로 연장 (텍스트가 많아져서)
+      }
+    }
+
+    function openSharePopup() {
+      // 모바일 기기 체크
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      
+      if (isMobile && navigator.share) {
+        // 모바일에서만 네이티브 공유 사용
+        navigator.share({
+          title: '라쿠텐 인사이트 - 설문알바',
+          text: shareText,
+          url: shareUrl
+        }).then(() => {
+          // 공유 성공 - 아무것도 하지 않음
+        }).catch((err) => {
+          // 공유 취소된 경우 - 에러 로그만 남김
+          console.log('공유 취소:', err);
+        });
+      } else {
+        // PC에서는 항상 링크 복사 + 토스트 메시지
+        copyToClipboardForPC();
+      }
+    }
+
+    // PC용 클립보드 복사 함수
+    function copyToClipboardForPC() {
+      const textToCopy = `${shareText}\n${shareUrl}`;
+      
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          showToast();
+        }).catch(() => {
+          fallbackCopyForPC(textToCopy);
+        });
+      } else {
+        fallbackCopyForPC(textToCopy);
+      }
+    }
+
+    function fallbackCopyForPC(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showToast();
+        } else {
+          showManualCopy(text);
+        }
+      } catch (err) {
+        showManualCopy(text);
+      }
+      
+      document.body.removeChild(textArea);
+    }
+
+    function closeSharePopup() {
+      const overlay = document.getElementById('share-popup-overlay');
+      if (overlay) {
+        overlay.classList.remove('show');
+      }
+    }
+
+    // 카카오톡으로 공유
+    function shareToKakao() {
+      const textToCopy = `${shareText}\n${shareUrl}`;
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // 모바일에서 카카오톡 앱으로 직접 공유 시도
+        const kakaoIntent = `intent://send?text=${encodeURIComponent(textToCopy)}#Intent;scheme=kakaotalk;action=android.intent.action.SEND;type=text/plain;package=com.kakao.talk;end`;
+        const kakaoScheme = `kakaotalk://send?text=${encodeURIComponent(textToCopy)}`;
+        
+        // iOS에서는 카카오톡 URL 스킴 시도
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          try {
+            window.location.href = kakaoScheme;
+          } catch (e) {
+            copyToClipboardAndGuide();
+          }
+        } else {
+          // Android에서는 Intent 사용
+          try {
+            window.location.href = kakaoIntent;
+          } catch (e) {
+            copyToClipboardAndGuide();
+          }
+        }
+      } else {
+        // PC에서는 클립보드 복사 후 안내
+        copyToClipboardAndGuide();
+      }
+      
+      closeSharePopup();
+    }
+    
+    function copyToClipboardAndGuide() {
+      const textToCopy = `${shareText}\n${shareUrl}`;
+      
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          alert('📋 링크가 복사되었습니다!\n\n💬 카카오톡을 열어서 친구들에게 붙여넣기해 공유해보세요!');
+        }).catch(() => {
+          showManualCopy(textToCopy);
+        });
+      } else {
+        showManualCopy(textToCopy);
+      }
+    }
+
+    // 클립보드에 복사
+    function copyToClipboard() {
+      const textToCopy = `${shareText}\n${shareUrl}`;
+      
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          alert('📋 링크가 복사되었습니다!\n\n💬 카카오톡, 인스타그램 DM, 메신저 등에 붙여넣기해 친구들에게 공유해보세요!');
+          closeSharePopup();
+        }).catch(() => {
+          fallbackCopyTextToClipboard(textToCopy);
+        });
+      } else {
+        fallbackCopyTextToClipboard(textToCopy);
+      }
+    }
+
+    function fallbackCopyTextToClipboard(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          alert('📋 링크가 복사되었습니다!\n\n💬 카카오톡, 인스타그램 DM, 메신저 등에 붙여넣기해 친구들에게 공유해보세요!');
+        } else {
+          showManualCopy(text);
+        }
+      } catch (err) {
+        showManualCopy(text);
+      }
+      
+      document.body.removeChild(textArea);
+      closeSharePopup();
+    }
+
+    function showManualCopy(text) {
+      prompt('링크가 아래에 준비되었습니다!\n복사해 카카오톡, 인스타그램 DM, 메신저 등에 붙여넣기해 친구들에게 공유해보세요:', text);
+    }
+
+    // 네이티브 공유 (모바일)
+    function shareNative() {
+      if (navigator.share) {
+        navigator.share({
+          title: '라쿠텐 인사이트 - 설문알바',
+          text: shareText,
+          url: shareUrl
+        }).then(() => {
+          closeSharePopup();
+        }).catch((err) => {
+          console.log('공유 취소 또는 오류:', err);
+        });
+      } else {
+        // Web Share API를 지원하지 않는 경우 링크 복사로 대체
+        copyToClipboard();
+      }
+    }
+
     // 페이지 로드 1초 후 이벤트 알림 표시
     setTimeout(() => {
       showEventNotification();
@@ -887,10 +1292,17 @@
       }
     });
 
+    document.getElementById('share-popup-overlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeSharePopup();
+      }
+    });
+
     // ESC 키로 팝업 닫기
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         closeMissionPopup();
+        closeSharePopup();
       }
     });
   </script>
