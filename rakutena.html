@@ -420,6 +420,53 @@
     }
     /* ▲▲ 이벤트 알림 뱃지 스타일 ▲▲ */
 
+    /* ▼▼ 토스트 메시지 스타일 ▼▼ */
+    .toast-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      z-index: 10003;
+      background: rgba(11, 26, 58, 0.95);
+      color: white;
+      padding: 20px 28px;
+      border-radius: 16px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      max-width: 320px;
+    }
+    .toast-message.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .toast-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .toast-subtitle {
+      font-size: 12px;
+      opacity: 0.8;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .toast-message {
+        transition: none;
+      }
+    }
+    /* ▲▲ 토스트 메시지 스타일 ▲▲ */
+
     /* ▼▼ 공유하기 버튼 스타일 ▼▼ */
     .share-button {
       position: fixed; 
@@ -735,6 +782,14 @@
       </div>
 
       <div class="share-options">
+        <a class="share-option" onclick="shareNative()">
+          <div class="share-option-icon">📱</div>
+          <div class="share-option-text">
+            <div class="share-option-title">앱으로 바로 공유</div>
+            <div class="share-option-desc">카카오톡, 인스타그램 등 설치된 앱 선택</div>
+          </div>
+        </a>
+
         <a class="share-option" onclick="shareToKakao()">
           <div class="share-option-icon">💬</div>
           <div class="share-option-text">
@@ -750,18 +805,21 @@
             <div class="share-option-desc">카카오톡, 인스타그램 등에 붙여넣기</div>
           </div>
         </a>
-        
-        <a class="share-option" onclick="shareNative()">
-          <div class="share-option-icon">📱</div>
-          <div class="share-option-text">
-            <div class="share-option-title">더 많은 앱으로 공유</div>
-            <div class="share-option-desc">설치된 앱으로 바로 공유</div>
-          </div>
-        </a>
       </div>
     </div>
   </div>
   <!-- ▲▲ 공유하기 팝업 ▲▲ -->
+
+  <!-- 토스트 메시지 -->
+  <div class="toast-message" id="toast-message">
+    <div class="toast-title">
+      <span>📋</span>
+      <span>링크가 복사되었습니다!</span>
+    </div>
+    <div class="toast-subtitle">
+      카카오톡, 인스타그램 DM, 메신저 등에 붙여넣기해 친구들에게 공유해보세요!
+    </div>
+  </div>
 
   <!-- 실시간 신청 + 마감/테이블 스크립트 (사이트 상단과 동기화 포함) -->
   <script>
@@ -1031,11 +1089,77 @@
     const shareUrl = 'https://bit.ly/41STwsL';
     const shareText = '💰 매일 간단한 설문만으로 용돈 벌기! 지금 바로 시작해보세요';
 
-    function openSharePopup() {
-      const overlay = document.getElementById('share-popup-overlay');
-      if (overlay) {
-        overlay.classList.add('show');
+    // 토스트 메시지 표시 함수
+    function showToast() {
+      const toast = document.getElementById('toast-message');
+      if (toast) {
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000); // 3초로 연장 (텍스트가 많아져서)
       }
+    }
+
+    function openSharePopup() {
+      // 모바일 기기 체크
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      
+      if (isMobile && navigator.share) {
+        // 모바일에서만 네이티브 공유 사용
+        navigator.share({
+          title: '라쿠텐 인사이트 - 설문알바',
+          text: shareText,
+          url: shareUrl
+        }).then(() => {
+          // 공유 성공 - 아무것도 하지 않음
+        }).catch((err) => {
+          // 공유 취소된 경우 - 에러 로그만 남김
+          console.log('공유 취소:', err);
+        });
+      } else {
+        // PC에서는 항상 링크 복사 + 토스트 메시지
+        copyToClipboardForPC();
+      }
+    }
+
+    // PC용 클립보드 복사 함수
+    function copyToClipboardForPC() {
+      const textToCopy = `${shareText}\n${shareUrl}`;
+      
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          showToast();
+        }).catch(() => {
+          fallbackCopyForPC(textToCopy);
+        });
+      } else {
+        fallbackCopyForPC(textToCopy);
+      }
+    }
+
+    function fallbackCopyForPC(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showToast();
+        } else {
+          showManualCopy(text);
+        }
+      } catch (err) {
+        showManualCopy(text);
+      }
+      
+      document.body.removeChild(textArea);
     }
 
     function closeSharePopup() {
@@ -1083,7 +1207,7 @@
       
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(textToCopy).then(() => {
-          alert('📋 링크가 복사되었습니다!\n카카오톡을 열어서 친구들에게 붙여넣기 해보세요 💬');
+          alert('📋 링크가 복사되었습니다!\n\n💬 카카오톡을 열어서 친구들에게 붙여넣기해 공유해보세요!');
         }).catch(() => {
           showManualCopy(textToCopy);
         });
@@ -1098,7 +1222,7 @@
       
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(textToCopy).then(() => {
-          alert('📋 링크가 복사되었습니다!\n카카오톡, 인스타그램, 메신저 등에 붙여넣기 해보세요');
+          alert('📋 링크가 복사되었습니다!\n\n💬 카카오톡, 인스타그램 DM, 메신저 등에 붙여넣기해 친구들에게 공유해보세요!');
           closeSharePopup();
         }).catch(() => {
           fallbackCopyTextToClipboard(textToCopy);
@@ -1122,7 +1246,7 @@
       try {
         const successful = document.execCommand('copy');
         if (successful) {
-          alert('📋 링크가 복사되었습니다!\n카카오톡, 인스타그램, 메신저 등에 붙여넣기 해보세요');
+          alert('📋 링크가 복사되었습니다!\n\n💬 카카오톡, 인스타그램 DM, 메신저 등에 붙여넣기해 친구들에게 공유해보세요!');
         } else {
           showManualCopy(text);
         }
@@ -1135,7 +1259,7 @@
     }
 
     function showManualCopy(text) {
-      prompt('아래 내용을 복사해서 친구들에게 공유해보세요:', text);
+      prompt('링크가 아래에 준비되었습니다!\n복사해 카카오톡, 인스타그램 DM, 메신저 등에 붙여넣기해 친구들에게 공유해보세요:', text);
     }
 
     // 네이티브 공유 (모바일)
