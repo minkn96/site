@@ -38,32 +38,85 @@
   <title>넷플릭스 청소년배우 모집</title>
 
   <style>
-    :root { --cta-height: 64px; --brand-blue: #2463eb; --brand-yellow: #ffd93b; --safe-bottom: env(safe-area-inset-bottom, 0px); }
+    :root { 
+      --cta-height: 64px; 
+      --brand-blue: #2463eb; 
+      --brand-yellow: #ffd93b; 
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --max-width: 480px; /* 모바일 스타일 최대 너비 */
+    }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0; font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: #fff; color: #111; padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
+      margin: 0; 
+      font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #f5f5f5; /* 배경을 회색으로 변경 */
+      color: #111; 
+      padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
+
+    /* 메인 컨테이너 - 모바일 스타일로 제한 */
+    .main-container {
+      max-width: var(--max-width);
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .landing-image { 
+      width: 100%; 
+      display: block; 
+      margin: 0 auto; 
+      height: auto;
+    }
     
     .floating-cta {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
-      display: flex; gap: 8px; align-items: center; justify-content: center;
+      position: fixed; 
+      left: 50%; 
+      transform: translateX(-50%);
+      bottom: 0; 
+      z-index: 9999;
+      display: flex; 
+      gap: 8px; 
+      align-items: center; 
+      justify-content: center;
       padding: 10px 14px calc(10px + var(--safe-bottom));
-      background: rgba(255,255,255,0.96); border-top: 1px solid #eaeaea;
-      backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px);
+      background: rgba(255,255,255,0.96); 
+      border-top: 1px solid #eaeaea;
+      backdrop-filter: saturate(180%) blur(8px); 
+      -webkit-backdrop-filter: saturate(180%) blur(8px);
       transition: transform .25s ease;
+      max-width: var(--max-width);
+      width: 100%;
+      box-sizing: border-box;
     }
-    .floating-cta.hidden { transform: translateY(110%); }
-    .floating-cta__title { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 52%; }
+    .floating-cta.hidden { transform: translateX(-50%) translateY(110%); }
+    .floating-cta__title { 
+      font-weight: 700; 
+      font-size: 15px; 
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis; 
+      max-width: 52%; 
+    }
     .floating-cta__btn {
-      appearance: none; border: 0; cursor: pointer; border-radius: 9999px;
-      padding: 14px 20px; font-weight: 800; font-size: 16px; color: #0b1a3a;
+      appearance: none; 
+      border: 0; 
+      cursor: pointer; 
+      border-radius: 9999px;
+      padding: 14px 20px; 
+      font-weight: 800; 
+      font-size: 16px; 
+      color: #0b1a3a;
       background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
       box-shadow: 0 6px 16px rgba(0,0,0,.12);
     }
     .floating-cta__btn:active { transform: translateY(1px); }
+    
     @media (min-width: 768px) {
       :root { --cta-height: 72px; }
       .floating-cta__title { font-size: 16px; max-width: none; }
@@ -74,20 +127,55 @@
 
     /* ▼▼ 실시간 신청 토스트 스타일 ▼▼ */
     .live-signup {
-      position: fixed; left: 12px; bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
-      z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+      position: fixed; 
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
+      z-index: 9999; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 8px;
       pointer-events: none; /* 클릭 방해 X */
+      max-width: calc(var(--max-width) - 24px);
+      width: calc(100% - 24px);
     }
     .live-toast {
-      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-      background: rgba(255,255,255,0.96); border: 1px solid #eaeaea;
-      border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.12);
-      transform: translateX(-8px); opacity: 0; will-change: transform, opacity;
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.96); 
+      border: 1px solid #eaeaea;
+      border-radius: 14px; 
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
+      transform: translateX(-8px); 
+      opacity: 0; 
+      will-change: transform, opacity;
       animation: toast-in .36s ease forwards, toast-out .36s ease forwards 5.5s;
     }
-    .live-avatar { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex: 0 0 28px; background: #eee; }
-    .live-badge { display:flex; align-items:center; gap:6px; font-size: 12px; color: #0b1a3a; }
-    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-blue); box-shadow: 0 0 0 0 rgba(36,99,235,.5); animation: pulse 2s infinite; }
+    .live-avatar { 
+      width: 28px; 
+      height: 28px; 
+      border-radius: 50%; 
+      overflow: hidden; 
+      flex: 0 0 28px; 
+      background: #eee; 
+    }
+    .live-badge { 
+      display:flex; 
+      align-items:center; 
+      gap:6px; 
+      font-size: 12px; 
+      color: #0b1a3a; 
+    }
+    .live-dot { 
+      width: 8px; 
+      height: 8px; 
+      border-radius: 50%; 
+      background: var(--brand-blue); 
+      box-shadow: 0 0 0 0 rgba(36,99,235,.5); 
+      animation: pulse 2s infinite; 
+    }
     .live-meta { font-size: 12px; opacity: .58; margin-top: 2px; }
 
     @keyframes toast-in { to { transform: translateX(0); opacity: 1; } }
@@ -105,18 +193,51 @@
   
 
     /* ▼▼ 마감 임박 바 & 등록 테이블 ▼▼ */
-    .urgency-bar { position: sticky; top: 0; z-index: 999; padding: 10px 14px; background: #0b1a3a; color:#fff; border-bottom: 1px solid rgba(255,255,255,.12); }
-    .urgency-text { font-weight: 800; font-size: 14px; letter-spacing: .2px; }
+    .urgency-bar { 
+      position: sticky; 
+      top: 0; 
+      z-index: 999; 
+      padding: 10px 14px; 
+      background: #0b1a3a; 
+      color:#fff; 
+      border-bottom: 1px solid rgba(255,255,255,.12); 
+    }
+    .urgency-text { 
+      font-weight: 800; 
+      font-size: 14px; 
+      letter-spacing: .2px; 
+    }
     .urgency-text strong { color: var(--brand-yellow); }
-    .urgency-progress { height: 6px; background: rgba(255,255,255,.25); border-radius: 999px; overflow: hidden; margin-top: 8px; }
-    .urgency-progress span { display:block; height:100%; width: 60%; background: var(--brand-yellow); box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); transition: width .6s ease; }
+    .urgency-progress { 
+      height: 6px; 
+      background: rgba(255,255,255,.25); 
+      border-radius: 999px; 
+      overflow: hidden; 
+      margin-top: 8px; 
+    }
+    .urgency-progress span { 
+      display:block; 
+      height:100%; 
+      width: 60%; 
+      background: var(--brand-yellow); 
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); 
+      transition: width .6s ease; 
+    }
 
     .recent-signups { padding: 18px 14px 6px; }
     .recent-signups h2 { margin: 8px 0 10px; font-size: 16px; }
     .table-wrap { border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
     .signup-table { width:100%; border-collapse: collapse; font-size: 14px; }
-    .signup-table thead th { background:#f8fafc; text-align:left; padding:10px; border-bottom: 1px solid #eaeaea; }
-    .signup-table tbody td { padding:10px; border-bottom: 1px solid #f1f5f9; }
+    .signup-table thead th { 
+      background:#f8fafc; 
+      text-align:left; 
+      padding:10px; 
+      border-bottom: 1px solid #eaeaea; 
+    }
+    .signup-table tbody td { 
+      padding:10px; 
+      border-bottom: 1px solid #f1f5f9; 
+    }
     .signup-table tbody tr:last-child td { border-bottom: 0; }
     .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
     @keyframes rowflash { 0% { background:#fff9db; } 100% { background: transparent; } }
@@ -150,13 +271,20 @@
       .footer-content { font-size: 14px; }
     }
     /* ▲▲ 푸터 스타일 ▲▲ */
+
+    /* Tenping 폼 컨테이너도 모바일 스타일에 맞춤 */
+    .adsbytenping {
+      max-width: 100% !important;
+    }
   </style>
 
   <!-- ★ 텐핑 제출완료 콜백: 당근 픽셀 이벤트 전송 -->
+
   <script>
     function conversionCallback() {
       if (typeof fbq === 'function') {
           fbq('track', 'Lead', { content_category: 'audition', content_name: 'drama', source: 'tenping_form', page: 'landing' });
+          fbq('trackCustom', 'drama_CTA', { content_category: 'audition', content_name: 'drama', source: 'tenping_form', page: 'landing' });
           }
       if (typeof window.karrotPixel !== 'undefined') {
         window.karrotPixel.track("Lead");
@@ -169,51 +297,53 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <div class="urgency-bar" role="status" aria-live="polite">
-    <div class="urgency-text">오늘 마감까지 <span id="countdown">00:00:00</span> · 예상 잔여 <strong><span id="seats-left">12</span>명</strong></div>
-    <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
+  <div class="main-container">
+    <div class="urgency-bar" role="status" aria-live="polite">
+      <div class="urgency-text">오늘 마감까지 <span id="countdown">00:00:00</span> · 예상 잔여 <strong><span id="seats-left">12</span>명</strong></div>
+      <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
+    </div>
+
+    <!-- 랜딩페이지 이미지 -->
+    <img src="dramalong.png" alt="청소년배우 랜딩페이지" class="landing-image" />
+
+    <!-- 신청폼 앵커 -->
+    <span id="apply-anchor"></span>
+
+    <!-- Tenping 폼 -->
+    <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
+      tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
+      tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
+      tenping-ad-campaign="2025082009030001" 
+      tenping-ad-distributionAddID="2025082818480001" 
+      tenping-ad-contain_image="false" 
+      tenping-ad-contain_logo="false" 
+      tenping-ad-contain_Plugin="false" 
+      tenping-ad-contain_TpCall="false" 
+      tenping-ad-theme="default">
+    </tenping>
+    <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+
+    <!-- 최근 등록 현황 테이블 -->
+    <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
+      <h2>최근 등록 현황</h2>
+      <div class="table-wrap">
+        <table class="signup-table" aria-live="polite">
+          <thead>
+            <tr><th scope="col">이름</th><th scope="col">나이</th><th scope="col">등록 시각</th></tr>
+          </thead>
+          <tbody id="signup-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="company-name">광고대행사 : (주)편리한세상</div>
+        <div class="business-number">사업자번호 : 722-26-01851</div>
+      </div>
+    </footer>
   </div>
-
-  <!-- 랜딩페이지 이미지 -->
-  <img src="dramalong.png" alt="청소년배우 랜딩페이지" class="landing-image" />
-
-  <!-- 신청폼 앵커 -->
-  <span id="apply-anchor"></span>
-
-  <!-- Tenping 폼 -->
-  <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
-    tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
-    tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
-    tenping-ad-campaign="2025082009030001" 
-    tenping-ad-distributionAddID="2025082818480001" 
-    tenping-ad-contain_image="false" 
-    tenping-ad-contain_logo="false" 
-    tenping-ad-contain_Plugin="false" 
-    tenping-ad-contain_TpCall="false" 
-    tenping-ad-theme="default">
-  </tenping>
-  <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
-
-  <!-- 최근 등록 현황 테이블 -->
-  <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
-    <h2>최근 등록 현황</h2>
-    <div class="table-wrap">
-      <table class="signup-table" aria-live="polite">
-        <thead>
-          <tr><th scope="col">이름</th><th scope="col">나이</th><th scope="col">등록 시각</th></tr>
-        </thead>
-        <tbody id="signup-tbody"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- 푸터 -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="company-name">광고대행사 : (주)편리한세상</div>
-      <div class="business-number">사업자번호 : 722-26-01851</div>
-    </div>
-  </footer>
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">

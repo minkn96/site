@@ -681,7 +681,21 @@
             script.onload = function() {
                 window.conversionCallback = function () {
                     if (typeof fbq === 'function') {
-                        fbq('track', 'Lead', { content_category: 'audition', content_name: 'drama', source: 'tenping_form', page: 'landing' });
+                        // 기존 Lead 이벤트
+                        fbq('track', 'Lead', { 
+                            content_category: 'audition', 
+                            content_name: 'drama', 
+                            source: 'tenping_form', 
+                            page: 'landing' 
+                        });
+                        
+                        // 새로운 맞춤이벤트 추가
+                        fbq('trackCustom', 'drama_CTA', {
+                            content_category: 'audition',
+                            content_name: 'drama',
+                            source: 'tenping_form',
+                            page: 'landing'
+                        });
                     }
                     if (typeof window.karrotPixel !== 'undefined') {
                      window.karrotPixel.track("Lead");

@@ -239,12 +239,18 @@
     function conversionCallback() {
       if (typeof fbq === 'function') {
         fbq('track', 'Lead', {
-          content_category: 'model',
+          content_category: 'audition',
           content_name: 'model_feel',   
           source: 'tenping_form', 
           page: 'landing',
           event_time: Date.now()
         });      
+        fbq('trackCustom','model_CTA',{
+          content_category: 'audition',
+          content_name: 'model_feel',   
+          source: 'tenping_form', 
+          page: 'landing',
+        });
       }
       if (typeof window.karrotPixel !== 'undefined') {
          window.karrotPixel.track("Lead");
