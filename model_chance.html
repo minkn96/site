@@ -244,6 +244,9 @@
           event_time: Date.now()
         });
       }
+      if (typeof window.karrotPixel !== 'undefined') {
+         window.karrotPixel.track("Lead");
+        }         
     }
   </script>
 </head>

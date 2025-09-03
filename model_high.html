@@ -343,6 +343,9 @@
             event_time: Date.now()
           });
         }
+        if (typeof window.karrotPixel !== 'undefined') {
+         window.karrotPixel.track("Lead");
+        }           
       }
 
       btn.addEventListener('click', function (e) {

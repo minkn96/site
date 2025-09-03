@@ -242,8 +242,11 @@
           source: 'tenping_form', 
           page: 'landing',
           event_time: Date.now()
-        });
+        });      
       }
+      if (typeof window.karrotPixel !== 'undefined') {
+         window.karrotPixel.track("Lead");
+        }        
     }
   </script>
 </head>
