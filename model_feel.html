@@ -238,7 +238,9 @@
   <script>
     function conversionCallback() {
       if (typeof fbq === 'function') {
-        fbq('trackCustom', 'model_CTA', { 
+        fbq('track', 'Lead', {
+          content_category: 'model',
+          content_name: 'model_feel',   
           source: 'tenping_form', 
           page: 'landing',
           event_time: Date.now()

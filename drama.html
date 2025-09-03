@@ -562,11 +562,11 @@
                 }
             }
 
-            // 랜덤한 시간 간격으로 가짜 신청 표시 (15-45초)
+            // 랜덤한 시간 간격으로 가짜 신청 표시 (5-15초)
             function scheduleNext() {
                 if (remainingSpots <= 1) return;
                 
-                const randomDelay = Math.random() * 20000 + 15000; // 15-35초
+                const randomDelay = Math.random() * 10000 + 5000; // 5-15초
                 setTimeout(() => {
                     showRandomApplication();
                     scheduleNext();
@@ -681,7 +681,10 @@
             script.onload = function() {
                 window.conversionCallback = function () {
                     if (typeof fbq === 'function') {
-                        fbq('trackCustom', 'drama_CTA', { source: 'tenping_form', page: 'landing' });
+                        fbq('track', 'Lead', { content_category: 'audition', content_name: 'drama', source: 'tenping_form', page: 'landing' });
+                    }
+                    if (typeof window.karrotPixel !== 'undefined') {
+                     window.karrotPixel.track("Lead");
                     }
                 };
             };

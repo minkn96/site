@@ -155,6 +155,9 @@
   <!-- ★ 텐핑 제출완료 콜백: 당근 픽셀 이벤트 전송 -->
   <script>
     function conversionCallback() {
+      if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_category: 'audition', content_name: 'drama', source: 'tenping_form', page: 'landing' });
+          }
       if (typeof window.karrotPixel !== 'undefined') {
         window.karrotPixel.track("Lead");
       }
@@ -292,7 +295,7 @@
       // 더미 데이터(한글 마스킹 이름/나이)
       const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
       const firstNames = ['서준','하준','도윤','시후','지호','현우','하율','서연','지우','서윤','하윤','지민','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
-      const ages = ['13세','14세','15세','16세','17세','18세','19세','20세','21세','22세'];
+      const ages = ['14세','15세','16세','17세','18세','19세'];
 
       function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
       function maskedName(){
