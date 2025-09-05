@@ -284,7 +284,7 @@
     function conversionCallback() {
       if (typeof fbq === 'function') {
           fbq('track', 'Lead', { content_category: 'audition', content_name: 'drama', source: 'tenping_form', page: 'landing' });
-          fbq('trackCustom', 'drama_CTA', { content_category: 'audition', content_name: 'drama', source: 'tenping_form', page: 'landing' });
+          fbq('trackCustom', 'drama_CTA');
           }
       if (typeof window.karrotPixel !== 'undefined') {
         window.karrotPixel.track("Lead");
