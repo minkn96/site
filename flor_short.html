@@ -91,16 +91,6 @@
             z-index: 1;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
-            z-index: 2;
-        }
-
         .top-bar {
             position: absolute;
             top: 0;
@@ -499,7 +489,6 @@
 
         <div class="hero-section">
             <img src="flor_short.png" alt="청소년 배우 지원" class="hero-image">
-            <div class="hero-overlay"></div>
             
             <button class="cta-button" onclick="openForm()">
                 지금 신청하기
@@ -558,7 +547,16 @@
                     <p>입력하신 정보를 바탕으로 상담해 드릴게요.</p>
                     
                     <div class="tenping-container">
-                        <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" tenping-ad-campaign="2024070109510001" tenping-ad-distributionAddID="2025091611270001" tenping-ad-contain_image="false" tenping-ad-contain_logo="false" tenping-ad-contain_Plugin="false" tenping-ad-contain_TpCall="false" tenping-ad-theme="white"></tenping>
+                        <tenping class="adsbytenping" 
+                        style="width:100%; margin:0 auto; display:block;"
+                        tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
+                        tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
+                        tenping-ad-campaign="2024070109510001" tenping-ad-distributionAddID="2025091611270001"
+                        tenping-ad-contain_image="false"
+                        tenping-ad-contain_logo="false"
+                        tenping-ad-contain_Plugin="false"
+                        tenping-ad-contain_TpCall="false"
+                        tenping-ad-theme="white"></tenping>
                     </div>
                     
                     <button class="cta-button" onclick="closeForm()">완료</button>
