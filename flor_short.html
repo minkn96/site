@@ -211,6 +211,11 @@
             -webkit-tap-highlight-color: transparent; /* 모바일 터치 하이라이트 제거 */
         }
 
+        /* 폼이 열렸을 때 메인 CTA 버튼 숨기기 */
+        .form-overlay.show ~ .container .cta-button {
+            display: none;
+        }
+
         .cta-button:hover {
             box-shadow: 0 10px 35px rgba(0,0,0,0.35);
             background: #f8f8f8;
@@ -405,6 +410,25 @@
             color: #666;
             margin-bottom: 40px;
             line-height: 1.6;
+        }
+
+        /* 네 번째 스텝의 완료 버튼 - 폼 내부에 위치 */
+        .final-step .cta-button {
+            position: static;
+            transform: none;
+            margin: 40px auto 0;
+            display: block;
+            background: #000;
+            color: #fff;
+        }
+
+        .final-step .cta-button:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        .final-step .cta-button:active {
+            background: #111;
         }
 
         .tenping-container {
