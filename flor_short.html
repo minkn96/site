@@ -124,11 +124,12 @@
         }
 
         .toast-container {
-            position: absolute;
-            top: 80px;
+            position: fixed;
+            top: 20px;
             right: 20px;
-            z-index: 1001;
+            z-index: 9999;
             width: 280px;
+            pointer-events: none; /* 토스트가 다른 요소와 상호작용하지 않도록 */
         }
 
         .toast {
@@ -145,6 +146,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            pointer-events: auto; /* 토스트 자체는 상호작용 가능 */
         }
 
         .toast.show {
@@ -186,6 +188,7 @@
             color: #666;
         }
 
+        /* 개선된 CTA 버튼 - 위치 고정 및 안정성 향상 */
         .cta-button {
             background: #fff;
             color: #000;
@@ -195,22 +198,31 @@
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: box-shadow 0.2s ease, background-color 0.2s ease;
             position: absolute;
-            top: 83.33%;
+            bottom: 16.67%; /* top 83.33%에서 bottom으로 변경해서 더 안정적으로 */
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%); /* translateY 제거로 수직 위치 고정 */
             z-index: 3;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             backdrop-filter: blur(10px);
+            white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+            user-select: none; /* 텍스트 선택 방지 */
+            -webkit-tap-highlight-color: transparent; /* 모바일 터치 하이라이트 제거 */
         }
 
         .cta-button:hover {
-            transform: translate(-50%, -50%) translateY(-1px);
             box-shadow: 0 10px 35px rgba(0,0,0,0.35);
             background: #f8f8f8;
+            /* transform 변경 제거로 위치 고정 */
         }
 
+        .cta-button:active {
+            background: #e8e8e8;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+        }
+
+        /* 개선된 폼 오버레이 */
         .form-overlay {
             position: fixed;
             top: 0;
@@ -222,6 +234,12 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-overlay.show {
+            opacity: 1;
         }
 
         .form-container {
@@ -233,6 +251,14 @@
             position: relative;
             overflow-y: auto;
             box-shadow: 0 24px 80px rgba(0,0,0,0.15);
+            transform: scale(0.9) translateY(50px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .form-overlay.show .form-container {
+            transform: scale(1) translateY(0);
+            opacity: 1;
         }
 
         .close-btn {
@@ -246,6 +272,11 @@
             cursor: pointer;
             padding: 10px;
             line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: #333;
         }
 
         .form-step {
@@ -254,7 +285,7 @@
 
         .form-step.active {
             display: block;
-            animation: fadeInUp 0.5s ease;
+            animation: fadeInUp 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         @keyframes fadeInUp {
@@ -288,31 +319,57 @@
             grid-template-columns: 1fr;
         }
 
+        /* 개선된 옵션 버튼 */
         .option-button {
             background: #f8f9fa;
             border: 2px solid #e9ecef;
             padding: 24px 20px;
             border-radius: 16px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             font-size: 18px;
             font-weight: 500;
             color: #495057;
             text-align: center;
             letter-spacing: -0.3px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .option-button:hover::before {
+            left: 100%;
         }
 
         .option-button:hover {
             background: #f1f3f4;
             border-color: #6c757d;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .option-button.selected {
             background: #000;
             border-color: #000;
             color: #fff;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .option-button:active {
+            transform: translateY(-1px);
         }
 
         .progress-bar {
@@ -328,7 +385,7 @@
             height: 100%;
             background: #000;
             border-radius: 2px;
-            transition: width 0.4s ease;
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
             width: 0%;
         }
 
@@ -369,7 +426,7 @@
             }
 
             .toast-container {
-                top: 60px;
+                top: 20px;
                 right: 16px;
                 width: 240px;
             }
@@ -508,10 +565,11 @@
         let formData = {};
         let currentStep = 1;
         let remainingCount = 47;
+        let isTransitioning = false; // 전환 중 중복 클릭 방지
 
-        // 랜덤 이름과 지역 데이터
+        // 랜덤 이름과 나이 데이터
         const names = ['김민준', '이서연', '박지우', '최예은', '정도현', '한소율', '윤준서', '임채원', '장시우', '강다인', '조건우', '신아린', '노준혁', '문서진', '허은서', '양현우', '백지민', '옥하은', '남도윤', '구채은'];
-        const locations = ['서울', '경기', '부산', '인천', '대구', '광주', '대전', '울산', '세종', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
+        const ages = ['14세', '15세', '16세', '17세', '18세', '19세'];
 
         function getRandomElement(array) {
             return array[Math.floor(Math.random() * array.length)];
@@ -528,7 +586,7 @@
             if (remainingCount <= 0) return;
 
             const name = getRandomElement(names);
-            const location = getRandomElement(locations);
+            const age = getRandomElement(ages);
             const maskedName = maskName(name);
             
             const toast = document.createElement('div');
@@ -536,7 +594,7 @@
             toast.innerHTML = `
                 <div class="toast-icon">✓</div>
                 <div class="toast-content">
-                    <div class="toast-name">${maskedName} (${location})</div>
+                    <div class="toast-name">${maskedName} (${age})</div>
                     <div class="toast-message">방금 신청을 완료했습니다</div>
                 </div>
             `;
@@ -571,24 +629,38 @@
         }
 
         function openForm() {
-            document.getElementById('formOverlay').style.display = 'flex';
+            const overlay = document.getElementById('formOverlay');
+            overlay.style.display = 'flex';
+            // 브라우저가 display 변경을 처리한 후 애니메이션 시작
+            requestAnimationFrame(() => {
+                overlay.classList.add('show');
+            });
             updateProgressBar();
         }
 
         function closeForm() {
-            document.getElementById('formOverlay').style.display = 'none';
-            // Reset form
-            currentStep = 1;
-            formData = {};
-            showStep(1);
-            updateProgressBar();
-            // Reset all selections
-            document.querySelectorAll('.option-button').forEach(btn => {
-                btn.classList.remove('selected');
-            });
+            const overlay = document.getElementById('formOverlay');
+            overlay.classList.remove('show');
+            // 애니메이션이 완료된 후 display none
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                // Reset form
+                currentStep = 1;
+                formData = {};
+                isTransitioning = false;
+                showStep(1);
+                updateProgressBar();
+                // Reset all selections
+                document.querySelectorAll('.option-button').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+            }, 300);
         }
 
         function selectOption(button, category, value, nextStepNumber) {
+            // 전환 중이면 무시
+            if (isTransitioning) return;
+            
             // Remove selection from other buttons in the same category
             const stepElement = button.closest('.form-step');
             stepElement.querySelectorAll('.option-button').forEach(btn => {
@@ -599,12 +671,19 @@
             button.classList.add('selected');
             formData[category] = value;
             
+            // 전환 시작
+            isTransitioning = true;
+            
             // Auto advance to next step after a short delay
             setTimeout(() => {
                 if (nextStepNumber) {
                     nextStep(nextStepNumber);
                 }
-            }, 500);
+                // 전환 완료 후 다시 허용
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 300);
+            }, 600); // 약간 더 긴 딜레이로 안정성 향상
         }
 
         function nextStep(step) {
@@ -622,7 +701,11 @@
             document.querySelectorAll('.form-step').forEach(step => {
                 step.classList.remove('active');
             });
-            document.getElementById(`step${stepNumber}`).classList.add('active');
+            
+            // 약간의 딜레이로 부드러운 전환
+            setTimeout(() => {
+                document.getElementById(`step${stepNumber}`).classList.add('active');
+            }, 100);
         }
 
         function updateProgressBar() {
