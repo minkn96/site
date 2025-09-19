@@ -68,18 +68,80 @@
     .floating-countdown{font-size:14px;font-weight:600}
     .floating-button{background:rgba(255,255,255,.2);border:none;color:#fff;padding:12px 24px;border-radius:25px;font-weight:600;cursor:pointer;transition:.3s}
     .floating-button:hover{background:rgba(255,255,255,.3);transform:scale(1.05)}
-    @media(max-width:768px){.hero h1{font-size:24px}.countdown{gap:10px}.countdown-number{font-size:20px;padding:8px 6px;min-width:45px}.cta-button{padding:15px 30px;font-size:16px}.container{padding:0 15px}.floating-cta-content{flex-direction:column;gap:10px}}
+
+    /* 공유 버튼 스타일 */
+    .share-button{
+      position:fixed;
+      top:70px;
+      left:20px;
+      z-index:9998;
+      background:rgba(255,235,59,.95);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,193,7,.3);
+      border-radius:25px;
+      padding:8px 16px;
+      font-size:13px;
+      font-weight:600;
+      color:#333;
+      cursor:pointer;
+      transition:all .3s ease;
+      box-shadow:0 4px 12px rgba(255,193,7,.3);
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .share-button:hover{
+      transform:translateY(-1px);
+      box-shadow:0 6px 20px rgba(255,193,7,.4);
+      background:rgba(255,235,59,1);
+    }
+    .share-button:active{
+      transform:scale(0.98);
+    }
+
+    /* 토스트 메시지 스타일 */
+    .toast{
+      position:fixed;
+      top:80px;
+      left:50%;
+      transform:translateX(-50%) translateY(-20px);
+      background:#333;
+      color:#fff;
+      padding:12px 20px;
+      border-radius:25px;
+      font-size:14px;
+      font-weight:500;
+      z-index:10002;
+      opacity:0;
+      visibility:hidden;
+      transition:all .3s ease;
+      box-shadow:0 4px 12px rgba(0,0,0,.3);
+      max-width:90%;
+      text-align:center;
+    }
+    .toast.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    @media(max-width:768px){.hero h1{font-size:24px}.countdown{gap:10px}.countdown-number{font-size:20px;padding:8px 6px;min-width:45px}.cta-button{padding:15px 30px;font-size:16px}.container{padding:0 15px}.floating-cta-content{flex-direction:column;gap:10px}
+    
+    /* 모바일에서 공유 버튼 위치 조정 - 상단바 아래로 */
+    .share-button{top:60px;left:15px;padding:6px 12px;font-size:12px}}
   
   /* ===== Desktop에서도 모바일처럼 보이기(고정 폭) ===== */
   @media (min-width: 769px){
     body{ background:#0f1115; }
-    .mobile-viewport{ width:420px; min-height:100vh; margin:0 auto; background:#fff; box-shadow:0 10px 30px rgba(0,0,0,.2); }
+    .mobile-viewport{ width:420px; min-height:100vh; margin:0 auto; background:#fff; box-shadow:0 10px 30px rgba(0,0,0,.2); position:relative; }
     .container{ max-width:100%; padding:0 15px; }
     /* 플로팅바를 좁은 뷰포트에 맞춰 중앙 하단 고정 */
     .floating-cta{ left:50% !important; right:auto !important; width:420px; transform:translateX(-50%) translateY(100%); }
     .floating-cta.show{ transform:translateX(-50%) translateY(0); }
     /* 실시간 알림은 모바일 뷰포트 오른쪽 바깥 20px 지점 */
     #liveNotifications{ right:auto; left:calc(50% + 230px); }
+    /* 데스크탑에서 공유 버튼 위치 조정 - 상단바 아래로 */
+    .share-button{ position:absolute; top:110px; left:20px; }
   }
 </style>
 
@@ -98,6 +160,15 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
+  <!-- 공유 버튼 -->
+  <button class="share-button" onclick="shareContent()">
+    <span>📤</span>
+    <span>친구에게 알려주기</span>
+  </button>
+
+  <!-- 토스트 메시지 -->
+  <div class="toast" id="toast"></div>
 
   <!-- 상단 잔여석 바 (인라인 스타일만 사용) -->
   <div id="kd-bar" role="status" aria-live="polite"
@@ -159,6 +230,51 @@
 
   <!-- 기존 스크립트 (카운트다운/실시간 알림/트래킹) -->
   <script>
+    // 공유 기능
+    function shareContent() {
+      const shareData = {
+        title: '케이펫페어 인천 2025 - 무료 사전등록',
+        text: '9.26(금)~28(일) 인천 송도에서 열리는 펫박람회에 사전 등록하고 무료 입장하세요!',
+        url: 'https://m.site.naver.com/1RouG'
+      };
+
+      // 모바일 환경 체크 (터치 지원 여부로 판단)
+      const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      
+      // Web Share API 지원 여부 체크
+      if (isMobile && navigator.share) {
+        // 모바일에서 네이티브 공유 사용
+        navigator.share(shareData).catch(err => {
+          console.log('공유 취소됨:', err);
+        });
+      } else {
+        // PC에서 링크 복사 및 토스트 메시지
+        navigator.clipboard.writeText(shareData.url).then(() => {
+          showToast('링크가 복사되었습니다. (카톡orDM으로 공유해 주세요.)');
+        }).catch(() => {
+          // 클립보드 API가 실패한 경우 fallback
+          const textArea = document.createElement('textarea');
+          textArea.value = shareData.url;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          showToast('링크가 복사되었습니다. (카톡orDM으로 공유해 주세요.)');
+        });
+      }
+    }
+
+    // 토스트 메시지 표시
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
     // === [변경 사항] 메인/플로팅 카운트다운을 오늘 23:59:59 KST로 설정 ===
     function getTodayDeadline() {
       const now = new Date();
