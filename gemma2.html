@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비절개 모발이식 특별 혜택 룰렛</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        .main-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .price-info {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .special-price {
+            color: #dc2626;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .roulette-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto 40px;
+        }
+
+        .roulette-wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 3.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+            background: conic-gradient(
+                #10b981 0deg 72deg,
+                #f59e0b 72deg 144deg,
+                #8b5cf6 144deg 216deg,
+                #ef4444 216deg 288deg,
+                #3b82f6 288deg 360deg
+            );
+        }
+
+        .roulette-section {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: white;
+            text-align: center;
+            line-height: 1.2;
+            pointer-events: none;
+        }
+
+        .section-1 {
+            transform: rotate(108deg);
+        }
+
+        .section-2 {
+            transform: rotate(180deg);
+        }
+
+        .section-3 {
+            transform: rotate(252deg);
+        }
+
+        .section-4 {
+            transform: rotate(324deg);
+        }
+
+        .section-5 {
+            transform: rotate(36deg);
+        }
+
+        .section-content {
+            padding: 8px;
+            width: 90px;
+            margin-left: -45px;
+            margin-top: -70px;
+        }
+
+        .section-1 .section-content {
+            transform: rotate(-108deg);
+        }
+
+        .section-2 .section-content {
+            transform: rotate(-180deg);
+        }
+
+        .section-3 .section-content {
+            transform: rotate(-252deg);
+        }
+
+        .section-4 .section-content {
+            transform: rotate(-324deg);
+        }
+
+        .section-5 .section-content {
+            transform: rotate(-36deg);
+        }
+
+        .section-prize {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .section-detail {
+            font-size: 0.65rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .roulette-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid #1e40af;
+            z-index: 10;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #1e40af;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            z-index: 5;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .spin-button {
+            background: #1e40af;
+            color: white;
+            border: none;
+            padding: 16px 48px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .spin-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(30, 64, 175, 0.4);
+        }
+
+        .spin-button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .result-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            border: 1px solid #e2e8f0;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: #dc2626;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .modal-prize {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #1e40af;
+            font-weight: 600;
+        }
+
+        .warning-text {
+            background: #fef2f2;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .form-container {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .close-modal {
+            background: #94a3b8;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .close-modal:hover {
+            background: #64748b;
+        }
+
+        .countdown {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #dc2626;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+            z-index: 999;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        .contact-info {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-info p {
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .contact-info p:last-child {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .main-title {
+                font-size: 1.6rem;
+            }
+            
+            .roulette-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .section-content {
+                width: 80px;
+                margin-left: -40px;
+                margin-top: -60px;
+            }
+            
+            .section-prize {
+                font-size: 0.7rem;
+            }
+            
+            .section-detail {
+                font-size: 0.6rem;
+            }
+            
+            .modal-content {
+                margin: 15px;
+                padding: 30px 25px;
+            }
+            
+            .modal-title {
+                font-size: 1.6rem;
+            }
+            
+            .modal-prize {
+                font-size: 1.3rem;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">🎯 비절개 모발이식 특별 혜택</h1>
+            <p class="subtitle">지금 룰렛을 돌려서 최대 혜택을 받아보세요!</p>
+        </div>
+
+        <div class="price-info">
+            <div class="original-price">일반가: 1000모당 250만원 ~ 330만원</div>
+            <div class="special-price">🎁 최대 혜택: 1000모당 99만원</div>
+        </div>
+
+        <div class="roulette-container">
+            <div class="roulette-pointer"></div>
+            <div class="roulette-wheel" id="rouletteWheel">
+                <div class="roulette-section section-1">
+                    <div class="section-content">
+                        <div class="section-prize">1000모</div>
+                        <div class="section-detail">99만원혜택</div>
+                        <div class="section-detail">⭐1등⭐</div>
+                    </div>
+                </div>
+                <div class="roulette-section section-2">
+                    <div class="section-content">
+                        <div class="section-prize">50만원</div>
+                        <div class="section-detail">할인권</div>
+                    </div>
+                </div>
+                <div class="roulette-section section-3">
+                    <div class="section-content">
+                        <div class="section-prize">25만원</div>
+                        <div class="section-detail">할인권</div>
+                    </div>
+                </div>
+                <div class="roulette-section section-4">
+                    <div class="section-content">
+                        <div class="section-prize">75만원</div>
+                        <div class="section-detail">할인권</div>
+                    </div>
+                </div>
+                <div class="roulette-section section-5">
+                    <div class="section-content">
+                        <div class="section-prize">100만원</div>
+                        <div class="section-detail">할인권</div>
+                    </div>
+                </div>
+            </div>
+            <div class="center-circle">START</div>
+        </div>
+
+        <button class="spin-button" id="spinButton" onclick="spinRoulette()">
+            🎰 룰렛 돌리기
+        </button>
+
+        <div class="contact-info">
+            <p>⚡ 한정 특가 이벤트 진행 중</p>
+            <p>📞 상담 문의: 1588-0000</p>
+        </div>
+    </div>
+
+    <div class="result-modal" id="resultModal">
+        <div class="modal-content">
+            <h2 class="modal-title">🎉 축하합니다!</h2>
+            <p class="modal-prize">🏆 1000모당 99만원 혜택 당첨!</p>
+            <div class="warning-text">
+                ⚠️ 이 혜택을 받으시려면 아래 설문을 작성해주세요!<br>
+                설문을 완료하지 않으면 혜택이 사라집니다.
+            </div>
+            
+            <div class="form-container">
+                <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" tenping-ad-campaign="2025091712550001" tenping-ad-distributionAddID="2025092000410005" tenping-ad-contain_image="false" tenping-ad-contain_logo="false" tenping-ad-contain_Plugin="false" tenping-ad-contain_TpCall="false" tenping-ad-theme="white"></tenping>
+            </div>
+            
+            <button class="close-modal" onclick="closeModal()">나중에 하기</button>
+        </div>
+    </div>
+
+    <div class="countdown" id="countdown">
+        혜택 만료까지: <span id="timer">10:00</span>
+    </div>
+
+    <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+    <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1377330030217069');fbq('track', 'PageView');</script>
+    <script>function conversionCallback(){fbq('track', 'CompleteRegistration');}</script>
+
+    <script>
+        let hasSpun = false;
+        let countdownTimer;
+        let timeLeft = 600; // 10 minutes in seconds
+
+        function spinRoulette() {
+            if (hasSpun) return;
+            
+            const wheel = document.getElementById('rouletteWheel');
+            const button = document.getElementById('spinButton');
+            
+            button.disabled = true;
+            button.textContent = '룰렛 돌리는 중...';
+            
+            // Calculate rotation to land on section 4 (1000모 99만원 혜택 - 1등 빨간색)
+            // Section 4 is at 252deg, so we need to rotate it to 0deg (12 o'clock)
+            const targetDegree = 252; // Section 4 position
+            const randomSpins = Math.floor(Math.random() * 4) + 6; // 6-9 full rotations
+            const finalRotation = (360 * randomSpins) - targetDegree; // Bring section-4 to arrow position
+            
+            wheel.style.transform = `rotate(${finalRotation}deg)`;
+            
+            setTimeout(() => {
+                showResult();
+                hasSpun = true;
+            }, 3500);
+        }
+
+        function showResult() {
+            const modal = document.getElementById('resultModal');
+            modal.style.display = 'flex';
+            startCountdown();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('resultModal');
+            modal.style.display = 'none';
+        }
+
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const timerElement = document.getElementById('timer');
+            
+            countdownElement.style.display = 'block';
+            
+            countdownTimer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    countdownElement.textContent = '혜택이 만료되었습니다.';
+                    countdownElement.style.background = '#64748b';
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Remove the sparkle effect for cleaner UI
+    </script>
+</body>
+</html>
