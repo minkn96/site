@@ -1,8 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <!-- Open Graph -->
+  <meta property="og:title" content="비절개 모발이식">
+  <meta property="og:description" content="비절개 모발이식이 1000모에 99만원">
+  <meta property="og:image" content="https://minkn96.github.io/site/gemma_s.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/gemma.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7B92596QT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}    
+    gtag('js', new Date());
+    gtag('config', 'G-P7B92596QT');
+  </script>
+
+  <!-- MS Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "st7wj6aj7b");
+  </script>
+
+  <!-- Meta Pixel Base Code는 GTM에서 관리됨 -->
+
+  <!-- 라이트 모드 강제 -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">   
+    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>비절개 모발이식 특별 혜택 룰렛</title>
     <style>
         * {
@@ -14,64 +56,52 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f8fafc;
-            min-height: 100vh;
             color: #1e293b;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background-wrapper {
+            background-image: url('gemma_short.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .header,
+        .price-info,
+        .contact-info {
+            display: none;
         }
 
         .container {
-            width: 100%;
-            max-width: 600px;
+            width: 100vw;
+            height: calc(100vh - 689px);
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0;
             text-align: center;
-        }
-
-        .header {
-            margin-bottom: 40px;
-            padding-top: 20px;
-        }
-
-        .main-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #1e40af;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #64748b;
-            font-weight: 400;
-        }
-
-        .price-info {
-            background: white;
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e2e8f0;
-        }
-
-        .original-price {
-            text-decoration: line-through;
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-        }
-
-        .special-price {
-            color: #dc2626;
-            font-size: 1.3rem;
-            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: absolute;
+            top: 689px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-top: 30px;
         }
 
         .roulette-container {
             position: relative;
-            width: 320px;
-            height: 320px;
-            margin: 0 auto 40px;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
         }
 
         .roulette-wheel {
@@ -79,7 +109,7 @@
             height: 100%;
             border-radius: 50%;
             position: relative;
-            border: 4px solid #ffffff;
+            border: 3px solid #ffffff;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             transition: transform 3.5s cubic-bezier(0.25, 0.1, 0.25, 1);
             background: conic-gradient(
@@ -102,7 +132,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: white;
             text-align: center;
             line-height: 1.2;
@@ -130,10 +160,10 @@
         }
 
         .section-content {
-            padding: 8px;
-            width: 90px;
-            margin-left: -45px;
-            margin-top: -70px;
+            padding: 6px;
+            width: 75px;
+            margin-left: -37px;
+            margin-top: -57px;
         }
 
         .section-1 .section-content {
@@ -157,28 +187,28 @@
         }
 
         .section-prize {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             margin-bottom: 2px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .section-detail {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             opacity: 0.95;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .roulette-pointer {
             position: absolute;
-            top: -12px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 30px solid #1e40af;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 25px solid #1e40af;
             z-index: 10;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
@@ -188,8 +218,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: #1e40af;
             border-radius: 50%;
             display: flex;
@@ -198,7 +228,7 @@
             font-weight: 600;
             color: white;
             z-index: 5;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
 
@@ -206,14 +236,17 @@
             background: #1e40af;
             color: white;
             border: none;
-            padding: 16px 48px;
-            font-size: 1.1rem;
+            padding: 14px 40px;
+            font-size: 1rem;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 280px;
+            touch-action: manipulation;
         }
 
         .spin-button:hover {
@@ -222,11 +255,36 @@
             box-shadow: 0 6px 16px rgba(30, 64, 175, 0.4);
         }
 
+        .spin-button:active {
+            transform: translateY(0);
+        }
+
         .spin-button:disabled {
             background: #94a3b8;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
+        }
+
+        .spin-button.benefit-button {
+            background: #dc2626;
+            animation: pulse-glow 2s infinite;
+        }
+
+        .spin-button.benefit-button:hover {
+            background: #b91c1c;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            }
+            50% {
+                box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+            }
+            100% {
+                box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            }
         }
 
         .result-modal {
@@ -241,119 +299,283 @@
             justify-content: center;
             z-index: 1000;
             backdrop-filter: blur(4px);
+            padding: 20px;
         }
 
         .modal-content {
             background: white;
-            padding: 40px;
+            padding: 30px 25px;
             border-radius: 20px;
             text-align: center;
-            max-width: 500px;
-            margin: 20px;
+            width: 100%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
             border: 1px solid #e2e8f0;
         }
 
         .modal-title {
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: #dc2626;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 700;
+            line-height: 1.3;
         }
 
         .modal-prize {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
             color: #1e40af;
             font-weight: 600;
+            line-height: 1.3;
         }
 
         .warning-text {
             background: #fef2f2;
-            padding: 20px;
+            padding: 18px;
             border-radius: 12px;
-            margin: 25px 0;
+            margin: 20px 0;
             border: 1px solid #fecaca;
             color: #dc2626;
             font-weight: 500;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .form-container {
-            margin: 25px 0;
-            padding: 20px;
+            margin: 20px 0;
+            padding: 18px;
             background: #f8fafc;
             border-radius: 12px;
             border: 1px solid #e2e8f0;
+            min-height: 100px;
         }
 
-        .close-modal {
-            background: #94a3b8;
-            color: white;
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .modal-button {
             border: none;
-            padding: 12px 32px;
+            padding: 14px 32px;
             border-radius: 25px;
             cursor: pointer;
-            margin-top: 20px;
-            font-weight: 500;
-            transition: background 0.2s;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 1rem;
+            width: 100%;
+            touch-action: manipulation;
         }
 
-        .close-modal:hover {
+        .complete-button {
+            background: #10b981;
+            color: white;
+        }
+
+        .complete-button:hover {
+            background: #059669;
+        }
+
+        .later-button {
+            background: #94a3b8;
+            color: white;
+        }
+
+        .later-button:hover {
             background: #64748b;
         }
 
         .countdown {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            left: 15px;
             background: #dc2626;
             color: white;
-            padding: 12px 16px;
+            padding: 10px 12px;
             border-radius: 8px;
             font-weight: 600;
             display: none;
             z-index: 999;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
         }
 
-        .contact-info {
-            background: white;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e2e8f0;
-        }
-
-        .contact-info p {
+        /* 푸터 스타일 추가 */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e2e8f0;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.75rem;
             color: #64748b;
-            margin-bottom: 8px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .contact-info p:last-child {
-            margin-bottom: 0;
-            font-weight: 600;
-            color: #1e40af;
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+        .footer-item {
+            white-space: nowrap;
+        }
+
+        /* 큰 화면에서의 최적화 */
+        @media (min-width: 1081px) {
+            .background-wrapper {
+                min-height: 100vh;
+                max-width: 500px;
+                margin: 0 auto;
             }
             
-            .main-title {
-                font-size: 1.6rem;
+            .container {
+                width: 100%;
+                height: calc(100vh - 35.885vh);
+                top: 35.885vh;
+                padding: 0 20px;
+                padding-top: 30px;
+                max-width: 500px;
+            }
+        }
+
+        /* 추가 모바일 최적화 */
+        @media (max-width: 1080px) {
+            .container {
+                width: 100vw;
+                height: calc(100vh - 35.885vh);
+                top: 35.885vh;
+                padding: 0 20px;
+                padding-top: 20px;
+            }
+            
+            .footer {
+                padding: 10px;
+                font-size: 0.7rem;
             }
             
             .roulette-container {
-                width: 280px;
-                height: 280px;
+                width: 70vw;
+                height: 70vw;
+                max-width: 400px;
+                max-height: 400px;
             }
             
             .section-content {
-                width: 80px;
-                margin-left: -40px;
-                margin-top: -60px;
+                width: 20vw;
+                max-width: 100px;
+                margin-left: -10vw;
+                margin-top: -15vw;
+            }
+            
+            @supports not (margin-left: -10vw) {
+                .section-content {
+                    margin-left: -50px;
+                    margin-top: -75px;
+                }
+            }
+            
+            .section-prize {
+                font-size: 0.8rem;
+            }
+            
+            .section-detail {
+                font-size: 0.7rem;
+            }
+            
+            .center-circle {
+                width: 12vw;
+                height: 12vw;
+                max-width: 60px;
+                max-height: 60px;
+                font-size: 0.9rem;
+            }
+            
+            .roulette-pointer {
+                border-left: 12px solid transparent;
+                border-right: 12px solid transparent;
+                border-top: 25px solid #1e40af;
+                top: -10px;
+            }
+            
+            .spin-button {
+                padding: 15px 40px;
+                font-size: 1rem;
+                max-width: 350px;
+            }
+            
+            .modal-content {
+                padding: 30px 25px;
+                margin: 15px;
+            }
+            
+            .modal-title {
+                font-size: 1.6rem;
+            }
+            
+            .modal-prize {
+                font-size: 1.3rem;
+            }
+            
+            .warning-text {
+                font-size: 0.9rem;
+                padding: 18px;
+            }
+
+            .footer {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+            }
+
+            .footer-info {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                min-height: calc(100vh + 60px);
+            }
+            
+            .container {
+                padding: 0 15px;
+                padding-top: 15px;
+            }
+            
+            .footer {
+                top: 100vh;
+                bottom: auto;
+                padding: 5px 8px;
+                font-size: 0.65rem;
+            }
+            
+            .roulette-container {
+                width: 80vw;
+                height: 80vw;
+                max-width: 300px;
+                max-height: 300px;
+            }
+            
+            .section-content {
+                width: 22vw;
+                max-width: 80px;
+                margin-left: -11vw;
+                margin-top: -17vw;
+            }
+            
+            @supports not (margin-left: -11vw) {
+                .section-content {
+                    margin-left: -40px;
+                    margin-top: -60px;
+                }
             }
             
             .section-prize {
@@ -364,17 +586,74 @@
                 font-size: 0.6rem;
             }
             
+            .center-circle {
+                width: 14vw;
+                height: 14vw;
+                max-width: 50px;
+                max-height: 50px;
+                font-size: 0.8rem;
+            }
+            
+            .spin-button {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+                max-width: 280px;
+            }
+            
+            .countdown {
+                top: 10px;
+                left: 10px;
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+            
             .modal-content {
-                margin: 15px;
-                padding: 30px 25px;
+                padding: 25px 20px;
+                margin: 10px;
             }
             
             .modal-title {
-                font-size: 1.6rem;
+                font-size: 1.4rem;
             }
             
             .modal-prize {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
+            }
+            
+            .warning-text {
+                font-size: 0.85rem;
+                padding: 15px;
+            }
+
+            .footer {
+                padding: 5px 8px;
+                font-size: 0.65rem;
+            }
+
+            .footer-info {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+
+        /* 터치 장치 최적화 */
+        @media (hover: none) and (pointer: coarse) {
+            .spin-button:hover {
+                background: #1e40af;
+                transform: none;
+                box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+            }
+            
+            .modal-button:hover {
+                transform: none;
+            }
+            
+            .complete-button:hover {
+                background: #10b981;
+            }
+            
+            .later-button:hover {
+                background: #94a3b8;
             }
         }
 
@@ -390,64 +669,74 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="main-title">🎯 비절개 모발이식 특별 혜택</h1>
-            <p class="subtitle">지금 룰렛을 돌려서 최대 혜택을 받아보세요!</p>
-        </div>
-
-        <div class="price-info">
-            <div class="original-price">일반가: 1000모당 250만원 ~ 330만원</div>
-            <div class="special-price">🎁 최대 혜택: 1000모당 99만원</div>
-        </div>
-
-        <div class="roulette-container">
-            <div class="roulette-pointer"></div>
-            <div class="roulette-wheel" id="rouletteWheel">
-                <div class="roulette-section section-1">
-                    <div class="section-content">
-                        <div class="section-prize">1000모</div>
-                        <div class="section-detail">99만원혜택</div>
-                        <div class="section-detail">⭐1등⭐</div>
-                    </div>
-                </div>
-                <div class="roulette-section section-2">
-                    <div class="section-content">
-                        <div class="section-prize">50만원</div>
-                        <div class="section-detail">할인권</div>
-                    </div>
-                </div>
-                <div class="roulette-section section-3">
-                    <div class="section-content">
-                        <div class="section-prize">25만원</div>
-                        <div class="section-detail">할인권</div>
-                    </div>
-                </div>
-                <div class="roulette-section section-4">
-                    <div class="section-content">
-                        <div class="section-prize">75만원</div>
-                        <div class="section-detail">할인권</div>
-                    </div>
-                </div>
-                <div class="roulette-section section-5">
-                    <div class="section-content">
-                        <div class="section-prize">100만원</div>
-                        <div class="section-detail">할인권</div>
-                    </div>
-                </div>
+    <div class="background-wrapper">
+        <div class="container">
+            <div class="header">
+                <h1 class="main-title">🎯 비절개 모발이식 특별 혜택</h1>
+                <p class="subtitle">지금 룰렛을 돌려서 최대 혜택을 받아보세요!</p>
             </div>
-            <div class="center-circle">START</div>
-        </div>
 
-        <button class="spin-button" id="spinButton" onclick="spinRoulette()">
-            🎰 룰렛 돌리기
-        </button>
+            <div class="price-info">
+                <div class="original-price">일반가: 1000모당 250만원 ~ 330만원</div>
+                <div class="special-price">🎁 최대 혜택: 1000모당 99만원</div>
+            </div>
 
-        <div class="contact-info">
-            <p>⚡ 한정 특가 이벤트 진행 중</p>
-            <p>📞 상담 문의: 1588-0000</p>
+            <div class="roulette-container">
+                <div class="roulette-pointer"></div>
+                <div class="roulette-wheel" id="rouletteWheel">
+                    <div class="roulette-section section-1">
+                        <div class="section-content">
+                            <div class="section-prize">1000모</div>
+                            <div class="section-detail">99만원혜택</div>
+                            <div class="section-detail">⭐1등⭐</div>
+                        </div>
+                    </div>
+                    <div class="roulette-section section-2">
+                        <div class="section-content">
+                            <div class="section-prize">50만원</div>
+                            <div class="section-detail">할인권</div>
+                        </div>
+                    </div>
+                    <div class="roulette-section section-3">
+                        <div class="section-content">
+                            <div class="section-prize">25만원</div>
+                            <div class="section-detail">할인권</div>
+                        </div>
+                    </div>
+                    <div class="roulette-section section-4">
+                        <div class="section-content">
+                            <div class="section-prize">75만원</div>
+                            <div class="section-detail">할인권</div>
+                        </div>
+                    </div>
+                    <div class="roulette-section section-5">
+                        <div class="section-content">
+                            <div class="section-prize">100만원</div>
+                            <div class="section-detail">할인권</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="center-circle">START</div>
+            </div>
+
+            <button class="spin-button" id="spinButton" onclick="handleButtonClick()">
+                🎰 룰렛 돌리기
+            </button>
+
+            <div class="contact-info">
+                <p>⚡ 한정 특가 이벤트 진행 중</p>
+                <p>📞 상담 문의: 1588-0000</p>
+            </div>
         </div>
     </div>
+
+    <!-- 푸터 추가 -->
+    <footer class="footer">
+        <div class="footer-info">
+            <div class="footer-item">advertise agency : (주)편리한세상</div>
+            <div class="footer-item">사업자번호 : 722-26-01851</div>
+        </div>
+    </footer>
 
     <div class="result-modal" id="resultModal">
         <div class="modal-content">
@@ -462,7 +751,10 @@
                 <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" tenping-ad-campaign="2025091712550001" tenping-ad-distributionAddID="2025092000410005" tenping-ad-contain_image="false" tenping-ad-contain_logo="false" tenping-ad-contain_Plugin="false" tenping-ad-contain_TpCall="false" tenping-ad-theme="white"></tenping>
             </div>
             
-            <button class="close-modal" onclick="closeModal()">나중에 하기</button>
+            <div class="modal-buttons">
+                <button class="modal-button complete-button" onclick="completeForm()">완료하기</button>
+                <button class="modal-button later-button" onclick="closeLater()">나중에하기</button>
+            </div>
         </div>
     </div>
 
@@ -476,8 +768,17 @@
 
     <script>
         let hasSpun = false;
+        let showingBenefitButton = false;
         let countdownTimer;
         let timeLeft = 600; // 10 minutes in seconds
+
+        function handleButtonClick() {
+            if (!hasSpun) {
+                spinRoulette();
+            } else if (showingBenefitButton) {
+                showBenefitModal();
+            }
+        }
 
         function spinRoulette() {
             if (hasSpun) return;
@@ -508,9 +809,41 @@
             startCountdown();
         }
 
-        function closeModal() {
+        function showBenefitModal() {
             const modal = document.getElementById('resultModal');
+            modal.style.display = 'flex';
+        }
+
+        function completeForm() {
+            // 설문 완료 처리 로직
+            const modal = document.getElementById('resultModal');
+            const button = document.getElementById('spinButton');
+            
             modal.style.display = 'none';
+            
+            // 페이스북 픽셀 전환 추적
+            if (typeof conversionCallback === 'function') {
+                conversionCallback();
+            }
+            
+            // 버튼을 '1등 혜택받기'로 변경
+            button.textContent = '🏆 1등 혜택받기';
+            button.disabled = false;
+            button.classList.add('benefit-button');
+            showingBenefitButton = true;
+        }
+
+        function closeLater() {
+            const modal = document.getElementById('resultModal');
+            const button = document.getElementById('spinButton');
+            
+            modal.style.display = 'none';
+            
+            // 버튼을 '1등 혜택받기'로 변경
+            button.textContent = '🏆 1등 혜택받기';
+            button.disabled = false;
+            button.classList.add('benefit-button');
+            showingBenefitButton = true;
         }
 
         function startCountdown() {
@@ -534,8 +867,6 @@
                 timeLeft--;
             }, 1000);
         }
-
-        // Remove the sparkle effect for cleaner UI
     </script>
 </body>
 </html>
