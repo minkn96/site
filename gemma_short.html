@@ -36,6 +36,30 @@
     })(window, document, "clarity", "script", "st7wj6aj7b");
   </script>
 
+  <!-- ★ 텐핑 제출완료 콜백: 메타 픽셀 맞춤 전환 이벤트 전송 -->
+  <script>
+    function conversionCallback() {
+      if (typeof fbq === 'function') {
+        fbq('track', 'CompleteRegistration', { 
+          content_category: 'hair',
+          content_name: 'gemma', 
+          source: 'tenping_form', 
+          page: 'landing',
+          event_time: Date.now()
+        });
+        fbq('trackCustom','gemma_cta',{
+          content_category: 'hair',
+          content_name: 'gemma',   
+          source: 'tenping_form', 
+          page: 'landing',
+        });        
+      }
+      if (typeof window.karrotPixel !== 'undefined') {
+         window.karrotPixel.track("Lead");
+      }
+    }
+  </script>
+
   <!-- Meta Pixel Base Code는 GTM에서 관리됨 -->
 
   <!-- 라이트 모드 강제 -->
@@ -209,6 +233,11 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <div class="background-wrapper">
     <div class="container">
       <div class="roulette-wrap" aria-live="polite">
@@ -262,8 +291,6 @@
   <div class="countdown" id="countdown">혜택 만료까지: <span id="timer">10:00</span></div>
 
   <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
-  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1377330030217069');fbq('track', 'PageView');</script>
-  <script>function conversionCallback(){fbq('track', 'CompleteRegistration');}</script>
 
   <script>
     // ===== JS 리디자인: 더 자연스러운 회전, 포인터 흔들림, 축포 =====
@@ -279,8 +306,28 @@
     const spinBtn = document.getElementById('spinButton');
 
     function handleButtonClick(){
-      if(!hasSpun){ spinRoulette(WIN_INDEX); }
-      else if(showingBenefitButton){ showBenefitModal(); }
+      if(!hasSpun){ 
+        spinRoulette(WIN_INDEX); 
+        // GTM을 통한 이벤트 추적 (메타 픽셀은 GTM에서 처리)
+        if(typeof dataLayer !== 'undefined') {
+          dataLayer.push({
+            'event': 'roulette_spin',
+            'event_category': 'engagement',
+            'event_label': 'roulette_started'
+          });
+        }
+      }
+      else if(showingBenefitButton){ 
+        showBenefitModal(); 
+        // GTM을 통한 이벤트 추적
+        if(typeof dataLayer !== 'undefined') {
+          dataLayer.push({
+            'event': 'benefit_button_click',
+            'event_category': 'conversion',
+            'event_label': 'benefit_modal_opened'
+          });
+        }
+      }
     }
 
     function spinRoulette(targetIndex){
@@ -303,6 +350,15 @@
         hasSpun = true;
         launchConfetti();
         if(navigator.vibrate){ navigator.vibrate([18,30,18]); }
+        // GTM을 통한 이벤트 추적
+        if(typeof dataLayer !== 'undefined') {
+          dataLayer.push({
+            'event': 'roulette_win',
+            'event_category': 'conversion',
+            'event_label': 'first_prize_won',
+            'value': 990000
+          });
+        }
       }, 4050);
     }
 
@@ -320,7 +376,22 @@
     function completeForm(){
       const modal = document.getElementById('resultModal');
       modal.style.display = 'none';
-      if (typeof conversionCallback === 'function') conversionCallback();
+      
+      // 텐핑 제출완료 콜백 호출
+      if (typeof conversionCallback === 'function') {
+        conversionCallback();
+      }
+      
+      // GTM을 통한 컨버전 이벤트 추적 (추가 데이터)
+      if(typeof dataLayer !== 'undefined') {
+        dataLayer.push({
+          'event': 'conversion_complete',
+          'event_category': 'conversion',
+          'event_label': 'form_completed',
+          'value': 990000
+        });
+      }
+      
       spinBtn.textContent = '🏆 1등 혜택받기';
       spinBtn.disabled = false; spinBtn.classList.add('benefit-button');
       showingBenefitButton = true;
@@ -329,6 +400,16 @@
     function closeLater(){
       const modal = document.getElementById('resultModal');
       modal.style.display = 'none';
+      
+      // GTM을 통한 이벤트 추적
+      if(typeof dataLayer !== 'undefined') {
+        dataLayer.push({
+          'event': 'form_later',
+          'event_category': 'engagement',
+          'event_label': 'form_postponed'
+        });
+      }
+      
       spinBtn.textContent = '🏆 1등 혜택받기';
       spinBtn.disabled = false; spinBtn.classList.add('benefit-button');
       showingBenefitButton = true;
@@ -341,7 +422,19 @@
       countdownTimer = setInterval(()=>{
         const m = Math.floor(timeLeft/60); const s = (timeLeft%60).toString().padStart(2,'0');
         timer.textContent = `${m}:${s}`;
-        if(timeLeft<=0){clearInterval(countdownTimer); box.textContent='혜택이 만료되었습니다.'; box.style.background='#64748b';}
+        if(timeLeft<=0){
+          clearInterval(countdownTimer); 
+          box.textContent='혜택이 만료되었습니다.'; 
+          box.style.background='#64748b';
+          // GTM을 통한 이벤트 추적
+          if(typeof dataLayer !== 'undefined') {
+            dataLayer.push({
+              'event': 'countdown_expired',
+              'event_category': 'engagement',
+              'event_label': 'benefit_expired'
+            });
+          }
+        }
         timeLeft--;
       },1000);
     }
