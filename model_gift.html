@@ -235,28 +235,44 @@
   </style>
 
   <!-- ★ 텐핑 제출완료 콜백: 메타 픽셀 맞춤 전환 이벤트 전송 -->
-  <script>
-    function conversionCallback() {
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead', { 
-          content_category: 'audition',
-          content_name: 'model_high', 
-          source: 'tenping_form', 
-          page: 'landing',
-          event_time: Date.now()
-        });
-        fbq('trackCustom','model_CTA',{
-          content_category: 'audition',
-          content_name: 'model_feel',   
-          source: 'tenping_form', 
-          page: 'landing',
-        });        
-      }
-      if (typeof window.karrotPixel !== 'undefined') {
-         window.karrotPixel.track("Lead");
-        }      
-    }
   </script>
+      <script>
+        function conversionCallback() {
+        if (typeof fbq === 'function') {
+            fbq('track', 'Lead', {
+            content_category: 'audition',
+            content_name: 'model',   
+            source: 'tenping_form', 
+            page: 'landing',
+            event_time: Date.now()
+            });
+            fbq('trackCustom','model_CTA',{
+            content_category: 'audition',
+            content_name: 'model',   
+            source: 'tenping_form', 
+            page: 'landing',
+            });        
+        }
+        if (typeof window.karrotPixel !== 'undefined') {
+            window.karrotPixel.track("Lead");
+            }         
+
+        if (typeof ttq !== 'undefined') {
+           ttq.track('CompleteRegistration', {
+            "contents": [
+		    {
+			"content_type": "audition", // string. Either product or product_group.
+			"content_name": "model" // string. The name of the page or product. Example: "shirt".
+		    }
+	        ],
+        });
+        if (typeof kakaoPixel !== 'undefined') {
+            kakaoPixel('2456462917277958019').participation('Audition');
+           }
+        }
+        }
+    </script>
+
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
