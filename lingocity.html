@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <!-- Open Graph -->
+  <meta property="og:title" content="아이들이 즐기는 영어 스피킹 - 링고시티">
+  <meta property="og:description" content="재미가 실력으로 발전하는 초등영어">
+  <meta property="og:image" content="https://minkn96.github.io/site/lingocity_s.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/lingocity.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -27,13 +37,15 @@
     })(window, document, "clarity", "script", "st7wj6aj7b");
   </script>
 
+  <!-- Meta Pixel Base Code는 GTM에서 관리됨 -->
+
   <!-- 라이트 모드 강제 -->
   <meta name="color-scheme" content="light">
   <meta name="supported-color-schemes" content="light">   
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>링고시티 랜딩페이지</title>
+  <title>링고시티 신청페이지</title>
 
   <style>
     :root { --cta-height: 64px; --brand-blue: #2463eb; --brand-yellow: #ffd93b; --safe-bottom: env(safe-area-inset-bottom, 0px); }
@@ -43,62 +55,33 @@
       margin: 0; font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       background: #fff; color: #111; padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
     }
+
+    /* PC에서 모바일처럼 보이게 하는 컨테이너 */
+    .mobile-container {
+      max-width: 430px; margin: 0 auto; position: relative;
+      min-height: 100vh; background: #fff;
+    }
+    @media (min-width: 431px) {
+      body { background: #f5f5f5; }
+      .mobile-container { 
+        box-shadow: 0 0 20px rgba(0,0,0,.1);
+        border-left: 1px solid #eaeaea;
+        border-right: 1px solid #eaeaea;
+      }
+    }
     .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
     
-    /* ▼▼ 유튜브 영상 스타일 ▼▼ */
-    .video-section {
-      width: 100%;
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 0 14px;
-    }
-    .video-container {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%; /* 16:9 비율 */
-      background: #f8fafc;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      border-radius: 12px;
-    }
-    .video-title {
-      text-align: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #0b1a3a;
-      margin: 16px 0;
-    }
-    @media (min-width: 768px) {
-      .video-section {
-        margin: 30px auto;
-        padding: 0 20px;
-      }
-      .video-title {
-        font-size: 20px;
-        margin: 20px 0;
-      }
-    }
-    /* ▲▲ 유튜브 영상 스타일 ▲▲ */
-    
     .floating-cta {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
+      position: fixed; left: 50%; right: auto; bottom: 0; z-index: 9999;
+      transform: translateX(-50%);
+      max-width: 430px; width: 100%;
       display: flex; gap: 8px; align-items: center; justify-content: center;
       padding: 10px 14px calc(10px + var(--safe-bottom));
       background: rgba(255,255,255,0.96); border-top: 1px solid #eaeaea;
       backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px);
       transition: transform .25s ease;
     }
-    .floating-cta.hidden { transform: translateY(110%); }
+    .floating-cta.hidden { transform: translateX(-50%) translateY(110%); }
     .floating-cta__title { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 52%; }
     .floating-cta__btn {
       appearance: none; border: 0; cursor: pointer; border-radius: 9999px;
@@ -115,17 +98,22 @@
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
 
-    /* ▼▼ 실시간 신청 토스트 스타일 ▼▼ */
+    /* ▼▼ 실시간 신청 토스트 스타일 (우측 상단) ▼▼ */
     .live-signup {
-      position: fixed; left: 12px; bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
+      position: fixed; 
+      right: calc(50% - 215px + 12px); /* 모바일 컨테이너 기준 우측 */
+      top: 12px;
       z-index: 9999; display: flex; flex-direction: column; gap: 8px;
       pointer-events: none; /* 클릭 방해 X */
+    }
+    @media (max-width: 430px) {
+      .live-signup { right: 12px; }
     }
     .live-toast {
       display: flex; align-items: center; gap: 10px; padding: 10px 12px;
       background: rgba(255,255,255,0.96); border: 1px solid #eaeaea;
       border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.12);
-      transform: translateX(-8px); opacity: 0; will-change: transform, opacity;
+      transform: translateY(-8px); opacity: 0; will-change: transform, opacity;
       animation: toast-in .36s ease forwards, toast-out .36s ease forwards 5.5s;
     }
     .live-avatar { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex: 0 0 28px; background: #eee; }
@@ -133,8 +121,8 @@
     .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-blue); box-shadow: 0 0 0 0 rgba(36,99,235,.5); animation: pulse 2s infinite; }
     .live-meta { font-size: 12px; opacity: .58; margin-top: 2px; }
 
-    @keyframes toast-in { to { transform: translateX(0); opacity: 1; } }
-    @keyframes toast-out { to { transform: translateX(-8px); opacity: 0; } }
+    @keyframes toast-in { to { transform: translateY(0); opacity: 1; } }
+    @keyframes toast-out { to { transform: translateY(-8px); opacity: 0; } }
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(36,99,235,.5); }
       70% { box-shadow: 0 0 0 12px rgba(36,99,235,0); }
@@ -145,6 +133,57 @@
       .live-dot { animation: none; }
     }
     /* ▲▲ 실시간 신청 토스트 스타일 ▲▲ */
+
+    /* ▼▼ 친구 공유 버튼 스타일 ▼▼ */
+    .share-button {
+      position: fixed; 
+      left: calc(50% - 215px + 12px); /* 모바일 컨테이너 기준 좌측 */
+      bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
+      z-index: 9999;
+      appearance: none; border: 0; cursor: pointer; border-radius: 20px;
+      padding: 12px 16px; font-weight: 600; font-size: 13px; color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+      display: flex; align-items: center; gap: 6px;
+      transition: all .2s ease;
+    }
+    @media (max-width: 430px) {
+      .share-button { left: 12px; }
+    }
+    .share-button:hover { 
+      background: linear-gradient(0deg, #ffcc00, var(--brand-yellow));
+      box-shadow: 0 6px 16px rgba(0,0,0,.16);
+      transform: translateY(-1px);
+    }
+    .share-button:active { transform: translateY(0); }
+    .share-icon { width: 16px; height: 16px; flex: 0 0 16px; }
+
+    /* 링크 복사 토스트 (가운데) */
+    .copy-toast {
+      position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      z-index: 10000; max-width: 280px; width: 90%;
+      padding: 16px 20px; text-align: center;
+      background: rgba(11,26,58,0.95); color: #fff; border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px);
+      opacity: 0; transform: translate(-50%, -50%) scale(0.9);
+      transition: all .3s ease;
+      pointer-events: none;
+    }
+    .copy-toast.show { 
+      opacity: 1; 
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .copy-toast-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .copy-toast-subtitle { font-size: 12px; opacity: 0.8; line-height: 1.4; }
+
+    @media (min-width: 768px) {
+      .share-button { font-size: 14px; padding: 14px 18px; }
+      .copy-toast-title { font-size: 15px; }
+      .copy-toast-subtitle { font-size: 13px; }
+    }
+    /* ▲▲ 친구 공유 버튼 스타일 ▲▲ */
   
 
     /* ▼▼ 마감 임박 바 & 등록 테이블 ▼▼ */
@@ -164,16 +203,59 @@
     .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
     @keyframes rowflash { 0% { background:#fff9db; } 100% { background: transparent; } }
     /* ▲▲ 마감 임박 바 & 등록 테이블 ▲▲ */
+
+    /* ▼▼ 푸터 스타일 ▼▼ */
+    .footer {
+      margin-top: 40px;
+      padding: 24px 14px 32px;
+      background: #f8fafc;
+      border-top: 1px solid #eaeaea;
+      text-align: center;
+    }
+    .footer-content {
+      max-width: 400px;
+      margin: 0 auto;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .footer-content .company-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    .footer-content .business-number {
+      opacity: 0.8;
+    }
+    @media (min-width: 768px) {
+      .footer { padding: 32px 20px 40px; }
+      .footer-content { font-size: 14px; }
+    }
+    /* ▲▲ 푸터 스타일 ▲▲ */
   </style>
 
-  <!-- ★ 텐핑 제출완료 콜백: 메타 맞춤이벤트 전송 (전역, 스크립트 위) -->
+  <!-- ★ 텐핑 제출완료 콜백: 메타 픽셀 맞춤 전환 이벤트 전송 -->
   <script>
-    window.conversionCallback = function () {
+    function conversionCallback() {
       if (typeof fbq === 'function') {
-        fbq('trackCustom', 'lingocity_CTA', { source: 'tenping_form', page: 'landing' });
+        fbq('track', 'Lead', {
+          content_category: 'education',
+          content_name: 'lingocity',   
+          source: 'tenping_form', 
+          page: 'landing',
+          event_time: Date.now()
+        });      
+        fbq('trackCustom','lingocity_cta',{
+          content_category: 'education',
+          content_name: 'lingocity',   
+          source: 'tenping_form', 
+          page: 'landing',
+        });
       }
-      // console.log('[Tenping] conversionCallback fired');
-    };
+      if (typeof window.karrotPixel !== 'undefined') {
+         window.karrotPixel.track("SubmitApplication");
+        }        
+    }
   </script>
 </head>
 <body>
@@ -181,68 +263,83 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <div class="urgency-bar" role="status" aria-live="polite">
-    <div class="urgency-text">오늘 마감까지 <span id="countdown">00:00:00</span> · 예상 잔여 <strong><span id="seats-left">12</span>명</strong></div>
-    <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
+  <div class="mobile-container">
+    <div class="urgency-bar" role="status" aria-live="polite">
+      <div class="urgency-text">오늘 마감까지 <span id="countdown">00:00:00</span> · 예상 잔여 <strong><span id="seats-left">12</span>명</strong></div>
+      <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
+    </div>
+
+    <!-- 랜딩페이지 이미지 -->
+    <img src="lingocity1.gif" alt="링고시티 랜딩페이지" class="landing-image" />
+    <img src="lingocity2.png" alt="링고시티 랜딩페이지" class="landing-image" />
+    <img src="lingocity3.gif" alt="링고시티 랜딩페이지" class="landing-image" />
+    <img src="lingocity4.png" alt="링고시티 랜딩페이지" class="landing-image" />
+
+    <!-- 신청폼 앵커 -->
+    <span id="apply-anchor"></span>
+
+    <!-- Tenping 폼 -->
+    <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
+      tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
+      tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
+      tenping-ad-campaign="2025101401560001" 
+      tenping-ad-distributionAddID="2025101703260006" 
+      tenping-ad-contain_image="false" 
+      tenping-ad-contain_logo="false" 
+      tenping-ad-contain_Plugin="false" 
+      tenping-ad-contain_TpCall="false" 
+      tenping-ad-theme="white">
+    </tenping>
+    <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+
+    <!-- 최근 등록 현황 테이블 -->
+    <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
+      <h2>최근 등록 현황</h2>
+      <div class="table-wrap">
+        <table class="signup-table" aria-live="polite">
+          <thead>
+            <tr><th scope="col">이름</th><th scope="col">학년</th><th scope="col">등록 시각</th></tr>
+          </thead>
+          <tbody id="signup-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="company-name">광고대행사 : (주)편리한세상</div>
+        <div class="business-number">사업자번호 : 722-26-01851</div>
+      </div>
+    </footer>
   </div>
-
-  <!-- 랜딩페이지 이미지 -->
-  <img src="lingocity1.gif" alt="링고시티 랜딩페이지" class="landing-image" />
-  <img src="lingocity2.png" alt="링고시티 랜딩페이지" class="landing-image" />
-  <img src="lingocity3.gif" alt="링고시티 랜딩페이지" class="landing-image" />
-  <img src="lingocity4.png" alt="링고시티 랜딩페이지" class="landing-image" />
-
-  <!-- 신청폼 앵커 -->
-  <span id="apply-anchor"></span>
-
-  <!-- Tenping 폼 -->
-  <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;"
-    tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
-    tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
-    tenping-ad-campaign="2024112916100001"
-    tenping-ad-distributionAddID="2025081123490001"
-    tenping-ad-contain_image="false"
-    tenping-ad-contain_logo="false"
-    tenping-ad-contain_Plugin="false"
-    tenping-ad-contain_TpCall="false"
-    tenping-ad-theme="default">
-  </tenping>
-  <script async src="https://ads.tenping.kr/scripts/adsbytenping.min.js"></script>
-
-  <!-- 유튜브 영상 섹션 -->
-  <section class="video-section">
-    <h2 class="video-title">🎬 링고시티 체험영상</h2>
-    <div class="video-container">
-      <iframe 
-        src="https://www.youtube.com/watch?v=yYB5f1cEPRM" 
-        title="링고시티 체험영상"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-  <!-- 최근 등록 현황 테이블 -->
-  <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
-    <h2>최근 등록 현황</h2>
-    <div class="table-wrap">
-      <table class="signup-table" aria-live="polite">
-        <thead>
-          <tr><th scope="col">이름</th><th scope="col">지역</th><th scope="col">등록 시각</th></tr>
-        </thead>
-        <tbody id="signup-tbody"></tbody>
-      </table>
-    </div>
-  </section>
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
-    <div class="floating-cta__title">아이도 재밌는 초등영어</div>
-    <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">무료 체험하기</button>
+    <div class="floating-cta__title">아이가 즐기는 영어스피킹</div>
+    <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">무료 체험신청</button>
   </div>
 
   <!-- 실시간 신청 토스트 컨테이너 -->
   <div class="live-signup" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- 친구에게 알리기 버튼 -->
+  <button class="share-button" id="share-btn" aria-label="주변에도 알려주기">
+    <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="18" cy="5" r="3"></circle>
+      <circle cx="6" cy="12" r="3"></circle>
+      <circle cx="18" cy="19" r="3"></circle>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+    </svg>
+    주변에도 알려주기
+  </button>
+
+  <!-- 링크 복사 토스트 -->
+  <div class="copy-toast" id="copy-toast">
+    <div class="copy-toast-title">링크가 복사되었습니다</div>
+    <div class="copy-toast-subtitle">카톡이나 DM으로 공유해주세요</div>
+  </div>
 
   <script>
     (function () {
@@ -251,16 +348,20 @@
       const bar = document.querySelector('.floating-cta');
       const form = document.querySelector('.adsbytenping');
 
-      // (선택) 클릭 탐색 이벤트도 보려면 파라미터 달아 전송
+      // 메타 픽셀 CTA 클릭 이벤트 전송
       function sendMetaCTA() {
         if (typeof fbq === 'function') {
-          fbq('trackCustom', 'lingocity_CTA', { source: 'floating_cta', page: 'landing' });
+          fbq('trackCustom', 'ClickButton', {
+            button_type: 'floating_cta',
+            page: 'landing',
+            event_time: Date.now()
+          });
         }
       }
 
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        // 원하면 아래 한 줄을 주석 해제(탐색 클릭도 수집)
+        // CTA 클릭 이벤트 전송 (필요시 주석 해제)
         // sendMetaCTA();
 
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -297,22 +398,63 @@
 
       if (!container) return;
 
-      // CTA 표시 여부에 따라 토스트 위치 자동 보정
-      function updateBottom(){
-        if (!ctaBar) return;
-        container.style.bottom = ctaBar.classList.contains('hidden')
-          ? '12px'
-          : 'calc(var(--cta-height) + var(--safe-bottom) + 12px)';
-      }
-      updateBottom();
-      if (window.MutationObserver && ctaBar) {
-        new MutationObserver(updateBottom).observe(ctaBar, { attributes:true, attributeFilter:['class'] });
+      // 공유 버튼 이벤트 처리
+      const shareBtn = document.getElementById('share-btn');
+      const copyToast = document.getElementById('copy-toast');
+      
+      if (shareBtn) {
+        shareBtn.addEventListener('click', function() {
+          const shareData = {
+            title: '아이들이 즐기는 초등영어 스피킹',
+            text: '지금 바로 무료체험 해보세요!',
+            url: 'https://m.site.naver.com/1UwSw'
+          };
+
+          // 모바일에서 네이티브 공유 API 사용
+          if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            navigator.share(shareData).catch(err => {
+              console.log('공유 취소 또는 오류:', err);
+            });
+          } else {
+            // PC에서 링크 복사
+            navigator.clipboard.writeText('https://m.site.naver.com/1UwSw').then(() => {
+              if (copyToast) {
+                copyToast.classList.add('show');
+                setTimeout(() => {
+                  copyToast.classList.remove('show');
+                }, 3000);
+              }
+            }).catch(err => {
+              console.log('복사 실패:', err);
+              // 폴백: 텍스트 선택
+              const textArea = document.createElement('textarea');
+              textArea.value = 'https://m.site.naver.com/1UwSw';
+              document.body.appendChild(textArea);
+              textArea.select();
+              document.execCommand('copy');
+              document.body.removeChild(textArea);
+              
+              if (copyToast) {
+                copyToast.classList.add('show');
+                setTimeout(() => {
+                  copyToast.classList.remove('show');
+                }, 3000);
+              }
+            });
+          }
+        });
       }
 
-      // 더미 데이터(한글 마스킹 이름/도시)
+      // CTA 표시 여부에 따라 토스트 위치 자동 보정 (삭제 - 더 이상 필요 없음)
+      function updateBottom(){
+        // 토스트는 이제 우측 상단에 고정되어 있어 CTA와 무관
+      }
+      updateBottom();
+
+      // 더미 데이터(한글 마스킹 이름/출생연도)
       const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
       const firstNames = ['서준','하준','도윤','시후','지호','현우','하율','서연','지우','서윤','하윤','지민','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
-      const cities = ['서울','부산','인천','대구','대전','광주','수원','성남','용인','울산','창원','고양','용산','파주','김포','의정부','세종'];
+      const ages = ['예비초','초1','초2','초3','초4','초5'];
 
       function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
       function maskedName(){
@@ -367,11 +509,11 @@
       updateCountdown(); setInterval(updateCountdown, 1000);
 
       // 테이블 행 추가
-      function addRow(name, city, dateObj, highlight){
+      function addRow(name, age, dateObj, highlight){
         if (!tbody) return;
         const tr = document.createElement('tr');
         if (highlight && !prefersReduced) tr.classList.add('highlight');
-        tr.innerHTML = `<td>${name}</td><td>${city}</td><td title="${formatTime(dateObj)}">${formatRel(dateObj)}</td>`;
+        tr.innerHTML = `<td>${name}</td><td>${age}</td><td title="${formatTime(dateObj)}">${formatRel(dateObj)}</td>`;
         tbody.insertBefore(tr, tbody.firstChild);
         while (tbody.children.length > 20) tbody.removeChild(tbody.lastElementChild);
       }
@@ -382,14 +524,14 @@
         const minsAgo = rand(5, 60);
         const when = new Date(nowKST().getTime() - minsAgo*60000);
         const name = maskedName();
-        const city = cities[rand(0, cities.length-1)];
-        addRow(name, city, when, false);
+        const age = ages[rand(0, ages.length-1)];
+        addRow(name, age, when, false);
       }
 
       // 토스트 생성 + 테이블/잔여석 갱신
       function createToast(){
         const name = maskedName();
-        const city = cities[rand(0, cities.length-1)];
+        const age = ages[rand(0, ages.length-1)];
         const toast = document.createElement('div');
         toast.className = 'live-toast';
         toast.setAttribute('role','status');
@@ -397,7 +539,7 @@
           <div class="live-avatar"><img src="${avatarDataURI(name.charAt(0))}" alt="${name} 아바타" width="28" height="28" loading="lazy"></div>
           <div>
             <div class="live-badge"><span class="live-dot" aria-hidden="true"></span><strong>${name}</strong>님이 신청했어요</div>
-            <div class="live-meta">${city} · 방금</div>
+            <div class="live-meta">${age} · 방금</div>
           </div>
         `;
 
@@ -406,13 +548,13 @@
         setTimeout(() => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 6200);
 
         // 테이블/잔여석 업데이트
-        addRow(name, city, nowKST(), true);
+        addRow(name, age, nowKST(), true);
         if (seatsRemaining > 1) seatsRemaining -= 1; // 잔여 1에서 더 줄지 않게 고정
         updateSeatsUI();
       }
 
       function schedule(){
-        const delay = rand(6500, 19500); // 6.5~19.5초 간격
+        const delay = rand(2500, 8500); // 2.5~8.5초 간격
         setTimeout(() => { createToast(); schedule(); }, delay);
       }
       schedule();
@@ -420,10 +562,13 @@
       // 텐핑 실제 제출 콜백 훅킹: 전송 후 남은자리/테이블 갱신
       const prevConv = window.conversionCallback;
       window.conversionCallback = function(){
-        try { if (typeof prevConv === 'function') prevConv(); } catch (e){}
+        try { 
+          if (typeof prevConv === 'function') prevConv(); 
+        } catch (e){}
+        
         const name = maskedName();
-        const city = cities[rand(0, cities.length-1)];
-        addRow(name, city, nowKST(), true);
+        const age = ages[rand(0, ages.length-1)];
+        addRow(name, age, nowKST(), true);
         if (seatsRemaining > 1) seatsRemaining -= 1; // 잔여 1에서 더 줄지 않게 고정
         updateSeatsUI();
       };
