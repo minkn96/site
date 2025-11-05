@@ -96,7 +96,183 @@
       .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
+
+    /* ▼▼ 메인 CTA 버튼 섹션 ▼▼ */
+    .main-cta-section {
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #0b1a3a 0%, #1e3a5f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .main-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(36, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 217, 59, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .main-cta-container {
+      max-width: 400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .main-cta-heading {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 800;
+      text-align: center;
+      margin: 0 0 12px;
+      line-height: 1.3;
+    }
+    .main-cta-subheading {
+      color: var(--brand-yellow);
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 28px;
+    }
+    .main-cta-btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      width: 100%;
+      padding: 20px 32px;
+      border-radius: 16px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      box-shadow: 
+        0 8px 24px rgba(255, 217, 59, 0.4),
+        0 0 0 0 rgba(255, 217, 59, 0.4);
+      transition: all .3s ease;
+      animation: pulse-shadow 2s infinite;
+    }
+    .main-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 32px rgba(255, 217, 59, 0.5),
+        0 0 0 0 rgba(255, 217, 59, 0.4);
+    }
+    .main-cta-btn:active {
+      transform: translateY(0);
+    }
+    @keyframes pulse-shadow {
+      0%, 100% {
+        box-shadow: 
+          0 8px 24px rgba(255, 217, 59, 0.4),
+          0 0 0 0 rgba(255, 217, 59, 0);
+      }
+      50% {
+        box-shadow: 
+          0 8px 24px rgba(255, 217, 59, 0.4),
+          0 0 0 12px rgba(255, 217, 59, 0);
+      }
+    }
+    .main-cta-benefits {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .main-cta-benefit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 14px;
+    }
+    .main-cta-benefit-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--brand-yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .main-cta-benefit-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: #0b1a3a;
+      stroke-width: 3;
+    }
+    @media (min-width: 768px) {
+      .main-cta-section { padding: 50px 24px; }
+      .main-cta-heading { font-size: 28px; }
+      .main-cta-subheading { font-size: 18px; }
+      .main-cta-btn { font-size: 22px; padding: 22px 36px; }
+      .main-cta-benefit { font-size: 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .main-cta-btn { animation: none; }
+    }
+    /* ▲▲ 메인 CTA 버튼 섹션 ▲▲ */
+
+    /* ▼▼ 모달 팝업 스타일 ▼▼ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+    .modal-overlay.show {
+      opacity: 1; visibility: visible;
+    }
+    .modal-container {
+      background: #fff; border-radius: 16px;
+      width: 100%; max-width: 500px; max-height: 90vh;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      display: flex; flex-direction: column;
+      transform: scale(0.9) translateY(20px);
+      transition: transform .3s ease;
+    }
+    .modal-overlay.show .modal-container {
+      transform: scale(1) translateY(0);
+    }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid #eaeaea;
+    }
+    .modal-title {
+      font-size: 18px; font-weight: 700; color: #0b1a3a;
+    }
+    .modal-close {
+      appearance: none; border: 0; background: transparent;
+      cursor: pointer; padding: 8px; margin: -8px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; transition: background .2s ease;
+    }
+    .modal-close:hover { background: #f1f5f9; }
+    .modal-close svg { width: 24px; height: 24px; }
+    .modal-body {
+      flex: 1; overflow-y: auto; padding: 0;
+    }
+    .modal-iframe {
+      width: 100%; height: 650px; border: 0; display: block;
+    }
+    @media (max-width: 640px) {
+      .modal-overlay { padding: 0; }
+      .modal-container { 
+        max-width: 100%; max-height: 100vh; border-radius: 0; 
+      }
+      .modal-iframe { height: calc(100vh - 60px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .modal-overlay, .modal-container { transition: none; }
+      .modal-overlay.show .modal-container { transform: none; }
+    }
+    /* ▲▲ 모달 팝업 스타일 ▲▲ */
 
     /* ▼▼ 실시간 신청 토스트 스타일 (우측 상단) ▼▼ */
     .live-signup {
@@ -249,12 +425,50 @@
     <!-- 랜딩페이지 이미지 -->
     <img src="sonhae.png" alt="손해평가사 랜딩페이지" class="landing-image" />
 
-    <!-- 신청폼 앵커 -->
-    <span id="apply-anchor"></span>
+    <!-- ▼▼ 메인 CTA 버튼 섹션 ▼▼ -->
+    <section class="main-cta-section">
+      <div class="main-cta-container">
+        <h2 class="main-cta-heading">합격 비밀자료<br>지금 무료로 받아가세요!</h2>
+        <p class="main-cta-subheading">⏰ 오늘만 특별 공개</p>
+        
+        <button 
+          id="main-apply-btn" 
+          class="main-cta-btn"
+          data-gtm-event="lead_form_open"
+          data-gtm-source="main_cta"
+          aria-label="비밀자료 PDF 무료로 받기">
+          📥 비밀자료 PDF 무료로 받기
+        </button>
 
-    <!-- 신청 폼 -->
-
-    <iframe src='https://adlip.kr/form_make/form.php?type=set&pt=mknam2003&it=740&rgb1=&rgb2=&rgb3=&rgb4=&rgb5=&rgb6=&btn_name=%BA%F1%B9%D0%C0%DA%B7%E1PDF+%B9%AB%B7%E1%B7%CE+%B9%DE%B1%E2&tracking_gubun=fasebook&tracking_code=1377330030217069&tracking_label='  width='100%' height='650px' frameborder='0'></iframe>
+        <div class="main-cta-benefits">
+          <div class="main-cta-benefit">
+            <span class="main-cta-benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <span>실제 기출문제 및 예상문제</span>
+          </div>
+          <div class="main-cta-benefit">
+            <span class="main-cta-benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <span>출제 빈도 높은 핵심 요약 정리</span>
+          </div>
+          <div class="main-cta-benefit">
+            <span class="main-cta-benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <span>자료 무료로 모두 제공</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ▲▲ 메인 CTA 버튼 섹션 ▲▲ -->
 
     <!-- 최근 등록 현황 테이블 -->
     <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
@@ -280,8 +494,8 @@
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
-    <div class="floating-cta__title">아이가 즐기는 영어스피킹</div>
-    <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">무료 체험신청</button>
+    <div class="floating-cta__title">시니어 일자리 1위 손해평가사</div>
+    <button id="floating-apply-btn" class="floating-cta__btn" aria-label="신청 폼 열기" data-gtm-event="lead_form_open" data-gtm-source="floating_cta">무료 자료받기</button>
   </div>
 
   <!-- 실시간 신청 토스트 컨테이너 -->
@@ -305,56 +519,99 @@
     <div class="copy-toast-subtitle">카톡이나 DM으로 공유해주세요</div>
   </div>
 
+  <!-- ▼▼ 신청 모달 팝업 ▼▼ -->
+  <div class="modal-overlay" id="apply-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">손해평가사 비밀자료 신청</h2>
+        <button class="modal-close" id="modal-close-btn" aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe 
+          id="apply-iframe"
+          class="modal-iframe"
+          src='https://adlip.kr/form_make/form.php?type=set&pt=mknam2003&it=740&rgb1=&rgb2=&rgb3=&rgb4=&rgb5=&rgb6=&btn_name=%BA%F1%B9%D0%C0%DA%B7%E1PDF+%B9%AB%B7%E1%B7%CE+%B9%DE%B1%E2&tracking_gubun=fasebook&tracking_code=1377330030217069&tracking_label='
+          title="손해평가사 신청 폼"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+  <!-- ▲▲ 신청 모달 팝업 ▲▲ -->
+
+  <!-- ▼▼ 모달 제어 스크립트 ▼▼ -->
   <script>
     (function () {
-      const btn = document.getElementById('go-apply');
-      const anchor = document.getElementById('apply-anchor');
-      const bar = document.querySelector('.floating-cta');
-      const form = document.querySelector('.adsbytenping');
+      const mainApplyBtn = document.getElementById('main-apply-btn');
+      const floatingApplyBtn = document.getElementById('floating-apply-btn');
+      const modal = document.getElementById('apply-modal');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+      const modalOverlay = modal;
 
-      // 메타 픽셀 CTA 클릭 이벤트 전송
-      function sendMetaCTA() {
-        if (typeof fbq === 'function') {
-          fbq('trackCustom', 'ClickButton', {
-            button_type: 'floating_cta',
-            page: 'landing',
-            event_time: Date.now()
-          });
-        }
+      // 모달 열기 함수
+      function openModal(source) {
+        console.log(`✅ ${source} 버튼 클릭 - 모달 열기`);
+        console.log('📊 GTM 추적용 이벤트:', source);
+        
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // 스크롤 방지
       }
 
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        // CTA 클릭 이벤트 전송 (필요시 주석 해제)
-        // sendMetaCTA();
+      // 메인 CTA 버튼
+      if (mainApplyBtn) {
+        mainApplyBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openModal('main_cta');
+        });
+      }
 
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (anchor && anchor.scrollIntoView) {
-          anchor.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
-        } else {
-          window.location.hash = '#apply-anchor';
+      // 플로팅 CTA 버튼
+      if (floatingApplyBtn) {
+        floatingApplyBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openModal('floating_cta');
+        });
+      }
+
+      // 모달 닫기 함수
+      function closeModal() {
+        console.log('❌ 모달 닫기');
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // 스크롤 복원
+      }
+
+      // X 버튼 클릭
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeModal);
+      }
+
+      // 오버레이(배경) 클릭
+      modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) {
+          closeModal();
         }
       });
 
-      // 폼이 보이면 플로팅바 숨김
-      if ('IntersectionObserver' in window && form) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) bar.classList.add('hidden');
-            else bar.classList.remove('hidden');
-          });
-        }, { threshold: 0.15 });
-        io.observe(form);
-      }
+      // ESC 키
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+          closeModal();
+        }
+      });
     })();
   </script>
+  <!-- ▲▲ 모달 제어 스크립트 ▲▲ -->
 
   <!-- ▼▼ 실시간 신청 애니메이션 스크립트 ▼▼ -->
   <script>
     (function(){
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const container = document.querySelector('.live-signup');
-      const ctaBar = document.querySelector('.floating-cta');
       const seatsEl = document.getElementById('seats-left');
       const fillEl = document.getElementById('urgency-fill');
       const countdownEl = document.getElementById('countdown');
@@ -409,12 +666,6 @@
         });
       }
 
-      // CTA 표시 여부에 따라 토스트 위치 자동 보정 (삭제 - 더 이상 필요 없음)
-      function updateBottom(){
-        // 토스트는 이제 우측 상단에 고정되어 있어 CTA와 무관
-      }
-      updateBottom();
-
       // 더미 데이터(한글 마스킹 이름/출생연도)
       const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
       const firstNames = ['서준','학조','윤학','시후','수혁','현우','영숙','서연','지우','서윤','순자','미령','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
@@ -425,7 +676,7 @@
         const ln = lastNames[rand(0, lastNames.length-1)];
         const fn = firstNames[rand(0, firstNames.length-1)];
         const masked = fn.slice(0,1) + '○';
-        return ln + masked; // 김서○
+        return ln + masked;
       }
       function avatarDataURI(initial){
         const palette = ['#E0F2FE','#FEE2E2','#F3E8FF','#FEF3C7','#E2FBE8'];
@@ -453,7 +704,7 @@
 
       // 잔여석/프로그레스
       const dailyQuota = 40;
-      let seatsRemaining = Math.max(3, Math.floor(20 + Math.random()*8)); // 20~28로 시작
+      let seatsRemaining = Math.max(3, Math.floor(20 + Math.random()*8));
       function updateSeatsUI(){
         if (seatsEl) seatsEl.textContent = String(seatsRemaining);
         if (fillEl) fillEl.style.width = Math.max(0, Math.min(100, ((dailyQuota - seatsRemaining)/dailyQuota)*100)) + '%';
@@ -483,7 +734,7 @@
       }
 
       // 초기 더미 데이터(최근 60분 내)
-      const preCount = Math.floor(6 + Math.random()*6); // 6~11개
+      const preCount = Math.floor(6 + Math.random()*6);
       for (let i = preCount; i >= 1; i--) {
         const minsAgo = rand(5, 60);
         const when = new Date(nowKST().getTime() - minsAgo*60000);
@@ -511,31 +762,16 @@
         container.appendChild(toast);
         setTimeout(() => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 6200);
 
-        // 테이블/잔여석 업데이트
         addRow(name, age, nowKST(), true);
-        if (seatsRemaining > 1) seatsRemaining -= 1; // 잔여 1에서 더 줄지 않게 고정
+        if (seatsRemaining > 1) seatsRemaining -= 1;
         updateSeatsUI();
       }
 
       function schedule(){
-        const delay = rand(2500, 8500); // 2.5~8.5초 간격
+        const delay = rand(2500, 8500);
         setTimeout(() => { createToast(); schedule(); }, delay);
       }
       schedule();
-
-      // 텐핑 실제 제출 콜백 훅킹: 전송 후 남은자리/테이블 갱신
-      const prevConv = window.conversionCallback;
-      window.conversionCallback = function(){
-        try { 
-          if (typeof prevConv === 'function') prevConv(); 
-        } catch (e){}
-        
-        const name = maskedName();
-        const age = ages[rand(0, ages.length-1)];
-        addRow(name, age, nowKST(), true);
-        if (seatsRemaining > 1) seatsRemaining -= 1; // 잔여 1에서 더 줄지 않게 고정
-        updateSeatsUI();
-      };
     })();
   </script>
   <!-- ▲▲ 실시간 신청 애니메이션 스크립트 ▲▲ -->
