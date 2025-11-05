@@ -2,10 +2,10 @@
 <html lang="ko">
 <head>
   <!-- Open Graph -->
-  <meta property="og:title" content="아이들이 즐기는 영어 스피킹 - 링고시티">
-  <meta property="og:description" content="재미가 실력으로 발전하는 초등영어">
-  <meta property="og:image" content="https://minkn96.github.io/site/lingocity_s.png">
-  <meta property="og:url" content="https://minkn96.github.io/site/lingocity.html">
+  <meta property="og:title" content="시니어 일자리 전망 1위 손해평가사">
+  <meta property="og:description" content="합격 비밀자료 PDF 무료로 받기">
+  <meta property="og:image" content="https://minkn96.github.io/site/sonhae_s.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/sonhae.html">
   <meta property="og:type" content="website">
   <meta property="og:image:width" content="1080">
   <meta property="og:image:height" content="1080">
@@ -45,7 +45,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>링고시티 신청페이지</title>
+  <title>손해평가사 신청페이지</title>
 
   <style>
     :root { --cta-height: 64px; --brand-blue: #2463eb; --brand-yellow: #ffd93b; --safe-bottom: env(safe-area-inset-bottom, 0px); }
@@ -234,29 +234,6 @@
     /* ▲▲ 푸터 스타일 ▲▲ */
   </style>
 
-  <!-- ★ 텐핑 제출완료 콜백: 메타 픽셀 맞춤 전환 이벤트 전송 -->
-  <script>
-    function conversionCallback() {
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead', {
-          content_category: 'education',
-          content_name: 'lingocity',   
-          source: 'tenping_form', 
-          page: 'landing',
-          event_time: Date.now()
-        });      
-        fbq('trackCustom','lingocity_cta',{
-          content_category: 'education',
-          content_name: 'lingocity',   
-          source: 'tenping_form', 
-          page: 'landing',
-        });
-      }
-      if (typeof window.karrotPixel !== 'undefined') {
-         window.karrotPixel.track("SubmitApplication");
-        }        
-    }
-  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -275,19 +252,7 @@
     <!-- 신청폼 앵커 -->
     <span id="apply-anchor"></span>
 
-    <!-- Tenping 폼 -->
-    <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
-      tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
-      tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
-      tenping-ad-campaign="2024112916100001" 
-      tenping-ad-distributionAddID="2025081123490001" 
-      tenping-ad-contain_image="false" 
-      tenping-ad-contain_logo="false" 
-      tenping-ad-contain_Plugin="false" 
-      tenping-ad-contain_TpCall="false" 
-      tenping-ad-theme="default">
-    </tenping>
-    <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+    <!-- 신청 폼 -->
 
     <iframe src='https://adlip.kr/form_make/form.php?type=set&pt=mknam2003&it=740&rgb1=&rgb2=&rgb3=&rgb4=&rgb5=&rgb6=&btn_name=%BA%F1%B9%D0%C0%DA%B7%E1PDF+%B9%AB%B7%E1%B7%CE+%B9%DE%B1%E2&tracking_gubun=fasebook&tracking_code=1377330030217069&tracking_label='  width='100%' height='650px' frameborder='0'></iframe>
 
@@ -404,9 +369,9 @@
       if (shareBtn) {
         shareBtn.addEventListener('click', function() {
           const shareData = {
-            title: '아이들이 즐기는 초등영어 스피킹',
-            text: '지금 바로 무료체험 해보세요!',
-            url: 'https://m.site.naver.com/1UwSw'
+            title: '시니어 일자리 1위 손해평가사',
+            text: '합격 비밀자료 무료로 받아가세요!',
+            url: 'https://m.site.naver.com/1ULpE'
           };
 
           // 모바일에서 네이티브 공유 API 사용
@@ -416,7 +381,7 @@
             });
           } else {
             // PC에서 링크 복사
-            navigator.clipboard.writeText('https://m.site.naver.com/1UwSw').then(() => {
+            navigator.clipboard.writeText('https://m.site.naver.com/1ULpE').then(() => {
               if (copyToast) {
                 copyToast.classList.add('show');
                 setTimeout(() => {
@@ -427,7 +392,7 @@
               console.log('복사 실패:', err);
               // 폴백: 텍스트 선택
               const textArea = document.createElement('textarea');
-              textArea.value = 'https://m.site.naver.com/1UwSw';
+              textArea.value = 'https://m.site.naver.com/1ULpE';
               document.body.appendChild(textArea);
               textArea.select();
               document.execCommand('copy');
@@ -452,8 +417,8 @@
 
       // 더미 데이터(한글 마스킹 이름/출생연도)
       const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
-      const firstNames = ['서준','하준','도윤','시후','지호','현우','하율','서연','지우','서윤','하윤','지민','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
-      const ages = ['예비초','초1','초2','초3','초4','초5'];
+      const firstNames = ['서준','학조','윤학','시후','수혁','현우','영숙','서연','지우','서윤','순자','미령','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
+      const ages = ['40세','41세','42세','43세','44세','45세','46세','47세','48세','49세','50세','51세','52세','53세','54세','55세','56세','57세','58세','59세'];
 
       function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
       function maskedName(){
