@@ -96,7 +96,124 @@
       .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
+
+    /* ▼▼ 인라인 CTA 버튼 스타일 ▼▼ */
+    .inline-cta {
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .inline-cta__title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0b1a3a;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .inline-cta__subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .inline-cta__btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 20px 48px;
+      font-weight: 800;
+      font-size: 18px;
+      color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      box-shadow: 0 8px 24px rgba(0,0,0,.15);
+      width: 100%;
+      max-width: 320px;
+      transition: all 0.2s ease;
+    }
+    .inline-cta__btn:hover {
+      background: linear-gradient(0deg, #ffcc00, var(--brand-yellow));
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.2);
+    }
+    .inline-cta__btn:active {
+      transform: translateY(0);
+    }
+    @media (min-width: 768px) {
+      .inline-cta__title { font-size: 28px; }
+      .inline-cta__subtitle { font-size: 17px; }
+      .inline-cta__btn { font-size: 19px; }
+    }
+    /* ▲▲ 인라인 CTA 버튼 스타일 ▲▲ */
+
+    /* ▼▼ 모달 스타일 ▼▼ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 99999;
+      background: rgba(0, 0, 0, 0.7);
+      display: none; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.show {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    .modal-overlay.show .modal-content {
+      transform: scale(1);
+    }
+    .modal-header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 16px 20px;
+      border-bottom: 1px solid #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      border-radius: 16px 16px 0 0;
+    }
+    .modal-title {
+      font-weight: 700;
+      font-size: 18px;
+      color: #0b1a3a;
+    }
+    .modal-close {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background 0.2s ease;
+    }
+    .modal-close:hover {
+      background: #f5f5f5;
+    }
+    .modal-close svg {
+      width: 24px;
+      height: 24px;
+      stroke: #666;
+    }
+    .modal-body {
+      padding: 20px;
+    }
+    /* ▲▲ 모달 스타일 ▲▲ */
 
     /* ▼▼ 실시간 신청 토스트 스타일 (우측 상단) ▼▼ */
     .live-signup {
@@ -238,7 +355,7 @@
   <script>
     function conversionCallback() {
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead', { 
+        fbq('track', 'CompleteRegistration', { 
           content_category: 'kidsmodel',
           content_name: 'kids_photo', 
           source: 'tenping_form', 
@@ -272,22 +389,14 @@
     <!-- 랜딩페이지 이미지 -->
     <img src="kids_model.png" alt="키즈모델_협찬 랜딩페이지" class="landing-image" />
 
-    <!-- 신청폼 앵커 -->
-    <span id="apply-anchor"></span>
-
-    <!-- Tenping 폼 -->
-    <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
-      tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
-      tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
-      tenping-ad-campaign="2025092509460001" 
-      tenping-ad-distributionAddID="2025092516430002" 
-      tenping-ad-contain_image="false" 
-      tenping-ad-contain_logo="false" 
-      tenping-ad-contain_Plugin="false" 
-      tenping-ad-contain_TpCall="false" 
-      tenping-ad-theme="white">
-    </tenping>
-    <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+    <!-- 인라인 CTA 버튼 (원래 텐핑 폼이 있던 자리) -->
+    <section class="inline-cta">
+      <h2 class="inline-cta__title">우리 아이 인생프사<br>지금 바로 신청하세요!</h2>
+      <p class="inline-cta__subtitle">📸 전문 스튜디오에서 무료 촬영<br>🎁 유아용품 협찬 혜택까지</p>
+      <button class="inline-cta__btn open-form-btn" aria-label="신청 폼 열기">
+        지금 바로 신청하기
+      </button>
+    </section>
 
     <!-- 최근 등록 현황 테이블 -->
     <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
@@ -314,7 +423,37 @@
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
     <div class="floating-cta__title">우리 아이 인생프사</div>
-    <button id="go-apply" class="floating-cta__btn" aria-label="신청 폼으로 이동">신청하기</button>
+    <button id="go-apply" class="floating-cta__btn open-form-btn" aria-label="신청 폼 열기">신청하기</button>
+  </div>
+
+  <!-- 신청폼 모달 -->
+  <div class="modal-overlay" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">키즈 협찬모델 신청</h2>
+        <button class="modal-close" id="close-modal" aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Tenping 폼 -->
+        <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
+          tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
+          tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
+          tenping-ad-campaign="2025092509460001" 
+          tenping-ad-distributionAddID="2025111417580001" 
+          tenping-ad-contain_image="false" 
+          tenping-ad-contain_logo="false" 
+          tenping-ad-contain_Plugin="false" 
+          tenping-ad-contain_TpCall="false" 
+          tenping-ad-theme="white">
+        </tenping>
+        <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+      </div>
+    </div>
   </div>
 
   <!-- 실시간 신청 토스트 컨테이너 -->
@@ -340,45 +479,57 @@
 
   <script>
     (function () {
-      const btn = document.getElementById('go-apply');
-      const anchor = document.getElementById('apply-anchor');
-      const bar = document.querySelector('.floating-cta');
-      const form = document.querySelector('.adsbytenping');
+      const modal = document.getElementById('form-modal');
+      const closeBtn = document.getElementById('close-modal');
+      const openFormBtns = document.querySelectorAll('.open-form-btn');
 
       // 메타 픽셀 CTA 클릭 이벤트 전송
       function sendMetaCTA() {
         if (typeof fbq === 'function') {
           fbq('trackCustom', 'ClickButton', {
-            button_type: 'floating_cta',
+            button_type: 'cta_button',
             page: 'landing',
             event_time: Date.now()
           });
         }      
       }
 
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        // CTA 클릭 이벤트 전송 (필요시 주석 해제)
-        // sendMetaCTA();
+      // 모달 열기
+      function openModal() {
+        // sendMetaCTA(); // 필요시 주석 해제
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+      }
 
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (anchor && anchor.scrollIntoView) {
-          anchor.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
-        } else {
-          window.location.hash = '#apply-anchor';
+      // 모든 CTA 버튼에 이벤트 리스너 추가
+      openFormBtns.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openModal();
+        });
+      });
+
+      // 모달 닫기
+      function closeModal() {
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // 스크롤 복원
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+
+      // 배경 클릭 시 닫기
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
         }
       });
 
-      // 폼이 보이면 플로팅바 숨김
-      if ('IntersectionObserver' in window && form) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) bar.classList.add('hidden');
-            else bar.classList.remove('hidden');
-          });
-        }, { threshold: 0.15 });
-        io.observe(form);
-      }
+      // ESC 키로 닫기
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+          closeModal();
+        }
+      });
     })();
   </script>
 
@@ -387,7 +538,6 @@
     (function(){
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const container = document.querySelector('.live-signup');
-      const ctaBar = document.querySelector('.floating-cta');
       const seatsEl = document.getElementById('seats-left');
       const fillEl = document.getElementById('urgency-fill');
       const countdownEl = document.getElementById('countdown');
@@ -441,12 +591,6 @@
           }
         });
       }
-
-      // CTA 표시 여부에 따라 토스트 위치 자동 보정 (삭제 - 더 이상 필요 없음)
-      function updateBottom(){
-        // 토스트는 이제 우측 상단에 고정되어 있어 CTA와 무관
-      }
-      updateBottom();
 
       // 더미 데이터(한글 마스킹 이름/나이)
       const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
