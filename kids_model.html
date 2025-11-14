@@ -391,8 +391,8 @@
 
     <!-- 인라인 CTA 버튼 (원래 텐핑 폼이 있던 자리) -->
     <section class="inline-cta">
-      <h2 class="inline-cta__title">우리 아이 인생프사<br>지금 바로 신청하세요!</h2>
-      <p class="inline-cta__subtitle">📸 전문 스튜디오에서 무료 촬영<br>🎁 유아용품 협찬 혜택까지</p>
+      <h2 class="inline-cta__title">유아용품 협찬모델<br>지금 바로 신청하세요!</h2>
+      <p class="inline-cta__subtitle">🎁 의류, 신발, 모자, 장난감 등 유아용품 협찬</p>
       <button class="inline-cta__btn open-form-btn" aria-label="신청 폼 열기">
         지금 바로 신청하기
       </button>
@@ -422,8 +422,8 @@
 
   <!-- 하단 플로팅바 -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
-    <div class="floating-cta__title">우리 아이 인생프사</div>
-    <button id="go-apply" class="floating-cta__btn open-form-btn" aria-label="신청 폼 열기">신청하기</button>
+    <div class="floating-cta__title">유아용품 협찬모델</div>
+    <button id="go-apply" class="floating-cta__btn open-form-btn" aria-label="신청 폼 열기">모델 신청하기</button>
   </div>
 
   <!-- 신청폼 모달 -->
@@ -553,8 +553,8 @@
         shareBtn.addEventListener('click', function() {
           const shareData = {
             title: '13~22년생 키즈모델 모집',
-            text: '아이의 인생 사진 남겨보세요!',
-            url: 'https://m.site.naver.com/1RTac'
+            text: '유아용품 사지말고 무료로 협찬받아보세요!',
+            url: 'https://m.site.naver.com/1VyWg'
           };
 
           // 모바일에서 네이티브 공유 API 사용
@@ -564,7 +564,7 @@
             });
           } else {
             // PC에서 링크 복사
-            navigator.clipboard.writeText('https://m.site.naver.com/1RTac').then(() => {
+            navigator.clipboard.writeText('https://m.site.naver.com/1VyWg').then(() => {
               if (copyToast) {
                 copyToast.classList.add('show');
                 setTimeout(() => {
@@ -575,7 +575,7 @@
               console.log('복사 실패:', err);
               // 폴백: 텍스트 선택
               const textArea = document.createElement('textarea');
-              textArea.value = 'https://m.site.naver.com/1RTac';
+              textArea.value = 'https://m.site.naver.com/1VyWg';
               document.body.appendChild(textArea);
               textArea.select();
               document.execCommand('copy');
