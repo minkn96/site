@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Open Graph -->
+  <meta property="og:title" content="애견 셀프미용 무료로 배우기">
+  <meta property="og:description" content="반려견 스타일리스트 정보 무료 제공">
+  <meta property="og:image" content="https://minkn96.github.io/site/taro_s.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/taro.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7B92596QT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}    
+    gtag('js', new Date());
+    gtag('config', 'G-P7B92596QT');
+  </script>
+
+  <!-- MS Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "st7wj6aj7b");
+  </script>
+
+  <!-- Meta Pixel Base Code는 GTM에서 관리됨 -->
+
+  <!-- 라이트 모드 강제 -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">   
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>타로부업 신청페이지</title>
+
+  <style>
+    :root { --cta-height: 64px; --brand-blue: #2463eb; --brand-yellow: #ffd93b; --safe-bottom: env(safe-area-inset-bottom, 0px); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #fff; color: #111; padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
+    }
+
+    /* PC에서 모바일처럼 보이게 하는 컨테이너 */
+    .mobile-container {
+      max-width: 430px; margin: 0 auto; position: relative;
+      min-height: 100vh; background: #fff;
+    }
+    @media (min-width: 431px) {
+      body { background: #f5f5f5; }
+      .mobile-container { 
+        box-shadow: 0 0 20px rgba(0,0,0,.1);
+        border-left: 1px solid #eaeaea;
+        border-right: 1px solid #eaeaea;
+      }
+    }
+    .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
+    
+    .floating-cta {
+      position: fixed; left: 50%; right: auto; bottom: 0; z-index: 9999;
+      transform: translateX(-50%);
+      max-width: 430px; width: 100%;
+      display: flex; gap: 8px; align-items: center; justify-content: center;
+      padding: 10px 14px calc(10px + var(--safe-bottom));
+      background: rgba(255,255,255,0.96); border-top: 1px solid #eaeaea;
+      backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px);
+      transition: transform .25s ease;
+    }
+    .floating-cta.hidden { transform: translateX(-50%) translateY(110%); }
+    .floating-cta__title { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 52%; }
+    .floating-cta__btn {
+      appearance: none; border: 0; cursor: pointer; border-radius: 9999px;
+      padding: 14px 20px; font-weight: 800; font-size: 16px; color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    }
+    .floating-cta__btn:active { transform: translateY(1px); }
+    @media (min-width: 768px) {
+      :root { --cta-height: 72px; }
+      .floating-cta__title { font-size: 16px; max-width: none; }
+      .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    /* ▼▼ 메인 CTA 버튼 섹션 ▼▼ */
+    .main-cta-section {
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #0b1a3a 0%, #1e3a5f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .main-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(36, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 217, 59, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .main-cta-container {
+      max-width: 400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .main-cta-heading {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 800;
+      text-align: center;
+      margin: 0 0 12px;
+      line-height: 1.3;
+    }
+    .main-cta-subheading {
+      color: var(--brand-yellow);
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 28px;
+    }
+    .main-cta-btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      width: 100%;
+      padding: 20px 32px;
+      border-radius: 16px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      box-shadow: 
+        0 8px 24px rgba(255, 217, 59, 0.4),
+        0 0 0 0 rgba(255, 217, 59, 0.4);
+      transition: all .3s ease;
+      animation: pulse-shadow 2s infinite;
+    }
+    .main-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 32px rgba(255, 217, 59, 0.5),
+        0 0 0 0 rgba(255, 217, 59, 0.4);
+    }
+    .main-cta-btn:active {
+      transform: translateY(0);
+    }
+    @keyframes pulse-shadow {
+      0%, 100% {
+        box-shadow: 
+          0 8px 24px rgba(255, 217, 59, 0.4),
+          0 0 0 0 rgba(255, 217, 59, 0);
+      }
+      50% {
+        box-shadow: 
+          0 8px 24px rgba(255, 217, 59, 0.4),
+          0 0 0 12px rgba(255, 217, 59, 0);
+      }
+    }
+    .main-cta-benefits {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .main-cta-benefit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 14px;
+    }
+    .main-cta-benefit-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--brand-yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .main-cta-benefit-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: #0b1a3a;
+      stroke-width: 3;
+    }
+    @media (min-width: 768px) {
+      .main-cta-section { padding: 50px 24px; }
+      .main-cta-heading { font-size: 28px; }
+      .main-cta-subheading { font-size: 18px; }
+      .main-cta-btn { font-size: 22px; padding: 22px 36px; }
+      .main-cta-benefit { font-size: 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .main-cta-btn { animation: none; }
+    }
+    /* ▲▲ 메인 CTA 버튼 섹션 ▲▲ */
+
+    /* ▼▼ 모달 팝업 스타일 ▼▼ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+    .modal-overlay.show {
+      opacity: 1; visibility: visible;
+    }
+    .modal-container {
+      background: #fff; border-radius: 16px;
+      width: 100%; max-width: 500px; max-height: 90vh;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      display: flex; flex-direction: column;
+      transform: scale(0.9) translateY(20px);
+      transition: transform .3s ease;
+    }
+    .modal-overlay.show .modal-container {
+      transform: scale(1) translateY(0);
+    }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid #eaeaea;
+    }
+    .modal-title {
+      font-size: 18px; font-weight: 700; color: #0b1a3a;
+    }
+    .modal-close {
+      appearance: none; border: 0; background: transparent;
+      cursor: pointer; padding: 8px; margin: -8px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; transition: background .2s ease;
+    }
+    .modal-close:hover { background: #f1f5f9; }
+    .modal-close svg { width: 24px; height: 24px; }
+    .modal-body {
+      flex: 1; overflow-y: auto; padding: 0;
+    }
+    .modal-iframe {
+      width: 100%; height: 650px; border: 0; display: block;
+    }
+    @media (max-width: 640px) {
+      .modal-overlay { padding: 0; }
+      .modal-container { 
+        max-width: 100%; max-height: 100vh; border-radius: 0; 
+      }
+      .modal-iframe { height: calc(100vh - 60px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .modal-overlay, .modal-container { transition: none; }
+      .modal-overlay.show .modal-container { transform: none; }
+    }
+    /* ▲▲ 모달 팝업 스타일 ▲▲ */
+
+    /* ▼▼ 실시간 신청 토스트 스타일 (우측 상단) ▼▼ */
+    .live-signup {
+      position: fixed; 
+      right: calc(50% - 215px + 12px); /* 모바일 컨테이너 기준 우측 */
+      top: 12px;
+      z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+      pointer-events: none; /* 클릭 방해 X */
+    }
+    @media (max-width: 430px) {
+      .live-signup { right: 12px; }
+    }
+    .live-toast {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+      background: rgba(255,255,255,0.96); border: 1px solid #eaeaea;
+      border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.12);
+      transform: translateY(-8px); opacity: 0; will-change: transform, opacity;
+      animation: toast-in .36s ease forwards, toast-out .36s ease forwards 5.5s;
+    }
+    .live-avatar { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex: 0 0 28px; background: #eee; }
+    .live-badge { display:flex; align-items:center; gap:6px; font-size: 12px; color: #0b1a3a; }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-blue); box-shadow: 0 0 0 0 rgba(36,99,235,.5); animation: pulse 2s infinite; }
+    .live-meta { font-size: 12px; opacity: .58; margin-top: 2px; }
+
+    @keyframes toast-in { to { transform: translateY(0); opacity: 1; } }
+    @keyframes toast-out { to { transform: translateY(-8px); opacity: 0; } }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(36,99,235,.5); }
+      70% { box-shadow: 0 0 0 12px rgba(36,99,235,0); }
+      100% { box-shadow: 0 0 0 0 rgba(36,99,235,0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .live-toast { animation: none; opacity: 1; }
+      .live-dot { animation: none; }
+    }
+    /* ▲▲ 실시간 신청 토스트 스타일 ▲▲ */
+
+    /* ▼▼ 친구 공유 버튼 스타일 ▼▼ */
+    .share-button {
+      position: fixed; 
+      left: calc(50% - 215px + 12px); /* 모바일 컨테이너 기준 좌측 */
+      bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
+      z-index: 9999;
+      appearance: none; border: 0; cursor: pointer; border-radius: 20px;
+      padding: 12px 16px; font-weight: 600; font-size: 13px; color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+      display: flex; align-items: center; gap: 6px;
+      transition: all .2s ease;
+    }
+    @media (max-width: 430px) {
+      .share-button { left: 12px; }
+    }
+    .share-button:hover { 
+      background: linear-gradient(0deg, #ffcc00, var(--brand-yellow));
+      box-shadow: 0 6px 16px rgba(0,0,0,.16);
+      transform: translateY(-1px);
+    }
+    .share-button:active { transform: translateY(0); }
+    .share-icon { width: 16px; height: 16px; flex: 0 0 16px; }
+
+    /* 링크 복사 토스트 (가운데) */
+    .copy-toast {
+      position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      z-index: 10000; max-width: 280px; width: 90%;
+      padding: 16px 20px; text-align: center;
+      background: rgba(11,26,58,0.95); color: #fff; border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      backdrop-filter: saturate(180%) blur(8px); -webkit-backdrop-filter: saturate(180%) blur(8px);
+      opacity: 0; transform: translate(-50%, -50%) scale(0.9);
+      transition: all .3s ease;
+      pointer-events: none;
+    }
+    .copy-toast.show { 
+      opacity: 1; 
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .copy-toast-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .copy-toast-subtitle { font-size: 12px; opacity: 0.8; line-height: 1.4; }
+
+    @media (min-width: 768px) {
+      .share-button { font-size: 14px; padding: 14px 18px; }
+      .copy-toast-title { font-size: 15px; }
+      .copy-toast-subtitle { font-size: 13px; }
+    }
+    /* ▲▲ 친구 공유 버튼 스타일 ▲▲ */
+  
+
+    /* ▼▼ 마감 임박 바 & 등록 테이블 ▼▼ */
+    .urgency-bar { position: sticky; top: 0; z-index: 999; padding: 10px 14px; background: #0b1a3a; color:#fff; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .urgency-text { font-weight: 800; font-size: 14px; letter-spacing: .2px; }
+    .urgency-text strong { color: var(--brand-yellow); }
+    .urgency-progress { height: 6px; background: rgba(255,255,255,.25); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .urgency-progress span { display:block; height:100%; width: 60%; background: var(--brand-yellow); box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); transition: width .6s ease; }
+
+    .recent-signups { padding: 18px 14px 6px; }
+    .recent-signups h2 { margin: 8px 0 10px; font-size: 16px; }
+    .table-wrap { border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
+    .signup-table { width:100%; border-collapse: collapse; font-size: 14px; }
+    .signup-table thead th { background:#f8fafc; text-align:left; padding:10px; border-bottom: 1px solid #eaeaea; }
+    .signup-table tbody td { padding:10px; border-bottom: 1px solid #f1f5f9; }
+    .signup-table tbody tr:last-child td { border-bottom: 0; }
+    .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
+    @keyframes rowflash { 0% { background:#fff9db; } 100% { background: transparent; } }
+    /* ▲▲ 마감 임박 바 & 등록 테이블 ▲▲ */
+
+    /* ▼▼ 푸터 스타일 ▼▼ */
+    .footer {
+      margin-top: 40px;
+      padding: 24px 14px 32px;
+      background: #f8fafc;
+      border-top: 1px solid #eaeaea;
+      text-align: center;
+    }
+    .footer-content {
+      max-width: 400px;
+      margin: 0 auto;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .footer-content .company-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    .footer-content .business-number {
+      opacity: 0.8;
+    }
+    @media (min-width: 768px) {
+      .footer { padding: 32px 20px 40px; }
+      .footer-content { font-size: 14px; }
+    }
+    /* ▲▲ 푸터 스타일 ▲▲ */
+  </style>
+
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="mobile-container">
+    <div class="urgency-bar" role="status" aria-live="polite">
+      <div class="urgency-text">오늘 마감까지 <span id="countdown">00:00:00</span> · 예상 잔여 <strong><span id="seats-left">12</span>명</strong></div>
+      <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
+    </div>
+
+    <!-- 랜딩페이지 이미지 -->
+    <img src="taro.png" alt="타로부업 랜딩페이지" class="landing-image" />
+
+    <!-- ▼▼ 메인 CTA 버튼 섹션 ▼▼ -->
+    <section class="main-cta-section">
+      <div class="main-cta-container">
+        <h2 class="main-cta-heading">타로 비밀자료<br>지금 무료로 받아가세요!</h2>
+        <p class="main-cta-subheading">⏰ 오늘만 특별 공개</p>
+        
+        <button 
+          id="main-apply-btn" 
+          class="main-cta-btn"
+          data-gtm-event="lead_form_open"
+          data-gtm-source="main_cta"
+          aria-label="타로 비밀자료 신청">
+          📥 무료 타로 비밀자료 신청
+        </button>
+
+        <div class="main-cta-benefits">
+          <div class="main-cta-benefit">
+            <span class="main-cta-benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <span>타로 자료 무료로 모두 제공</span>
+          </div>
+          <div class="main-cta-benefit">
+            <span class="main-cta-benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <span>선착순 마감시 즉시 종료</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ▲▲ 메인 CTA 버튼 섹션 ▲▲ -->
+
+    <!-- 최근 등록 현황 테이블 -->
+    <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
+      <h2>최근 등록 현황</h2>
+      <div class="table-wrap">
+        <table class="signup-table" aria-live="polite">
+          <thead>
+            <tr><th scope="col">이름</th><th scope="col">나이</th><th scope="col">등록 시각</th></tr>
+          </thead>
+          <tbody id="signup-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="company-name">광고대행사 : (주)편리한세상</div>
+        <div class="business-number">사업자번호 : 722-26-01851</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 하단 플로팅바 -->
+  <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
+    <div class="floating-cta__title">타로 비밀자료</div>
+    <button id="floating-apply-btn" class="floating-cta__btn" aria-label="신청 폼 열기" data-gtm-event="lead_form_open" data-gtm-source="floating_cta">무료로 받기</button>
+  </div>
+
+  <!-- 실시간 신청 토스트 컨테이너 -->
+  <div class="live-signup" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- 친구에게 알리기 버튼 -->
+  <button class="share-button" id="share-btn" aria-label="주변에도 알려주기">
+    <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="18" cy="5" r="3"></circle>
+      <circle cx="6" cy="12" r="3"></circle>
+      <circle cx="18" cy="19" r="3"></circle>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+    </svg>
+    주변에도 알려주기
+  </button>
+
+  <!-- 링크 복사 토스트 -->
+  <div class="copy-toast" id="copy-toast">
+    <div class="copy-toast-title">링크가 복사되었습니다</div>
+    <div class="copy-toast-subtitle">카톡이나 DM으로 공유해주세요</div>
+  </div>
+
+  <!-- ▼▼ 신청 모달 팝업 ▼▼ -->
+  <div class="modal-overlay" id="apply-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">타로 비밀자료 신청</h2>
+        <button class="modal-close" id="modal-close-btn" aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe 
+          id="apply-iframe"
+          class="modal-iframe"
+          src='https://twojob.iwinv.net/form_make/form.php?type=set&pt=mknam2003&it=837&rgb1=&rgb2=&rgb3=&rgb4=&rgb5=&rgb6=&btn_name=%C5%B8%B7%CE+%C0%DA%B7%E1+%B9%AB%B7%E1%B7%CE+%B9%DE%B1%E2&tracking_gubun=fasebook&tracking_code=1377330030217069&tracking_label='
+          title="타로 신청 폼"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+  <!-- ▲▲ 신청 모달 팝업 ▲▲ -->
+
+  <!-- ▼▼ 모달 제어 스크립트 ▼▼ -->
+  <script>
+    (function () {
+      const mainApplyBtn = document.getElementById('main-apply-btn');
+      const floatingApplyBtn = document.getElementById('floating-apply-btn');
+      const modal = document.getElementById('apply-modal');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+      const modalOverlay = modal;
+
+      // 모달 열기 함수
+      function openModal(source) {
+        console.log(`✅ ${source} 버튼 클릭 - 모달 열기`);
+        console.log('📊 GTM 추적용 이벤트:', source);
+        
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // 스크롤 방지
+      }
+
+      // 메인 CTA 버튼
+      if (mainApplyBtn) {
+        mainApplyBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openModal('main_cta');
+        });
+      }
+
+      // 플로팅 CTA 버튼
+      if (floatingApplyBtn) {
+        floatingApplyBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openModal('floating_cta');
+        });
+      }
+
+      // 모달 닫기 함수
+      function closeModal() {
+        console.log('❌ 모달 닫기');
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // 스크롤 복원
+      }
+
+      // X 버튼 클릭
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeModal);
+      }
+
+      // 오버레이(배경) 클릭
+      modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+
+      // ESC 키
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+  <!-- ▲▲ 모달 제어 스크립트 ▲▲ -->
+
+  <!-- ▼▼ 실시간 신청 애니메이션 스크립트 ▼▼ -->
+  <script>
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const container = document.querySelector('.live-signup');
+      const seatsEl = document.getElementById('seats-left');
+      const fillEl = document.getElementById('urgency-fill');
+      const countdownEl = document.getElementById('countdown');
+      const tbody = document.getElementById('signup-tbody');
+
+      if (!container) return;
+
+      // 공유 버튼 이벤트 처리
+      const shareBtn = document.getElementById('share-btn');
+      const copyToast = document.getElementById('copy-toast');
+      
+      if (shareBtn) {
+        shareBtn.addEventListener('click', function() {
+          const shareData = {
+            title: '애견 셀프미용 무료로 가르쳐드립니다.',
+            text: '애견 미용법 무료 자료받기',
+            url: 'https://m.site.naver.com/1UNMd'
+          };
+
+          // 모바일에서 네이티브 공유 API 사용
+          if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            navigator.share(shareData).catch(err => {
+              console.log('공유 취소 또는 오류:', err);
+            });
+          } else {
+            // PC에서 링크 복사
+            navigator.clipboard.writeText('https://m.site.naver.com/1UNMd').then(() => {
+              if (copyToast) {
+                copyToast.classList.add('show');
+                setTimeout(() => {
+                  copyToast.classList.remove('show');
+                }, 3000);
+              }
+            }).catch(err => {
+              console.log('복사 실패:', err);
+              // 폴백: 텍스트 선택
+              const textArea = document.createElement('textarea');
+              textArea.value = 'https://m.site.naver.com/1UNMd';
+              document.body.appendChild(textArea);
+              textArea.select();
+              document.execCommand('copy');
+              document.body.removeChild(textArea);
+              
+              if (copyToast) {
+                copyToast.classList.add('show');
+                setTimeout(() => {
+                  copyToast.classList.remove('show');
+                }, 3000);
+              }
+            });
+          }
+        });
+      }
+
+      // 더미 데이터(한글 마스킹 이름/출생연도)
+      const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
+      const firstNames = ['서준','학조','윤학','시후','수혁','현우','영숙','서연','지우','서윤','순자','미령','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
+      const ages = ['25세','26세','27세','28세','29세','30세','31세','32세','33세','34세','35세','36세','37세','38세','39세','40세','41세','42세','43세','44세'];
+
+      function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+      function maskedName(){
+        const ln = lastNames[rand(0, lastNames.length-1)];
+        const fn = firstNames[rand(0, firstNames.length-1)];
+        const masked = fn.slice(0,1) + '○';
+        return ln + masked;
+      }
+      function avatarDataURI(initial){
+        const palette = ['#E0F2FE','#FEE2E2','#F3E8FF','#FEF3C7','#E2FBE8'];
+        const bg = palette[rand(0, palette.length-1)];
+        const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56'>
+          <rect width='56' height='56' rx='28' fill='${bg}'/>
+          <text x='50%' y='56%' text-anchor='middle' font-family='Noto Sans KR, sans-serif' font-size='28' fill='#0b1a3a'>${initial}</text>
+        </svg>`;
+        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+      }
+
+      // KST 시간 유틸
+      function nowKST(){ return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' })); }
+      function midnightNextKST(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()+1, 0, 0, 0); }
+      function formatRel(dt){
+        const n = nowKST();
+        const diff = n - dt; const mins = Math.floor(diff/60000);
+        if (mins < 1) return '방금';
+        if (mins < 60) return mins + '분 전';
+        const hrs = Math.floor(mins/60);
+        if (hrs < 24) return hrs + '시간 전';
+        return dt.toLocaleDateString('ko-KR', { month:'numeric', day:'numeric', timeZone:'Asia/Seoul' });
+      }
+      function formatTime(dt){ return dt.toLocaleTimeString('ko-KR', { hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Asia/Seoul' }); }
+
+      // 잔여석/프로그레스
+      const dailyQuota = 40;
+      let seatsRemaining = Math.max(3, Math.floor(20 + Math.random()*8));
+      function updateSeatsUI(){
+        if (seatsEl) seatsEl.textContent = String(seatsRemaining);
+        if (fillEl) fillEl.style.width = Math.max(0, Math.min(100, ((dailyQuota - seatsRemaining)/dailyQuota)*100)) + '%';
+      }
+      updateSeatsUI();
+
+      // 카운트다운 (오늘 자정까지)
+      function updateCountdown(){
+        const n = nowKST();
+        const m = midnightNextKST(n);
+        const total = (m - n) / 1000; if (total < 0) return;
+        const h = Math.floor(total/3600);
+        const mm = Math.floor((total%3600)/60);
+        const s = Math.floor(total%60);
+        if (countdownEl) countdownEl.textContent = `${String(h).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      }
+      updateCountdown(); setInterval(updateCountdown, 1000);
+
+      // 테이블 행 추가
+      function addRow(name, age, dateObj, highlight){
+        if (!tbody) return;
+        const tr = document.createElement('tr');
+        if (highlight && !prefersReduced) tr.classList.add('highlight');
+        tr.innerHTML = `<td>${name}</td><td>${age}</td><td title="${formatTime(dateObj)}">${formatRel(dateObj)}</td>`;
+        tbody.insertBefore(tr, tbody.firstChild);
+        while (tbody.children.length > 20) tbody.removeChild(tbody.lastElementChild);
+      }
+
+      // 초기 더미 데이터(최근 60분 내)
+      const preCount = Math.floor(6 + Math.random()*6);
+      for (let i = preCount; i >= 1; i--) {
+        const minsAgo = rand(5, 60);
+        const when = new Date(nowKST().getTime() - minsAgo*60000);
+        const name = maskedName();
+        const age = ages[rand(0, ages.length-1)];
+        addRow(name, age, when, false);
+      }
+
+      // 토스트 생성 + 테이블/잔여석 갱신
+      function createToast(){
+        const name = maskedName();
+        const age = ages[rand(0, ages.length-1)];
+        const toast = document.createElement('div');
+        toast.className = 'live-toast';
+        toast.setAttribute('role','status');
+        toast.innerHTML = `
+          <div class="live-avatar"><img src="${avatarDataURI(name.charAt(0))}" alt="${name} 아바타" width="28" height="28" loading="lazy"></div>
+          <div>
+            <div class="live-badge"><span class="live-dot" aria-hidden="true"></span><strong>${name}</strong>님이 신청했어요</div>
+            <div class="live-meta">${age} · 방금</div>
+          </div>
+        `;
+
+        if (container.children.length >= 3) container.removeChild(container.firstElementChild);
+        container.appendChild(toast);
+        setTimeout(() => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 6200);
+
+        addRow(name, age, nowKST(), true);
+        if (seatsRemaining > 1) seatsRemaining -= 1;
+        updateSeatsUI();
+      }
+
+      function schedule(){
+        const delay = rand(2500, 8500);
+        setTimeout(() => { createToast(); schedule(); }, delay);
+      }
+      schedule();
+    })();
+  </script>
+  <!-- ▲▲ 실시간 신청 애니메이션 스크립트 ▲▲ -->
+</body>
+</html>
