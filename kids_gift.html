@@ -240,14 +240,14 @@
       if (typeof fbq === 'function') {
         fbq('track', 'Lead', { 
           content_category: 'kidsmodel',
-          content_name: 'kids_photo', 
+          content_name: 'kids_gift', 
           source: 'tenping_form', 
           page: 'landing',
           event_time: Date.now()
         });
         fbq('trackCustom','kids_cta',{
           content_category: 'kidsmodel',
-          content_name: 'kids_photo',   
+          content_name: 'kids_gift',   
           source: 'tenping_form', 
           page: 'landing',
         });        
@@ -404,7 +404,7 @@
           const shareData = {
             title: '14~23년생 키즈모델 모집',
             text: '유아용품 협찬받아 보세요!',
-            url: 'https://m.site.naver.com/1RTac'
+            url: 'https://m.site.naver.com/1ZrvR'
           };
 
           // 모바일에서 네이티브 공유 API 사용
@@ -414,7 +414,7 @@
             });
           } else {
             // PC에서 링크 복사
-            navigator.clipboard.writeText('https://m.site.naver.com/1RTac').then(() => {
+            navigator.clipboard.writeText('https://m.site.naver.com/1ZrvR').then(() => {
               if (copyToast) {
                 copyToast.classList.add('show');
                 setTimeout(() => {
