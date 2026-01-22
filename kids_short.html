@@ -711,16 +711,16 @@
     <script>
         function conversionCallback() {
         if (typeof fbq === 'function') {
-            fbq('track', 'CompleteRegistration', {
-            content_category: 'audition',
-            content_name: 'actor',   
+            fbq('track', 'Lead', {
+            content_category: 'kidsmodel',
+            content_name: 'kids_gift',   
             source: 'tenping_form', 
             page: 'landing',
             event_time: Date.now()
             });
-            fbq('trackCustom','flor_CTA',{
-            content_category: 'audition',
-            content_name: 'actor',   
+            fbq('trackCustom','kids_cta',{
+            content_category: 'kidsmodel',
+            content_name: 'kids_gift',   
             source: 'tenping_form', 
             page: 'landing',
             });        
