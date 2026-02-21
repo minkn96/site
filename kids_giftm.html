@@ -10,7 +10,6 @@
   <meta property="og:image:width" content="1080">
   <meta property="og:image:height" content="1080">
 
-  
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -18,12 +17,12 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
   <!-- End Google Tag Manager -->
-  
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7B92596QT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}    
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-P7B92596QT');
   </script>
@@ -37,11 +36,9 @@
     })(window, document, "clarity", "script", "st7wj6aj7b");
   </script>
 
-  <!-- Meta Pixel Base Code는 GTM에서 관리됨 -->
-
   <!-- 라이트 모드 강제 -->
   <meta name="color-scheme" content="light">
-  <meta name="supported-color-schemes" content="light">   
+  <meta name="supported-color-schemes" content="light">
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,21 +53,69 @@
       background: #fff; color: #111; padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
     }
 
-    /* PC에서 모바일처럼 보이게 하는 컨테이너 */
     .mobile-container {
       max-width: 430px; margin: 0 auto; position: relative;
       min-height: 100vh; background: #fff;
     }
     @media (min-width: 431px) {
       body { background: #f5f5f5; }
-      .mobile-container { 
+      .mobile-container {
         box-shadow: 0 0 20px rgba(0,0,0,.1);
         border-left: 1px solid #eaeaea;
         border-right: 1px solid #eaeaea;
       }
     }
     .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
-    
+
+    /* ▼▼ 배경 위 슬라이더 ▼▼ */
+    .hero-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .hero-slider {
+      position: absolute;
+      top: 32%;       /* 배경 이미지에서 빈 공간이 시작되는 위치 — 필요시 조정 */
+      left: 17%;      /* (100% - 66%) / 2 = 가운데 정렬 */
+      width: 66%;     /* 전체의 2/3 크기 */
+      height: 68%;    /* top + height = 100% 맞추면 딱 맞음 */
+      overflow: hidden;
+      border-radius: 8px; /* 살짝 둥글게 */
+    }
+    .hero-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+    .hero-slide {
+      width: 100%;
+      height: 100%;
+      flex: 0 0 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      z-index: 10;
+    }
+    .hero-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      border: none; padding: 0; cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .hero-dot.active {
+      background: #fff;
+      transform: scale(1.4);
+    }
+    /* ▲▲ 배경 위 슬라이더 ▲▲ */
+
     .floating-cta {
       position: fixed; left: 50%; right: auto; bottom: 0; z-index: 9999;
       transform: translateX(-50%);
@@ -98,13 +143,13 @@
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
 
-    /* ▼▼ 실시간 신청 토스트 스타일 (우측 상단) ▼▼ */
+    /* ▼▼ 실시간 신청 토스트 스타일 ▼▼ */
     .live-signup {
-      position: fixed; 
-      right: calc(50% - 215px + 12px); /* 모바일 컨테이너 기준 우측 */
+      position: fixed;
+      right: calc(50% - 215px + 12px);
       top: 12px;
       z-index: 9999; display: flex; flex-direction: column; gap: 8px;
-      pointer-events: none; /* 클릭 방해 X */
+      pointer-events: none;
     }
     @media (max-width: 430px) {
       .live-signup { right: 12px; }
@@ -120,7 +165,6 @@
     .live-badge { display:flex; align-items:center; gap:6px; font-size: 12px; color: #0b1a3a; }
     .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-blue); box-shadow: 0 0 0 0 rgba(36,99,235,.5); animation: pulse 2s infinite; }
     .live-meta { font-size: 12px; opacity: .58; margin-top: 2px; }
-
     @keyframes toast-in { to { transform: translateY(0); opacity: 1; } }
     @keyframes toast-out { to { transform: translateY(-8px); opacity: 0; } }
     @keyframes pulse {
@@ -136,8 +180,8 @@
 
     /* ▼▼ 친구 공유 버튼 스타일 ▼▼ */
     .share-button {
-      position: fixed; 
-      left: calc(50% - 215px + 12px); /* 모바일 컨테이너 기준 좌측 */
+      position: fixed;
+      left: calc(50% - 215px + 12px);
       bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
       z-index: 9999;
       appearance: none; border: 0; cursor: pointer; border-radius: 20px;
@@ -151,15 +195,13 @@
     @media (max-width: 430px) {
       .share-button { left: 12px; }
     }
-    .share-button:hover { 
+    .share-button:hover {
       background: linear-gradient(0deg, #ffcc00, var(--brand-yellow));
       box-shadow: 0 6px 16px rgba(0,0,0,.16);
       transform: translateY(-1px);
     }
     .share-button:active { transform: translateY(0); }
     .share-icon { width: 16px; height: 16px; flex: 0 0 16px; }
-
-    /* 링크 복사 토스트 (가운데) */
     .copy-toast {
       position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
       z-index: 10000; max-width: 280px; width: 90%;
@@ -171,20 +213,18 @@
       transition: all .3s ease;
       pointer-events: none;
     }
-    .copy-toast.show { 
-      opacity: 1; 
+    .copy-toast.show {
+      opacity: 1;
       transform: translate(-50%, -50%) scale(1);
     }
     .copy-toast-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
     .copy-toast-subtitle { font-size: 12px; opacity: 0.8; line-height: 1.4; }
-
     @media (min-width: 768px) {
       .share-button { font-size: 14px; padding: 14px 18px; }
       .copy-toast-title { font-size: 15px; }
       .copy-toast-subtitle { font-size: 13px; }
     }
     /* ▲▲ 친구 공유 버튼 스타일 ▲▲ */
-  
 
     /* ▼▼ 마감 임박 바 & 등록 테이블 ▼▼ */
     .urgency-bar { position: sticky; top: 0; z-index: 999; padding: 10px 14px; background: #0b1a3a; color:#fff; border-bottom: 1px solid rgba(255,255,255,.12); }
@@ -192,7 +232,6 @@
     .urgency-text strong { color: var(--brand-yellow); }
     .urgency-progress { height: 6px; background: rgba(255,255,255,.25); border-radius: 999px; overflow: hidden; margin-top: 8px; }
     .urgency-progress span { display:block; height:100%; width: 60%; background: var(--brand-yellow); box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); transition: width .6s ease; }
-
     .recent-signups { padding: 18px 14px 6px; }
     .recent-signups h2 { margin: 8px 0 10px; font-size: 16px; }
     .table-wrap { border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
@@ -206,27 +245,12 @@
 
     /* ▼▼ 푸터 스타일 ▼▼ */
     .footer {
-      margin-top: 40px;
-      padding: 24px 14px 32px;
-      background: #f8fafc;
-      border-top: 1px solid #eaeaea;
-      text-align: center;
+      margin-top: 40px; padding: 24px 14px 32px;
+      background: #f8fafc; border-top: 1px solid #eaeaea; text-align: center;
     }
-    .footer-content {
-      max-width: 400px;
-      margin: 0 auto;
-      color: #666;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-    .footer-content .company-name {
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 4px;
-    }
-    .footer-content .business-number {
-      opacity: 0.8;
-    }
+    .footer-content { max-width: 400px; margin: 0 auto; color: #666; font-size: 13px; line-height: 1.5; }
+    .footer-content .company-name { font-weight: 600; color: #333; margin-bottom: 4px; }
+    .footer-content .business-number { opacity: 0.8; }
     @media (min-width: 768px) {
       .footer { padding: 32px 20px 40px; }
       .footer-content { font-size: 14px; }
@@ -234,27 +258,27 @@
     /* ▲▲ 푸터 스타일 ▲▲ */
   </style>
 
-  <!-- ★ 텐핑 제출완료 콜백: 메타 픽셀 맞춤 전환 이벤트 전송 -->
+  <!-- 텐핑 제출완료 콜백 -->
   <script>
     function conversionCallback() {
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead', { 
+        fbq('track', 'Lead', {
           content_category: 'kidsmodel',
-          content_name: 'kids_gift', 
-          source: 'tenping_form', 
+          content_name: 'kids_gift',
+          source: 'tenping_form',
           page: 'landing',
           event_time: Date.now()
         });
         fbq('trackCustom','kids_cta',{
           content_category: 'kidsmodel',
-          content_name: 'kids_gift',   
-          source: 'tenping_form', 
+          content_name: 'kids_gift',
+          source: 'tenping_form',
           page: 'landing',
-        });        
+        });
       }
       if (typeof window.karrotPixel !== 'undefined') {
-         window.karrotPixel.track("Lead");
-        }      
+        window.karrotPixel.track("Lead");
+      }
     }
   </script>
 </head>
@@ -264,27 +288,52 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="mobile-container">
+
+    <!-- 마감 임박 바 -->
     <div class="urgency-bar" role="status" aria-live="polite">
       <div class="urgency-text">오늘 마감까지 <span id="countdown">00:00:00</span> · 예상 잔여 <strong><span id="seats-left">12</span>명</strong></div>
       <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
     </div>
 
-    <!-- 랜딩페이지 이미지 -->
-    <img src="kids_gift.png" alt="키즈모델_협찬 랜딩페이지" class="landing-image" />
+    <!-- ▼▼ 배경 이미지 + 슬라이더 오버레이 ▼▼ -->
+    <div class="hero-wrap">
+      <!-- 배경 이미지 -->
+      <img src="kids_giftm1.png" alt="키즈모델 협찬 배경" class="landing-image" />
+
+      <!-- 배경 위에 올라가는 슬라이더 -->
+      <div class="hero-slider">
+        <div class="hero-track" id="heroTrack">
+          <img src="kids_giftm1_1.png" alt="협찬 사진 1" class="hero-slide" />
+          <img src="kids_giftm1_2.png" alt="협찬 사진 2" class="hero-slide" />
+          <img src="kids_giftm1_3.png" alt="협찬 사진 3" class="hero-slide" />
+          <img src="kids_giftm1_4.png" alt="협찬 사진 4" class="hero-slide" />
+          <img src="kids_giftm1_5.png" alt="협찬 사진 5" class="hero-slide" />
+          <img src="kids_giftm1_6.png" alt="협찬 사진 6" class="hero-slide" />
+          <img src="kids_giftm1_7.png" alt="협찬 사진 7" class="hero-slide" />
+          <img src="kids_giftm1_8.png" alt="협찬 사진 8" class="hero-slide" />
+        </div>
+        <!-- 인디케이터 점 -->
+        <div class="hero-dots" id="heroDots"></div>
+      </div>
+    </div>
+    <!-- ▲▲ 배경 이미지 + 슬라이더 오버레이 ▲▲ -->
+
+    <!-- 두 번째 랜딩 이미지 -->
+    <img src="kids_giftm.png" alt="키즈모델_협찬 랜딩페이지" class="landing-image" />
 
     <!-- 신청폼 앵커 -->
     <span id="apply-anchor"></span>
 
     <!-- Tenping 폼 -->
-    <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;" 
-      tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d" 
-      tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs" 
-      tenping-ad-campaign="2025082211040001" 
-      tenping-ad-distributionAddID="2026021622380001" 
-      tenping-ad-contain_image="false" 
-      tenping-ad-contain_logo="false" 
-      tenping-ad-contain_Plugin="false" 
-      tenping-ad-contain_TpCall="false" 
+    <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;"
+      tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
+      tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
+      tenping-ad-campaign="2025082211040001"
+      tenping-ad-distributionAddID="2026021622380001"
+      tenping-ad-contain_image="false"
+      tenping-ad-contain_logo="false"
+      tenping-ad-contain_Plugin="false"
+      tenping-ad-contain_TpCall="false"
       tenping-ad-theme="white">
     </tenping>
     <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
@@ -338,6 +387,7 @@
     <div class="copy-toast-subtitle">카톡이나 DM으로 공유해주세요</div>
   </div>
 
+  <!-- 플로팅 CTA 스크립트 -->
   <script>
     (function () {
       const btn = document.getElementById('go-apply');
@@ -345,22 +395,8 @@
       const bar = document.querySelector('.floating-cta');
       const form = document.querySelector('.adsbytenping');
 
-      // 메타 픽셀 CTA 클릭 이벤트 전송
-      function sendMetaCTA() {
-        if (typeof fbq === 'function') {
-          fbq('trackCustom', 'ClickButton', {
-            button_type: 'floating_cta',
-            page: 'landing',
-            event_time: Date.now()
-          });
-        }      
-      }
-
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        // CTA 클릭 이벤트 전송 (필요시 주석 해제)
-        // sendMetaCTA();
-
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (anchor && anchor.scrollIntoView) {
           anchor.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
@@ -369,7 +405,6 @@
         }
       });
 
-      // 폼이 보이면 플로팅바 숨김
       if ('IntersectionObserver' in window && form) {
         const io = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -382,23 +417,93 @@
     })();
   </script>
 
+  <!-- ▼▼ 배경 위 슬라이더 스크립트 ▼▼ -->
+  <script>
+  (function () {
+    const TOTAL = 8;
+    const INTERVAL = 1800; // n초마다 자동 전환
+    const track = document.getElementById('heroTrack');
+    const dotsWrap = document.getElementById('heroDots');
+    const sliderEl = document.querySelector('.hero-slider'); // ← 버그 수정: track 대신 슬라이더 전체를 감시
+    if (!track || !dotsWrap) return;
+
+    let current = 0;
+    let timer = null;
+    let touchStartX = 0;
+    let touchDeltaX = 0;
+
+    // 인디케이터 점 생성
+    const dots = Array.from({ length: TOTAL }, (_, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'hero-dot' + (i === 0 ? ' active' : '');
+      btn.setAttribute('aria-label', `${i + 1}번 사진`);
+      btn.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(btn);
+      return btn;
+    });
+
+    function goTo(idx) {
+      current = (idx + TOTAL) % TOTAL;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function startTimer() {
+      stopTimer();
+      timer = setInterval(() => goTo(current + 1), INTERVAL);
+    }
+    function stopTimer() {
+      clearInterval(timer);
+    }
+
+    // 터치 스와이프 지원
+    track.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+      touchDeltaX = 0;
+      stopTimer();
+    }, { passive: true });
+
+    track.addEventListener('touchmove', e => {
+      touchDeltaX = e.touches[0].clientX - touchStartX;
+      const offset = -(current * 100) + (touchDeltaX / track.offsetWidth * 100);
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${offset}%)`;
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+      track.style.transition = 'transform 0.5s ease';
+      if (touchDeltaX < -50) goTo(current + 1);
+      else if (touchDeltaX > 50) goTo(current - 1);
+      else goTo(current);
+      startTimer();
+    });
+
+    // ← 버그 수정: track이 아닌 sliderEl을 감시해야 이동 시 오작동 없음
+    if ('IntersectionObserver' in window && sliderEl) {
+      new IntersectionObserver(entries => {
+        entries[0].isIntersecting ? startTimer() : stopTimer();
+      }, { threshold: 0.2 }).observe(sliderEl);
+    } else {
+      startTimer();
+    }
+  })();
+  </script>
+  <!-- ▲▲ 배경 위 슬라이더 스크립트 ▲▲ -->
+
   <!-- ▼▼ 실시간 신청 애니메이션 스크립트 ▼▼ -->
   <script>
     (function(){
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const container = document.querySelector('.live-signup');
-      const ctaBar = document.querySelector('.floating-cta');
       const seatsEl = document.getElementById('seats-left');
       const fillEl = document.getElementById('urgency-fill');
       const countdownEl = document.getElementById('countdown');
       const tbody = document.getElementById('signup-tbody');
-
       if (!container) return;
 
-      // 공유 버튼 이벤트 처리
+      // 공유 버튼
       const shareBtn = document.getElementById('share-btn');
       const copyToast = document.getElementById('copy-toast');
-      
       if (shareBtn) {
         shareBtn.addEventListener('click', function() {
           const shareData = {
@@ -406,49 +511,31 @@
             text: '유아용품 협찬받아 보세요!',
             url: 'https://m.site.naver.com/1ZrvR'
           };
-
-          // 모바일에서 네이티브 공유 API 사용
           if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            navigator.share(shareData).catch(err => {
-              console.log('공유 취소 또는 오류:', err);
-            });
+            navigator.share(shareData).catch(err => console.log('공유 취소:', err));
           } else {
-            // PC에서 링크 복사
             navigator.clipboard.writeText('https://m.site.naver.com/215cA').then(() => {
               if (copyToast) {
                 copyToast.classList.add('show');
-                setTimeout(() => {
-                  copyToast.classList.remove('show');
-                }, 3000);
+                setTimeout(() => copyToast.classList.remove('show'), 3000);
               }
-            }).catch(err => {
-              console.log('복사 실패:', err);
-              // 폴백: 텍스트 선택
+            }).catch(() => {
               const textArea = document.createElement('textarea');
               textArea.value = 'https://m.site.naver.com/215cA';
               document.body.appendChild(textArea);
               textArea.select();
               document.execCommand('copy');
               document.body.removeChild(textArea);
-              
               if (copyToast) {
                 copyToast.classList.add('show');
-                setTimeout(() => {
-                  copyToast.classList.remove('show');
-                }, 3000);
+                setTimeout(() => copyToast.classList.remove('show'), 3000);
               }
             });
           }
         });
       }
 
-      // CTA 표시 여부에 따라 토스트 위치 자동 보정 (삭제 - 더 이상 필요 없음)
-      function updateBottom(){
-        // 토스트는 이제 우측 상단에 고정되어 있어 CTA와 무관
-      }
-      updateBottom();
-
-      // 더미 데이터(한글 마스킹 이름/나이)
+      // 더미 데이터
       const lastNames = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
       const firstNames = ['서준','하준','도윤','시후','지호','현우','하율','서연','지우','서윤','하윤','지민','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
       const ages = ['4세','5세','6세','7세','8세','9세','10세','11세','12세','13세'];
@@ -457,8 +544,7 @@
       function maskedName(){
         const ln = lastNames[rand(0, lastNames.length-1)];
         const fn = firstNames[rand(0, firstNames.length-1)];
-        const masked = fn.slice(0,1) + '○';
-        return ln + masked; // 김서○
+        return ln + fn.slice(0,1) + '○';
       }
       function avatarDataURI(initial){
         const palette = ['#E0F2FE','#FEE2E2','#F3E8FF','#FEF3C7','#E2FBE8'];
@@ -470,12 +556,10 @@
         return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
       }
 
-      // KST 시간 유틸
       function nowKST(){ return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' })); }
       function midnightNextKST(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()+1, 0, 0, 0); }
       function formatRel(dt){
-        const n = nowKST();
-        const diff = n - dt; const mins = Math.floor(diff/60000);
+        const n = nowKST(); const diff = n - dt; const mins = Math.floor(diff/60000);
         if (mins < 1) return '방금';
         if (mins < 60) return mins + '분 전';
         const hrs = Math.floor(mins/60);
@@ -484,19 +568,16 @@
       }
       function formatTime(dt){ return dt.toLocaleTimeString('ko-KR', { hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Asia/Seoul' }); }
 
-      // 잔여석/프로그레스
       const dailyQuota = 40;
-      let seatsRemaining = Math.max(3, Math.floor(20 + Math.random()*8)); // 20~28로 시작
+      let seatsRemaining = Math.max(3, Math.floor(20 + Math.random()*8));
       function updateSeatsUI(){
         if (seatsEl) seatsEl.textContent = String(seatsRemaining);
         if (fillEl) fillEl.style.width = Math.max(0, Math.min(100, ((dailyQuota - seatsRemaining)/dailyQuota)*100)) + '%';
       }
       updateSeatsUI();
 
-      // 카운트다운 (오늘 자정까지)
       function updateCountdown(){
-        const n = nowKST();
-        const m = midnightNextKST(n);
+        const n = nowKST(); const m = midnightNextKST(n);
         const total = (m - n) / 1000; if (total < 0) return;
         const h = Math.floor(total/3600);
         const mm = Math.floor((total%3600)/60);
@@ -505,7 +586,6 @@
       }
       updateCountdown(); setInterval(updateCountdown, 1000);
 
-      // 테이블 행 추가
       function addRow(name, age, dateObj, highlight){
         if (!tbody) return;
         const tr = document.createElement('tr');
@@ -515,17 +595,12 @@
         while (tbody.children.length > 20) tbody.removeChild(tbody.lastElementChild);
       }
 
-      // 초기 더미 데이터(최근 60분 내)
-      const preCount = Math.floor(6 + Math.random()*6); // 6~11개
+      const preCount = Math.floor(6 + Math.random()*6);
       for (let i = preCount; i >= 1; i--) {
-        const minsAgo = rand(5, 60);
-        const when = new Date(nowKST().getTime() - minsAgo*60000);
-        const name = maskedName();
-        const age = ages[rand(0, ages.length-1)];
-        addRow(name, age, when, false);
+        const when = new Date(nowKST().getTime() - rand(5,60)*60000);
+        addRow(maskedName(), ages[rand(0, ages.length-1)], when, false);
       }
 
-      // 토스트 생성 + 테이블/잔여석 갱신
       function createToast(){
         const name = maskedName();
         const age = ages[rand(0, ages.length-1)];
@@ -537,36 +612,27 @@
           <div>
             <div class="live-badge"><span class="live-dot" aria-hidden="true"></span><strong>${name}</strong>님이 신청했어요</div>
             <div class="live-meta">${age} · 방금</div>
-          </div>
-        `;
-
+          </div>`;
         if (container.children.length >= 3) container.removeChild(container.firstElementChild);
         container.appendChild(toast);
-        setTimeout(() => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 6200);
-
-        // 테이블/잔여석 업데이트
+        setTimeout(() => { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 6200);
         addRow(name, age, nowKST(), true);
-        if (seatsRemaining > 1) seatsRemaining -= 1; // 잔여 1에서 더 줄지 않게 고정
+        if (seatsRemaining > 1) seatsRemaining -= 1;
         updateSeatsUI();
       }
 
       function schedule(){
-        const delay = rand(2500, 8500); // 2.5~8.5초 간격
-        setTimeout(() => { createToast(); schedule(); }, delay);
+        setTimeout(() => { createToast(); schedule(); }, rand(2500, 8500));
       }
       schedule();
 
-      // 텐핑 실제 제출 콜백 훅킹: 전송 후 남은자리/테이블 갱신
       const prevConv = window.conversionCallback;
       window.conversionCallback = function(){
-        try { 
-          if (typeof prevConv === 'function') prevConv(); 
-        } catch (e){}
-        
+        try { if (typeof prevConv === 'function') prevConv(); } catch(e){}
         const name = maskedName();
         const age = ages[rand(0, ages.length-1)];
         addRow(name, age, nowKST(), true);
-        if (seatsRemaining > 1) seatsRemaining -= 1; // 잔여 1에서 더 줄지 않게 고정
+        if (seatsRemaining > 1) seatsRemaining -= 1;
         updateSeatsUI();
       };
     })();
