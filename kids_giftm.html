@@ -3,7 +3,7 @@
 <head>
   <!-- Open Graph -->
   <meta property="og:title" content="14~23년생 키즈모델 모집">
-  <meta property="og:description" content="유아용품 협찬받을 모델을 찾습니다!">
+  <meta property="og:description" content="아이의 인생사진을 남겨 드립니다!">
   <meta property="og:image" content="https://minkn96.github.io/site/kids_gift_s.png">
   <meta property="og:url" content="https://minkn96.github.io/site/kids_giftm.html">
   <meta property="og:type" content="website">
@@ -378,7 +378,7 @@
       <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
       <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
     </svg>
-    친구에게 알리기
+    지인에게 알려주기
   </button>
 
   <!-- 링크 복사 토스트 -->
@@ -421,7 +421,7 @@
   <script>
   (function () {
     const TOTAL = 8;
-    const INTERVAL = 1800; // n초마다 자동 전환
+    const INTERVAL = 1500; // 1.5초마다 자동 전환
     const track = document.getElementById('heroTrack');
     const dotsWrap = document.getElementById('heroDots');
     const sliderEl = document.querySelector('.hero-slider'); // ← 버그 수정: track 대신 슬라이더 전체를 감시
@@ -506,14 +506,21 @@
       const copyToast = document.getElementById('copy-toast');
       if (shareBtn) {
         shareBtn.addEventListener('click', function() {
-          const shareData = {
-            title: '14~23년생 키즈모델 모집',
-            text: '유아용품 협찬받아 보세요!',
-            url: 'https://m.site.naver.com/1ZrvR'
-          };
-          if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            navigator.share(shareData).catch(err => console.log('공유 취소:', err));
+      // 모바일/태블릿 감지 (UA + 터치 지원 둘 다 체크)
+          const isTouchDevice = navigator.share && (
+            /Android|iPhone|iPad|iPod|Mobile|Tablet/i.test(navigator.userAgent) ||
+            (navigator.maxTouchPoints && navigator.maxTouchPoints > 1)
+          );
+
+          if (isTouchDevice) {
+            // 모바일/태블릿: 네이티브 공유 (카톡, DM 등 바로 선택 가능)
+            navigator.share({
+              title: '14~23년생 키즈모델 모집',
+              text: '유아용품 협찬받아 보세요!',
+              url: 'https://m.site.naver.com/1ZrvR'
+            }).catch(err => console.log('공유 취소:', err));
           } else {
+            // PC: 링크 복사
             navigator.clipboard.writeText('https://m.site.naver.com/215cA').then(() => {
               if (copyToast) {
                 copyToast.classList.add('show');
