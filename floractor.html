@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Open Graph -->
+  <meta property="og:title" content="청소년 배우 모집">
+  <meta property="og:description" content="중1~고3 청소년 배우 모집">
+  <meta property="og:image" content="https://minkn96.github.io/site/flor_s.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/floractor.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7B92596QT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P7B92596QT');
+  </script>
+
+  <!-- MS Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "st7wj6aj7b");
+  </script>
+
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>청소년 배우 모집</title>
+
+  <style>
+    /*
+    ====================================================
+      크기 조절: --s2-scale / --s4-scale 숫자만 바꾸세요!
+        1    = 원본 크기 (400×600 / 840×400)
+        1.5  = 1.5배
+        2    = 2배
+      세로 위치: --s2-top / --s4-top (0~100%)
+    ====================================================
+    */
+    :root {
+      --cta-height: 64px;
+      --brand-blue: #2463eb;
+      --brand-yellow: #ffd93b;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+      /* ↓↓ 여기만 바꾸세요 ↓↓ */
+      --s2-scale: 1.7;       /* floractor_2 이미지 크기 배율 */
+      --s2-top:   26%;  /* floractor_2 세로 위치 */
+
+      --s4-scale: 1.1;       /* floractor_4 카드 크기 배율 */
+      --s4-top:   40%;  /* floractor_4 세로 위치 */
+
+      /* 원본 비율 고정값 (건드리지 마세요) */
+      --s2-base-w: 37.04%;
+      --s2-base-h: 28.26%;
+      --s2-base-l: 31.48%;
+      --s4-base-w: 77.78%;
+      --s4-base-h: 38.02%;
+      --s4-base-l: 11.11%;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #fff; color: #111;
+      padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
+    }
+
+    .mobile-container {
+      max-width: 430px; margin: 0 auto; position: relative;
+      min-height: 100vh; background: #fff;
+    }
+    @media (min-width: 431px) {
+      body { background: #f5f5f5; }
+      .mobile-container {
+        box-shadow: 0 0 20px rgba(0,0,0,.1);
+        border-left: 1px solid #eaeaea;
+        border-right: 1px solid #eaeaea;
+      }
+    }
+
+    /* 단순 이미지 */
+    .landing-image { width: 100%; display: block; height: auto; }
+
+    /* ─── 배경이미지 + 슬라이더 오버레이 블록 ─── */
+    .img-slider-block {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+    }
+    .img-slider-block .bg-img {
+      width: 100%; display: block; height: auto;
+    }
+    .slider-overlay {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 8px;
+      transform-origin: top center;
+    }
+    .img-slider-block.s2 .slider-overlay {
+      top: var(--s2-top);
+      left: 50%;
+      width: var(--s2-base-w);
+      height: var(--s2-base-h);
+      transform: translateX(-50%) scale(var(--s2-scale));
+    }
+    .img-slider-block.s4 .slider-overlay {
+      top: var(--s4-top);
+      left: 50%;
+      width: var(--s4-base-w);
+      height: var(--s4-base-h);
+      transform: translateX(-50%) scale(var(--s4-scale));
+    }
+
+    /* ─── 슬라이드 트랙 (공통) ─── */
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .slider-track.no-transition { transition: none; }
+
+    /* 이미지 슬라이드 */
+    .slide-img {
+      flex: 0 0 100%; width: 100%; height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      pointer-events: none; -webkit-user-drag: none;
+    }
+
+    /* 후기 카드 슬라이드 */
+    .slide-card {
+      flex: 0 0 100%; width: 100%; height: 100%;
+      overflow: hidden;
+      padding: 20px 22px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: rgba(255,255,255,0.97);
+    }
+    .review-card-header {
+      display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;
+    }
+    .review-avatar {
+      width: 35px; height: 35px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; flex: 0 0 42px; color: #0b1a3a;
+    }
+    .review-name-row {
+      flex: 1;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .review-name { font-size: 13px; font-weight: 700; color: #0b1a3a; line-height: 1.2; }
+    .review-sub  { font-size: 10px; color: #999; line-height: 1.2; }
+    .review-body { font-size: 11px; color: #333; line-height: 1.7; }
+
+    /* ─── 점 인디케이터 ─── */
+    .slider-dots {
+      position: absolute; bottom: 10px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 10; pointer-events: none;
+    }
+    .slider-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      transition: background .3s, transform .3s;
+    }
+    .slider-dot.active { background: #fff; transform: scale(1.3); }
+    /* 후기 슬라이더 점은 어두운 색 */
+    .s4 .slider-dot { background: rgba(11,26,58,0.18); }
+    .s4 .slider-dot.active { background: var(--brand-blue); }
+
+    /* ─── 화살표 ─── */
+    .slider-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: rgba(255,255,255,0.82);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      padding: 0; transition: background .2s;
+    }
+    .slider-arrow:hover { background: #fff; }
+    .slider-arrow.prev { left: 8px; }
+    .slider-arrow.next { right: 8px; }
+    .slider-arrow svg { width: 10px; height: 10px; stroke: #0b1a3a; stroke-width: 2.5; fill: none; }
+
+    /* ─── 페이지 카운터 ─── */
+    .slide-counter {
+      position: absolute; top: 10px; right: 12px;
+      background: rgba(0,0,0,0.38); color: #fff;
+      font-size: 11px; font-weight: 600;
+      padding: 3px 8px; border-radius: 20px;
+      z-index: 10; pointer-events: none;
+    }
+    .s4 .slide-counter {
+      background: rgba(11,26,58,0.15); color: #0b1a3a;
+    }
+
+    /* ─── 기존 UI ─── */
+    .floating-cta {
+      position: fixed; left: 50%; bottom: 0; z-index: 9999;
+      transform: translateX(-50%);
+      max-width: 430px; width: 100%;
+      display: flex; gap: 8px; align-items: center; justify-content: center;
+      padding: 10px 14px calc(10px + var(--safe-bottom));
+      background: rgba(255,255,255,0.96); border-top: 1px solid #eaeaea;
+      backdrop-filter: saturate(180%) blur(8px);
+      -webkit-backdrop-filter: saturate(180%) blur(8px);
+      transition: transform .25s ease;
+    }
+    .floating-cta.hidden { transform: translateX(-50%) translateY(110%); }
+    .floating-cta__title { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 52%; }
+    .floating-cta__btn {
+      appearance: none; border: 0; cursor: pointer; border-radius: 9999px;
+      padding: 14px 20px; font-weight: 800; font-size: 16px; color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    }
+    .floating-cta__btn:active { transform: translateY(1px); }
+    @media (min-width: 768px) {
+      :root { --cta-height: 72px; }
+      .floating-cta__title { font-size: 16px; max-width: none; }
+      .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
+
+    .live-signup {
+      position: fixed; right: calc(50% - 215px + 12px); top: 12px;
+      z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+      pointer-events: none;
+    }
+    @media (max-width: 430px) { .live-signup { right: 12px; } }
+    .live-toast {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+      background: rgba(255,255,255,0.96); border: 1px solid #eaeaea;
+      border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.12);
+      transform: translateY(-8px); opacity: 0;
+      animation: toast-in .36s ease forwards, toast-out .36s ease forwards 5.5s;
+    }
+    .live-avatar-wrap { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex: 0 0 28px; background: #eee; }
+    .live-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #0b1a3a; }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-blue); animation: pulse 2s infinite; }
+    .live-meta { font-size: 12px; opacity: .58; margin-top: 2px; }
+
+    @keyframes toast-in  { to { transform: translateY(0); opacity: 1; } }
+    @keyframes toast-out { to { transform: translateY(-8px); opacity: 0; } }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(36,99,235,.5); }
+      70%  { box-shadow: 0 0 0 12px rgba(36,99,235,0); }
+      100% { box-shadow: 0 0 0 0 rgba(36,99,235,0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .live-toast { animation: none; opacity: 1; }
+      .live-dot   { animation: none; }
+    }
+
+    .share-button {
+      position: fixed; left: calc(50% - 215px + 12px);
+      bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
+      z-index: 9999; appearance: none; border: 0; cursor: pointer;
+      border-radius: 20px; padding: 12px 16px;
+      font-weight: 600; font-size: 13px; color: #0b1a3a;
+      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+      display: flex; align-items: center; gap: 6px;
+      transition: all .2s ease;
+    }
+    @media (max-width: 430px) { .share-button { left: 12px; } }
+    .share-button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.16); }
+    .share-button:active { transform: translateY(0); }
+    .share-icon { width: 16px; height: 16px; }
+
+    .copy-toast {
+      position: fixed; left: 50%; top: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      z-index: 10000; max-width: 280px; width: 90%;
+      padding: 16px 20px; text-align: center;
+      background: rgba(11,26,58,0.95); color: #fff;
+      border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      opacity: 0; transition: all .3s ease; pointer-events: none;
+    }
+    .copy-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .copy-toast-title    { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .copy-toast-subtitle { font-size: 12px; opacity: .8; line-height: 1.4; }
+
+    .urgency-bar { position: sticky; top: 0; z-index: 999; padding: 10px 14px; background: #0b1a3a; color: #fff; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .urgency-text { font-weight: 800; font-size: 14px; letter-spacing: .2px; }
+    .urgency-text strong { color: var(--brand-yellow); }
+    .urgency-progress { height: 6px; background: rgba(255,255,255,.25); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .urgency-progress span { display: block; height: 100%; width: 60%; background: var(--brand-yellow); transition: width .6s ease; }
+
+    .recent-signups { padding: 18px 14px 6px; }
+    .recent-signups h2 { margin: 8px 0 10px; font-size: 16px; }
+    .table-wrap { border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
+    .signup-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .signup-table thead th { background: #f8fafc; text-align: left; padding: 10px; border-bottom: 1px solid #eaeaea; }
+    .signup-table tbody td { padding: 10px; border-bottom: 1px solid #f1f5f9; }
+    .signup-table tbody tr:last-child td { border-bottom: 0; }
+    .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
+    @keyframes rowflash { 0% { background: #fff9db; } 100% { background: transparent; } }
+
+    .footer { margin-top: 40px; padding: 24px 14px 32px; background: #f8fafc; border-top: 1px solid #eaeaea; text-align: center; }
+    .footer-content { max-width: 400px; margin: 0 auto; color: #666; font-size: 13px; line-height: 1.5; }
+    .footer-content .company-name { font-weight: 600; color: #333; margin-bottom: 4px; }
+  </style>
+
+  <script>
+    function conversionCallback() {
+      if (typeof fbq === 'function') {
+        fbq('track', 'CompleteRegistration', { content_category: 'audition', content_name: 'actor', source: 'tenping_form', page: 'landing', event_time: Date.now() });
+        fbq('trackCustom', 'flor_CTA', { content_category: 'audition', content_name: 'actor', source: 'tenping_form', page: 'landing' });
+      }
+      if (typeof window.karrotPixel !== 'undefined') window.karrotPixel.track("Lead");
+    }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="mobile-container">
+
+    <!-- 마감 임박 바 -->
+    <div class="urgency-bar" role="status" aria-live="polite">
+      <div class="urgency-text">오늘 마감까지 <span id="countdown">00:00:00</span> · 예상 잔여 <strong><span id="seats-left">12</span>명</strong></div>
+      <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
+    </div>
+
+    <!-- ① floractor_1 단순 이미지 -->
+    <img src="floractor_1.png" alt="청소년 배우 모집" class="landing-image" />
+
+    <!-- ② floractor_2 배경 + 이미지 슬라이더 -->
+    <div class="img-slider-block s2">
+      <img src="floractor_2.png" alt="" class="bg-img" aria-hidden="true" />
+      <div class="slider-overlay">
+        <div class="slider-track" id="track2">
+          <!-- 무한루프 앞 클론 (마지막 슬라이드) -->
+          <img class="slide-img" src="floractor_2_8.png" alt="" aria-hidden="true" />
+          <!-- 실제 슬라이드 1~8 -->
+          <img class="slide-img" src="floractor_2_1.png" alt="슬라이드 1" />
+          <img class="slide-img" src="floractor_2_2.png" alt="슬라이드 2" />
+          <img class="slide-img" src="floractor_2_3.png" alt="슬라이드 3" />
+          <img class="slide-img" src="floractor_2_4.png" alt="슬라이드 4" />
+          <img class="slide-img" src="floractor_2_5.png" alt="슬라이드 5" />
+          <img class="slide-img" src="floractor_2_6.png" alt="슬라이드 6" />
+          <img class="slide-img" src="floractor_2_7.png" alt="슬라이드 7" />
+          <img class="slide-img" src="floractor_2_8.png" alt="슬라이드 8" />
+          <!-- 무한루프 뒤 클론 (첫번째 슬라이드) -->
+          <img class="slide-img" src="floractor_2_1.png" alt="" aria-hidden="true" />
+        </div>
+        <button class="slider-arrow prev" aria-label="이전 슬라이드">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="slider-arrow next" aria-label="다음 슬라이드">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <div class="slider-dots" id="dots2" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- ③ floractor_3 단순 이미지 -->
+    <img src="floractor_3.png" alt="청소년 배우 모집 혜택" class="landing-image" />
+
+    <!-- ④ floractor_4 배경 + 후기 카드 슬라이더 -->
+    <div class="img-slider-block s4">
+      <img src="floractor_4.png" alt="" class="bg-img" aria-hidden="true" />
+      <div class="slider-overlay">
+        <div class="slider-track" id="track4">
+          <!-- JS로 슬라이드 카드 삽입됨 -->
+        </div>
+        <div class="slider-dots" id="dots4" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- ⑤ floractor_5 단순 이미지 -->
+    <img src="floractor_5.png" alt="청소년 배우 모집 마감" class="landing-image" />
+
+    <!-- 신청폼 앵커 -->
+    <span id="apply-anchor"></span>
+
+    <!-- Tenping 폼 -->
+    <tenping class="adsbytenping" style="width:100%; margin:0 auto; display:block;"
+      tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
+      tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
+      tenping-ad-campaign="2024070109510001"
+      tenping-ad-distributionAddID="2025091318150005"
+      tenping-ad-contain_image="false"
+      tenping-ad-contain_logo="false"
+      tenping-ad-contain_Plugin="false"
+      tenping-ad-contain_TpCall="false"
+      tenping-ad-theme="white">
+    </tenping>
+    <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
+
+    <!-- 최근 등록 현황 -->
+    <section class="recent-signups" aria-label="최근 등록 현황">
+      <h2>최근 등록 현황</h2>
+      <div class="table-wrap">
+        <table class="signup-table" aria-live="polite">
+          <thead><tr><th>이름</th><th>나이</th><th>등록 시각</th></tr></thead>
+          <tbody id="signup-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="company-name">광고대행사 : (주)편리한세상</div>
+        <div class="business-number">사업자번호 : 722-26-01851</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 하단 플로팅바 -->
+  <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
+    <div class="floating-cta__title">청소년 배우 모집</div>
+    <button id="go-apply" class="floating-cta__btn">배우 지원하기</button>
+  </div>
+
+  <!-- 실시간 신청 토스트 -->
+  <div class="live-signup" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- 공유 버튼 -->
+  <button class="share-button" id="share-btn" aria-label="친구에게 알리기">
+    <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+    </svg>
+    친구에게 알리기
+  </button>
+
+  <div class="copy-toast" id="copy-toast">
+    <div class="copy-toast-title">링크가 복사되었습니다</div>
+    <div class="copy-toast-subtitle">카톡이나 DM으로 공유해주세요</div>
+  </div>
+
+  <!-- =============================================
+       슬라이더 팩토리
+  ============================================= -->
+  <script>
+    /**
+     * makeSlider({ trackId, dotsId, counterId, total, autoMs, infinite })
+     *   track 안에 슬라이드가 이미 있어야 합니다.
+     *   infinite=true  → 앞뒤 클론 슬라이드 포함 (이미지 슬라이더용)
+     *   infinite=false → 클론 없이 양 끝에서 멈춤 (카드 슬라이더용)
+     */
+    function makeSlider({ trackId, dotsId, counterId, total, autoMs = 0, infinite = true }) {
+      const track   = document.getElementById(trackId);
+      const dotsEl  = document.getElementById(dotsId);
+      const counter = document.getElementById(counterId);
+      if (!track) return;
+
+      // infinite: index 0=clone(last), 1~total=real, total+1=clone(first)
+      // !infinite: index 0~total-1
+      let cur    = infinite ? 1 : 0;
+      let moving = false;
+      let timer  = null;
+
+      /* 인디케이터 점 생성 */
+      const dots = [];
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('div');
+        d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        dotsEl && dotsEl.appendChild(d);
+        dots.push(d);
+      }
+
+      function realIdx(i) {
+        return infinite
+          ? ((i - 1) % total + total) % total
+          : ((i)     % total + total) % total;
+      }
+
+      function updateUI(i) {
+        const ri = realIdx(i);
+        dots.forEach((d, j) => d.classList.toggle('active', j === ri));
+        if (counter) counter.textContent = `${ri + 1} / ${total}`;
+      }
+
+      function goTo(i, animate = true) {
+        track.classList.toggle('no-transition', !animate);
+        track.style.transform = `translateX(-${i * 100}%)`;
+        updateUI(i);
+      }
+
+      /* 무한루프 점프 */
+      track.addEventListener('transitionend', () => {
+        moving = false;
+        if (!infinite) return;
+        if (cur === 0)         { cur = total;     goTo(cur, false); }
+        else if (cur === total + 1) { cur = 1;    goTo(cur, false); }
+      });
+
+      function next() {
+        if (moving) return; moving = true;
+        cur++;
+        if (!infinite && cur >= total) { cur = total - 1; moving = false; return; }
+        goTo(cur);
+      }
+      function prev() {
+        if (moving) return; moving = true;
+        cur--;
+        if (!infinite && cur < 0) { cur = 0; moving = false; return; }
+        goTo(cur);
+      }
+
+      /* 초기 위치 */
+      track.classList.add('no-transition');
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      requestAnimationFrame(() => requestAnimationFrame(() => track.classList.remove('no-transition')));
+      updateUI(cur);
+
+      /* 자동 재생 */
+      function startAuto() { if (autoMs > 0) timer = setInterval(next, autoMs); }
+      function stopAuto()  { clearInterval(timer); }
+      startAuto();
+
+      /* 버튼: 가장 가까운 .slider-overlay 안의 화살표만 */
+      const overlay = track.closest('.slider-overlay');
+      if (overlay) {
+        overlay.querySelectorAll('.slider-arrow').forEach(btn => {
+          btn.addEventListener('click', () => {
+            stopAuto();
+            btn.classList.contains('prev') ? prev() : next();
+            startAuto();
+          });
+        });
+      }
+
+      /* 터치 스와이프 */
+      let tx = 0, ty = 0, tDrag = false;
+      const el = overlay || track.parentElement;
+      el.addEventListener('touchstart', e => {
+        tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+        tDrag = true; stopAuto();
+      }, { passive: true });
+      el.addEventListener('touchend', e => {
+        if (!tDrag) return; tDrag = false;
+        const dx = e.changedTouches[0].clientX - tx;
+        const dy = e.changedTouches[0].clientY - ty;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) dx < 0 ? next() : prev();
+        startAuto();
+      }, { passive: true });
+      el.addEventListener('touchcancel', () => { tDrag = false; startAuto(); }, { passive: true });
+
+      /* 마우스 드래그 (PC) */
+      let mx = 0, mDrag = false;
+      el.addEventListener('mousedown', e => { mx = e.clientX; mDrag = true; stopAuto(); });
+      window.addEventListener('mouseup', e => {
+        if (!mDrag) return; mDrag = false;
+        const dx = e.clientX - mx;
+        if (Math.abs(dx) > 30) dx < 0 ? next() : prev();
+        startAuto();
+      });
+    }
+  </script>
+
+  <!-- 이미지 슬라이더 (#2) 초기화 -->
+  <script>
+    makeSlider({ trackId: 'track2', dotsId: 'dots2', counterId: null, total: 8, autoMs: 2000, infinite: true });
+  </script>
+
+  <!-- 후기 카드 데이터 삽입 후 슬라이더 초기화 -->
+  <script>
+    (function () {
+      const reviews = [
+        { name: '김서○', info: '고2 · 서울', age: '17세', stars: 5, text: '처음엔 긴장했는데 선배님들이 너무 친절하게 가르쳐 주셔서 금방 적응했어요. 표정 연기가 많이 늘었고 자신감도 생겼어요!', bg: '#E0F2FE' },
+        { name: '박지○', info: '중3 · 경기', age: '15세', stars: 5, text: '제가 나온 드라마를 보면... 아직도 실감이 안날 때가 있어요. 곧 넷플릭스도 촬영하는데 잘할 수 있겠죠?',  bg: '#FEE2E2' },
+        { name: '이하○', info: '고1 · 인천', age: '16세', stars: 5, text: '감정을 더 풍부하게 표현하는 법을 알게 됐어요. 진로 고민도 해소되고 배우라는 꿈에 한 발짝 더 다가간 것 같아요.',  bg: '#F3E8FF' },
+        { name: '최민○', info: '중2 · 부산', age: '14세', stars: 5, text: '낯을 많이 가려서 걱정했는데, 해보고 싶은 꿈을 이뤄서 너무 좋아요. 촬영 현장 체험도 정말 특별했어요!',  bg: '#FEF3C7' },
+        { name: '정수○', info: '고3 · 대전', age: '18세', stars: 5, text: '유명 배우들과 연기해볼 수 있다는 게 너무 신기했어요. 다들 친절하고 장비도 전문적이었어요. 다음에도 꼭 참여하고 싶어요.',  bg: '#E2FBE8' },
+      ];
+
+      const track = document.getElementById('track4');
+      if (!track) return;
+
+      reviews.forEach(r => {
+        const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+        const slide = document.createElement('div');
+        slide.className = 'slide-card';
+        slide.innerHTML = `
+          <div class="review-card-header">
+            <div class="review-avatar" style="background:${r.bg}">${r.name.charAt(0)}</div>
+            <div class="review-name-row">
+              <div class="review-name">${r.name}</div>
+              <div class="review-sub">${r.info} · ${r.age}</div>
+            </div>
+          </div>
+          <div class="review-body">${r.text}</div>
+        `;
+        track.appendChild(slide);
+      });
+
+      // 무한루프를 위해 앞뒤 클론 추가
+      const allSlides = Array.from(track.children);
+      const cloneFirst = allSlides[0].cloneNode(true);
+      const cloneLast  = allSlides[allSlides.length - 1].cloneNode(true);
+      cloneFirst.setAttribute('aria-hidden', 'true');
+      cloneLast.setAttribute('aria-hidden', 'true');
+      track.appendChild(cloneFirst);
+      track.insertBefore(cloneLast, allSlides[0]);
+
+      makeSlider({ trackId: 'track4', dotsId: 'dots4', counterId: null, total: reviews.length, autoMs: 2000, infinite: true });
+    })();
+  </script>
+
+  <!-- 플로팅 CTA -->
+  <script>
+    (function () {
+      const btn    = document.getElementById('go-apply');
+      const anchor = document.getElementById('apply-anchor');
+      const bar    = document.querySelector('.floating-cta');
+      const form   = document.querySelector('.adsbytenping');
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        anchor && anchor.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+      });
+      if ('IntersectionObserver' in window && form) {
+        new IntersectionObserver(entries => {
+          entries.forEach(e => bar.classList.toggle('hidden', e.isIntersecting));
+        }, { threshold: 0.15 }).observe(form);
+      }
+    })();
+  </script>
+
+  <!-- 공유 버튼 -->
+  <script>
+    (function () {
+      const shareBtn  = document.getElementById('share-btn');
+      const copyToast = document.getElementById('copy-toast');
+      const SHARE_URL = 'https://m.site.naver.com/23mNb';
+      if (!shareBtn) return;
+      shareBtn.addEventListener('click', () => {
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (navigator.share && isMobile) {
+          navigator.share({ title: '청소년 배우 모집', text: '중1~고3 청소년 배우 모집!', url: SHARE_URL }).catch(() => {});
+        } else {
+          const show = () => { copyToast.classList.add('show'); setTimeout(() => copyToast.classList.remove('show'), 3000); };
+          navigator.clipboard.writeText(SHARE_URL).then(show).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = SHARE_URL; document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta); show();
+          });
+        }
+      });
+    })();
+  </script>
+
+  <!-- 실시간 신청 애니메이션 -->
+  <script>
+    (function () {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const container   = document.querySelector('.live-signup');
+      const seatsEl     = document.getElementById('seats-left');
+      const fillEl      = document.getElementById('urgency-fill');
+      const countdownEl = document.getElementById('countdown');
+      const tbody       = document.getElementById('signup-tbody');
+      if (!container) return;
+
+      const lastNames  = ['김','이','박','최','정','윤','장','임','한','오','서','신','조'];
+      const firstNames = ['서준','하준','도윤','시후','지호','현우','하율','서연','지우','서윤','하윤','지민','소율','민준','연우','예준','지훈','윤서','수아','은우','가은','민서','시현','나윤','유진','채원'];
+      const ages       = ['14세','15세','16세','17세','18세','19세'];
+
+      function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
+      function maskedName() {
+        return lastNames[rand(0, lastNames.length-1)] + firstNames[rand(0, firstNames.length-1)].slice(0,1) + '○';
+      }
+      function avatarURI(init) {
+        const bg = ['#E0F2FE','#FEE2E2','#F3E8FF','#FEF3C7','#E2FBE8'][rand(0,4)];
+        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+          `<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56'><rect width='56' height='56' rx='28' fill='${bg}'/><text x='50%' y='56%' text-anchor='middle' font-size='28' fill='#0b1a3a'>${init}</text></svg>`
+        );
+      }
+      function nowKST() { return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' })); }
+      function midnight(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()+1, 0, 0, 0); }
+      function relTime(dt) {
+        const mins = Math.floor((nowKST() - dt) / 60000);
+        if (mins < 1) return '방금';
+        if (mins < 60) return mins + '분 전';
+        const h = Math.floor(mins/60);
+        if (h < 24) return h + '시간 전';
+        return dt.toLocaleDateString('ko-KR', { month:'numeric', day:'numeric', timeZone:'Asia/Seoul' });
+      }
+      function fmtTime(dt) { return dt.toLocaleTimeString('ko-KR', { hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Asia/Seoul' }); }
+
+      let seats = Math.max(3, Math.floor(20 + Math.random()*8));
+      function updateSeats() {
+        if (seatsEl) seatsEl.textContent = seats;
+        if (fillEl)  fillEl.style.width = Math.max(0, Math.min(100, ((40 - seats)/40)*100)) + '%';
+      }
+      updateSeats();
+
+      function updateCountdown() {
+        const n = nowKST(), s = Math.max(0, (midnight(n) - n)/1000);
+        const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = Math.floor(s%60);
+        if (countdownEl) countdownEl.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+      }
+      updateCountdown(); setInterval(updateCountdown, 1000);
+
+      function addRow(name, age, dt, highlight) {
+        if (!tbody) return;
+        const tr = document.createElement('tr');
+        if (highlight && !prefersReduced) tr.classList.add('highlight');
+        tr.innerHTML = `<td>${name}</td><td>${age}</td><td title="${fmtTime(dt)}">${relTime(dt)}</td>`;
+        tbody.insertBefore(tr, tbody.firstChild);
+        while (tbody.children.length > 20) tbody.removeChild(tbody.lastElementChild);
+      }
+
+      for (let i = rand(6, 11); i >= 1; i--) {
+        addRow(maskedName(), ages[rand(0, ages.length-1)], new Date(nowKST().getTime() - rand(5,60)*60000), false);
+      }
+
+      function createToast() {
+        const name = maskedName(), age = ages[rand(0, ages.length-1)];
+        const toast = document.createElement('div');
+        toast.className = 'live-toast';
+        toast.setAttribute('role','status');
+        toast.innerHTML = `
+          <div class="live-avatar-wrap"><img src="${avatarURI(name.charAt(0))}" alt="" width="28" height="28" loading="lazy"></div>
+          <div>
+            <div class="live-badge"><span class="live-dot" aria-hidden="true"></span><strong>${name}</strong>님이 신청했어요</div>
+            <div class="live-meta">${age} · 방금</div>
+          </div>
+        `;
+        if (container.children.length >= 3) container.removeChild(container.firstElementChild);
+        container.appendChild(toast);
+        setTimeout(() => toast.parentNode && toast.parentNode.removeChild(toast), 6200);
+        addRow(name, age, nowKST(), true);
+        if (seats > 1) { seats--; updateSeats(); }
+      }
+
+      function schedule() { setTimeout(() => { createToast(); schedule(); }, rand(2500, 8500)); }
+      schedule();
+
+      const _prev = window.conversionCallback;
+      window.conversionCallback = function () {
+        try { if (typeof _prev === 'function') _prev(); } catch(e) {}
+        const name = maskedName(), age = ages[rand(0, ages.length-1)];
+        addRow(name, age, nowKST(), true);
+        if (seats > 1) { seats--; updateSeats(); }
+      };
+    })();
+  </script>
+</body>
+</html>
