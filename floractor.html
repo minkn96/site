@@ -42,35 +42,11 @@
   <title>청소년 배우 모집</title>
 
   <style>
-    /*
-    ====================================================
-      크기 조절: --s2-scale / --s4-scale 숫자만 바꾸세요!
-        1    = 원본 크기 (400×600 / 840×400)
-        1.5  = 1.5배
-        2    = 2배
-      세로 위치: --s2-top / --s4-top (0~100%)
-    ====================================================
-    */
     :root {
       --cta-height: 64px;
       --brand-blue: #2463eb;
       --brand-yellow: #ffd93b;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
-
-      /* ↓↓ 여기만 바꾸세요 ↓↓ */
-      --s2-scale: 1.7;       /* floractor_2 이미지 크기 배율 */
-      --s2-top:   26%;  /* floractor_2 세로 위치 */
-
-      --s4-scale: 1.1;       /* floractor_4 카드 크기 배율 */
-      --s4-top:   40%;  /* floractor_4 세로 위치 */
-
-      /* 원본 비율 고정값 (건드리지 마세요) */
-      --s2-base-w: 37.04%;
-      --s2-base-h: 28.26%;
-      --s2-base-l: 31.48%;
-      --s4-base-w: 77.78%;
-      --s4-base-h: 38.02%;
-      --s4-base-l: 11.11%;
     }
 
     * { box-sizing: border-box; }
@@ -78,13 +54,17 @@
     body {
       margin: 0;
       font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: #fff; color: #111;
+      background: #fff;
+      color: #111;
       padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
     }
 
     .mobile-container {
-      max-width: 430px; margin: 0 auto; position: relative;
-      min-height: 100vh; background: #fff;
+      max-width: 430px;
+      margin: 0 auto;
+      position: relative;
+      min-height: 100vh;
+      background: #fff;
     }
     @media (min-width: 431px) {
       body { background: #f5f5f5; }
@@ -95,125 +75,48 @@
       }
     }
 
-    /* 단순 이미지 */
-    .landing-image { width: 100%; display: block; height: auto; }
-
-    /* ─── 배경이미지 + 슬라이더 오버레이 블록 ─── */
-    .img-slider-block {
-      position: relative;
+    /* 이미지 */
+    .landing-image {
       width: 100%;
-      line-height: 0;
-    }
-    .img-slider-block .bg-img {
-      width: 100%; display: block; height: auto;
-    }
-    .slider-overlay {
-      position: absolute;
-      overflow: hidden;
-      border-radius: 8px;
-      transform-origin: top center;
-    }
-    .img-slider-block.s2 .slider-overlay {
-      top: var(--s2-top);
-      left: 50%;
-      width: var(--s2-base-w);
-      height: var(--s2-base-h);
-      transform: translateX(-50%) scale(var(--s2-scale));
-    }
-    .img-slider-block.s4 .slider-overlay {
-      top: var(--s4-top);
-      left: 50%;
-      width: var(--s4-base-w);
-      height: var(--s4-base-h);
-      transform: translateX(-50%) scale(var(--s4-scale));
-    }
-
-    /* ─── 슬라이드 트랙 (공통) ─── */
-    .slider-track {
-      display: flex;
-      height: 100%;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      will-change: transform;
-    }
-    .slider-track.no-transition { transition: none; }
-
-    /* 이미지 슬라이드 */
-    .slide-img {
-      flex: 0 0 100%; width: 100%; height: 100%;
-      object-fit: contain;
-      object-position: center center;
       display: block;
-      pointer-events: none; -webkit-user-drag: none;
+      height: auto;
     }
 
-    /* 후기 카드 슬라이드 */
-    .slide-card {
-      flex: 0 0 100%; width: 100%; height: 100%;
-      overflow: hidden;
-      padding: 20px 22px;
-      display: flex; flex-direction: column; justify-content: center;
-      background: rgba(255,255,255,0.97);
+    /* 긴급 바 */
+    .urgency-bar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      padding: 10px 14px;
+      background: #0b1a3a;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.12);
     }
-    .review-card-header {
-      display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;
-    }
-    .review-avatar {
-      width: 35px; height: 35px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 800; flex: 0 0 42px; color: #0b1a3a;
-    }
-    .review-name-row {
-      flex: 1;
-      display: flex; flex-direction: column; gap: 3px;
-    }
-    .review-name { font-size: 13px; font-weight: 700; color: #0b1a3a; line-height: 1.2; }
-    .review-sub  { font-size: 10px; color: #999; line-height: 1.2; }
-    .review-body { font-size: 11px; color: #333; line-height: 1.7; }
+    .urgency-text { font-weight: 800; font-size: 14px; letter-spacing: .2px; }
+    .urgency-text strong { color: var(--brand-yellow); }
+    .urgency-progress { height: 6px; background: rgba(255,255,255,.25); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .urgency-progress span { display: block; height: 100%; width: 70%; background: var(--brand-yellow); transition: width .6s ease; }
 
-    /* ─── 점 인디케이터 ─── */
-    .slider-dots {
-      position: absolute; bottom: 10px; left: 50%;
-      transform: translateX(-50%);
-      display: flex; gap: 6px; z-index: 10; pointer-events: none;
-    }
-    .slider-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: rgba(255,255,255,0.45);
-      transition: background .3s, transform .3s;
-    }
-    .slider-dot.active { background: #fff; transform: scale(1.3); }
-    /* 후기 슬라이더 점은 어두운 색 */
-    .s4 .slider-dot { background: rgba(11,26,58,0.18); }
-    .s4 .slider-dot.active { background: var(--brand-blue); }
+    /* 신청폼 앵커 */
+    #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
 
-    /* ─── 화살표 ─── */
-    .slider-arrow {
-      position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
-      width: 15px; height: 15px; border-radius: 50%;
-      background: rgba(255,255,255,0.82);
-      border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,.15);
-      padding: 0; transition: background .2s;
-    }
-    .slider-arrow:hover { background: #fff; }
-    .slider-arrow.prev { left: 8px; }
-    .slider-arrow.next { right: 8px; }
-    .slider-arrow svg { width: 10px; height: 10px; stroke: #0b1a3a; stroke-width: 2.5; fill: none; }
+    /* 최근 등록 현황 */
+    .recent-signups { padding: 18px 14px 6px; }
+    .recent-signups h2 { margin: 8px 0 10px; font-size: 16px; }
+    .table-wrap { border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
+    .signup-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .signup-table thead th { background: #f8fafc; text-align: left; padding: 10px; border-bottom: 1px solid #eaeaea; }
+    .signup-table tbody td { padding: 10px; border-bottom: 1px solid #f1f5f9; }
+    .signup-table tbody tr:last-child td { border-bottom: 0; }
+    .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
+    @keyframes rowflash { 0% { background: #fff9db; } 100% { background: transparent; } }
 
-    /* ─── 페이지 카운터 ─── */
-    .slide-counter {
-      position: absolute; top: 10px; right: 12px;
-      background: rgba(0,0,0,0.38); color: #fff;
-      font-size: 11px; font-weight: 600;
-      padding: 3px 8px; border-radius: 20px;
-      z-index: 10; pointer-events: none;
-    }
-    .s4 .slide-counter {
-      background: rgba(11,26,58,0.15); color: #0b1a3a;
-    }
+    /* 푸터 */
+    .footer { margin-top: 40px; padding: 24px 14px 32px; background: #f8fafc; border-top: 1px solid #eaeaea; text-align: center; }
+    .footer-content { max-width: 400px; margin: 0 auto; color: #666; font-size: 13px; line-height: 1.5; }
+    .footer-content .company-name { font-weight: 600; color: #333; margin-bottom: 4px; }
 
-    /* ─── 기존 UI ─── */
+    /* 플로팅 CTA */
     .floating-cta {
       position: fixed; left: 50%; bottom: 0; z-index: 9999;
       transform: translateX(-50%);
@@ -239,9 +142,8 @@
       .floating-cta__title { font-size: 16px; max-width: none; }
       .floating-cta__btn { font-size: 17px; padding: 16px 28px; }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    #apply-anchor { position: relative; top: -12px; height: 1px; width: 100%; display: block; }
 
+    /* 실시간 신청 토스트 */
     .live-signup {
       position: fixed; right: calc(50% - 215px + 12px); top: 12px;
       z-index: 9999; display: flex; flex-direction: column; gap: 8px;
@@ -259,7 +161,6 @@
     .live-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #0b1a3a; }
     .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-blue); animation: pulse 2s infinite; }
     .live-meta { font-size: 12px; opacity: .58; margin-top: 2px; }
-
     @keyframes toast-in  { to { transform: translateY(0); opacity: 1; } }
     @keyframes toast-out { to { transform: translateY(-8px); opacity: 0; } }
     @keyframes pulse {
@@ -267,11 +168,8 @@
       70%  { box-shadow: 0 0 0 12px rgba(36,99,235,0); }
       100% { box-shadow: 0 0 0 0 rgba(36,99,235,0); }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .live-toast { animation: none; opacity: 1; }
-      .live-dot   { animation: none; }
-    }
 
+    /* 공유 버튼 */
     .share-button {
       position: fixed; left: calc(50% - 215px + 12px);
       bottom: calc(var(--cta-height) + var(--safe-bottom) + 12px);
@@ -289,6 +187,7 @@
     .share-button:active { transform: translateY(0); }
     .share-icon { width: 16px; height: 16px; }
 
+    /* 복사 토스트 */
     .copy-toast {
       position: fixed; left: 50%; top: 50%;
       transform: translate(-50%, -50%) scale(0.9);
@@ -302,25 +201,11 @@
     .copy-toast-title    { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
     .copy-toast-subtitle { font-size: 12px; opacity: .8; line-height: 1.4; }
 
-    .urgency-bar { position: sticky; top: 0; z-index: 999; padding: 10px 14px; background: #0b1a3a; color: #fff; border-bottom: 1px solid rgba(255,255,255,.12); }
-    .urgency-text { font-weight: 800; font-size: 14px; letter-spacing: .2px; }
-    .urgency-text strong { color: var(--brand-yellow); }
-    .urgency-progress { height: 6px; background: rgba(255,255,255,.25); border-radius: 999px; overflow: hidden; margin-top: 8px; }
-    .urgency-progress span { display: block; height: 100%; width: 60%; background: var(--brand-yellow); transition: width .6s ease; }
-
-    .recent-signups { padding: 18px 14px 6px; }
-    .recent-signups h2 { margin: 8px 0 10px; font-size: 16px; }
-    .table-wrap { border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
-    .signup-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    .signup-table thead th { background: #f8fafc; text-align: left; padding: 10px; border-bottom: 1px solid #eaeaea; }
-    .signup-table tbody td { padding: 10px; border-bottom: 1px solid #f1f5f9; }
-    .signup-table tbody tr:last-child td { border-bottom: 0; }
-    .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
-    @keyframes rowflash { 0% { background: #fff9db; } 100% { background: transparent; } }
-
-    .footer { margin-top: 40px; padding: 24px 14px 32px; background: #f8fafc; border-top: 1px solid #eaeaea; text-align: center; }
-    .footer-content { max-width: 400px; margin: 0 auto; color: #666; font-size: 13px; line-height: 1.5; }
-    .footer-content .company-name { font-weight: 600; color: #333; margin-bottom: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .live-toast { animation: none; opacity: 1; }
+      .live-dot   { animation: none; }
+    }
   </style>
 
   <script>
@@ -344,54 +229,11 @@
       <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:70%"></span></div>
     </div>
 
-    <!-- ① floractor_1 단순 이미지 -->
+    <!-- 이미지 1 -->
     <img src="floractor_1.png" alt="청소년 배우 모집" class="landing-image" />
 
-    <!-- ② floractor_2 배경 + 이미지 슬라이더 -->
-    <div class="img-slider-block s2">
-      <img src="floractor_2.png" alt="" class="bg-img" aria-hidden="true" />
-      <div class="slider-overlay">
-        <div class="slider-track" id="track2">
-          <!-- 무한루프 앞 클론 (마지막 슬라이드) -->
-          <img class="slide-img" src="floractor_2_8.png" alt="" aria-hidden="true" />
-          <!-- 실제 슬라이드 1~8 -->
-          <img class="slide-img" src="floractor_2_1.png" alt="슬라이드 1" />
-          <img class="slide-img" src="floractor_2_2.png" alt="슬라이드 2" />
-          <img class="slide-img" src="floractor_2_3.png" alt="슬라이드 3" />
-          <img class="slide-img" src="floractor_2_4.png" alt="슬라이드 4" />
-          <img class="slide-img" src="floractor_2_5.png" alt="슬라이드 5" />
-          <img class="slide-img" src="floractor_2_6.png" alt="슬라이드 6" />
-          <img class="slide-img" src="floractor_2_7.png" alt="슬라이드 7" />
-          <img class="slide-img" src="floractor_2_8.png" alt="슬라이드 8" />
-          <!-- 무한루프 뒤 클론 (첫번째 슬라이드) -->
-          <img class="slide-img" src="floractor_2_1.png" alt="" aria-hidden="true" />
-        </div>
-        <button class="slider-arrow prev" aria-label="이전 슬라이드">
-          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <button class="slider-arrow next" aria-label="다음 슬라이드">
-          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-        <div class="slider-dots" id="dots2" aria-hidden="true"></div>
-      </div>
-    </div>
-
-    <!-- ③ floractor_3 단순 이미지 -->
-    <img src="floractor_3.png" alt="청소년 배우 모집 혜택" class="landing-image" />
-
-    <!-- ④ floractor_4 배경 + 후기 카드 슬라이더 -->
-    <div class="img-slider-block s4">
-      <img src="floractor_4.png" alt="" class="bg-img" aria-hidden="true" />
-      <div class="slider-overlay">
-        <div class="slider-track" id="track4">
-          <!-- JS로 슬라이드 카드 삽입됨 -->
-        </div>
-        <div class="slider-dots" id="dots4" aria-hidden="true"></div>
-      </div>
-    </div>
-
-    <!-- ⑤ floractor_5 단순 이미지 -->
-    <img src="floractor_5.png" alt="청소년 배우 모집 마감" class="landing-image" />
+    <!-- 이미지 2 -->
+    <img src="floractor_2.png" alt="청소년 배우 모집 혜택" class="landing-image" />
 
     <!-- 신청폼 앵커 -->
     <span id="apply-anchor"></span>
@@ -429,7 +271,7 @@
     </footer>
   </div>
 
-  <!-- 하단 플로팅바 -->
+  <!-- 하단 플로팅 CTA -->
   <div class="floating-cta" role="region" aria-label="빠른 신청 호출영역">
     <div class="floating-cta__title">청소년 배우 오디션 모집</div>
     <button id="go-apply" class="floating-cta__btn">오디션 신청하기</button>
@@ -452,177 +294,7 @@
     <div class="copy-toast-subtitle">카톡이나 DM으로 공유해주세요</div>
   </div>
 
-  <!-- =============================================
-       슬라이더 팩토리
-  ============================================= -->
-  <script>
-    /**
-     * makeSlider({ trackId, dotsId, counterId, total, autoMs, infinite })
-     *   track 안에 슬라이드가 이미 있어야 합니다.
-     *   infinite=true  → 앞뒤 클론 슬라이드 포함 (이미지 슬라이더용)
-     *   infinite=false → 클론 없이 양 끝에서 멈춤 (카드 슬라이더용)
-     */
-    function makeSlider({ trackId, dotsId, counterId, total, autoMs = 0, infinite = true }) {
-      const track   = document.getElementById(trackId);
-      const dotsEl  = document.getElementById(dotsId);
-      const counter = document.getElementById(counterId);
-      if (!track) return;
-
-      // infinite: index 0=clone(last), 1~total=real, total+1=clone(first)
-      // !infinite: index 0~total-1
-      let cur    = infinite ? 1 : 0;
-      let moving = false;
-      let timer  = null;
-
-      /* 인디케이터 점 생성 */
-      const dots = [];
-      for (let i = 0; i < total; i++) {
-        const d = document.createElement('div');
-        d.className = 'slider-dot' + (i === 0 ? ' active' : '');
-        dotsEl && dotsEl.appendChild(d);
-        dots.push(d);
-      }
-
-      function realIdx(i) {
-        return infinite
-          ? ((i - 1) % total + total) % total
-          : ((i)     % total + total) % total;
-      }
-
-      function updateUI(i) {
-        const ri = realIdx(i);
-        dots.forEach((d, j) => d.classList.toggle('active', j === ri));
-        if (counter) counter.textContent = `${ri + 1} / ${total}`;
-      }
-
-      function goTo(i, animate = true) {
-        track.classList.toggle('no-transition', !animate);
-        track.style.transform = `translateX(-${i * 100}%)`;
-        updateUI(i);
-      }
-
-      /* 무한루프 점프 */
-      track.addEventListener('transitionend', () => {
-        moving = false;
-        if (!infinite) return;
-        if (cur === 0)         { cur = total;     goTo(cur, false); }
-        else if (cur === total + 1) { cur = 1;    goTo(cur, false); }
-      });
-
-      function next() {
-        if (moving) return; moving = true;
-        cur++;
-        if (!infinite && cur >= total) { cur = total - 1; moving = false; return; }
-        goTo(cur);
-      }
-      function prev() {
-        if (moving) return; moving = true;
-        cur--;
-        if (!infinite && cur < 0) { cur = 0; moving = false; return; }
-        goTo(cur);
-      }
-
-      /* 초기 위치 */
-      track.classList.add('no-transition');
-      track.style.transform = `translateX(-${cur * 100}%)`;
-      requestAnimationFrame(() => requestAnimationFrame(() => track.classList.remove('no-transition')));
-      updateUI(cur);
-
-      /* 자동 재생 */
-      function startAuto() { if (autoMs > 0) timer = setInterval(next, autoMs); }
-      function stopAuto()  { clearInterval(timer); }
-      startAuto();
-
-      /* 버튼: 가장 가까운 .slider-overlay 안의 화살표만 */
-      const overlay = track.closest('.slider-overlay');
-      if (overlay) {
-        overlay.querySelectorAll('.slider-arrow').forEach(btn => {
-          btn.addEventListener('click', () => {
-            stopAuto();
-            btn.classList.contains('prev') ? prev() : next();
-            startAuto();
-          });
-        });
-      }
-
-      /* 터치 스와이프 */
-      let tx = 0, ty = 0, tDrag = false;
-      const el = overlay || track.parentElement;
-      el.addEventListener('touchstart', e => {
-        tx = e.touches[0].clientX; ty = e.touches[0].clientY;
-        tDrag = true; stopAuto();
-      }, { passive: true });
-      el.addEventListener('touchend', e => {
-        if (!tDrag) return; tDrag = false;
-        const dx = e.changedTouches[0].clientX - tx;
-        const dy = e.changedTouches[0].clientY - ty;
-        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) dx < 0 ? next() : prev();
-        startAuto();
-      }, { passive: true });
-      el.addEventListener('touchcancel', () => { tDrag = false; startAuto(); }, { passive: true });
-
-      /* 마우스 드래그 (PC) */
-      let mx = 0, mDrag = false;
-      el.addEventListener('mousedown', e => { mx = e.clientX; mDrag = true; stopAuto(); });
-      window.addEventListener('mouseup', e => {
-        if (!mDrag) return; mDrag = false;
-        const dx = e.clientX - mx;
-        if (Math.abs(dx) > 30) dx < 0 ? next() : prev();
-        startAuto();
-      });
-    }
-  </script>
-
-  <!-- 이미지 슬라이더 (#2) 초기화 -->
-  <script>
-    makeSlider({ trackId: 'track2', dotsId: 'dots2', counterId: null, total: 8, autoMs: 2000, infinite: true });
-  </script>
-
-  <!-- 후기 카드 데이터 삽입 후 슬라이더 초기화 -->
-  <script>
-    (function () {
-      const reviews = [
-        { name: '김서○', info: '고2 · 서울', age: '17세', stars: 5, text: '처음엔 긴장했는데 선배님들이 너무 친절하게 가르쳐 주셔서 금방 적응했어요. 표정 연기가 많이 늘었고 자신감도 생겼어요!', bg: '#E0F2FE' },
-        { name: '박지○', info: '중3 · 경기', age: '15세', stars: 5, text: '제가 나온 드라마를 보면... 아직도 실감이 안날 때가 있어요. 곧 넷플릭스도 촬영하는데 잘할 수 있겠죠?',  bg: '#FEE2E2' },
-        { name: '이하○', info: '고1 · 인천', age: '16세', stars: 5, text: '감정을 더 풍부하게 표현하는 법을 알게 됐어요. 진로 고민도 해소되고 배우라는 꿈에 한 발짝 더 다가간 것 같아요.',  bg: '#F3E8FF' },
-        { name: '최민○', info: '중2 · 부산', age: '14세', stars: 5, text: '낯을 많이 가려서 걱정했는데, 해보고 싶은 꿈을 이뤄서 너무 좋아요. 촬영 현장 체험도 정말 특별했어요!',  bg: '#FEF3C7' },
-        { name: '정수○', info: '고3 · 대전', age: '18세', stars: 5, text: '유명 배우들과 연기해볼 수 있다는 게 너무 신기했어요. 다들 친절하고 장비도 전문적이었어요. 다음에도 꼭 참여하고 싶어요.',  bg: '#E2FBE8' },
-      ];
-
-      const track = document.getElementById('track4');
-      if (!track) return;
-
-      reviews.forEach(r => {
-        const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
-        const slide = document.createElement('div');
-        slide.className = 'slide-card';
-        slide.innerHTML = `
-          <div class="review-card-header">
-            <div class="review-avatar" style="background:${r.bg}">${r.name.charAt(0)}</div>
-            <div class="review-name-row">
-              <div class="review-name">${r.name}</div>
-              <div class="review-sub">${r.info} · ${r.age}</div>
-            </div>
-          </div>
-          <div class="review-body">${r.text}</div>
-        `;
-        track.appendChild(slide);
-      });
-
-      // 무한루프를 위해 앞뒤 클론 추가
-      const allSlides = Array.from(track.children);
-      const cloneFirst = allSlides[0].cloneNode(true);
-      const cloneLast  = allSlides[allSlides.length - 1].cloneNode(true);
-      cloneFirst.setAttribute('aria-hidden', 'true');
-      cloneLast.setAttribute('aria-hidden', 'true');
-      track.appendChild(cloneFirst);
-      track.insertBefore(cloneLast, allSlides[0]);
-
-      makeSlider({ trackId: 'track4', dotsId: 'dots4', counterId: null, total: reviews.length, autoMs: 2000, infinite: true });
-    })();
-  </script>
-
-  <!-- 플로팅 CTA -->
+  <!-- 플로팅 CTA 스크롤 제어 -->
   <script>
     (function () {
       const btn    = document.getElementById('go-apply');
@@ -665,7 +337,7 @@
     })();
   </script>
 
-  <!-- 실시간 신청 애니메이션 -->
+  <!-- 실시간 신청 애니메이션 + 카운트다운 -->
   <script>
     (function () {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
