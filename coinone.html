@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Open Graph -->
+  <meta property="og:title" content="코인원 신규가입 이벤트 | 즉시 비트코인 3만원">
+  <meta property="og:description" content="코인원 첫 가입하고 비트코인 3만원 바로 받기">
+  <meta property="og:image" content="https://minkn96.github.io/site/coinone_s.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/coinone.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
+  <!-- ↑ GTM-XXXXXXX 를 실제 컨테이너 ID로 교체하세요 -->
+
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>코인원 신규가입 이벤트 | 즉시 비트코인 3만원</title>
+
+  <style>
+    :root {
+      --cta-height: 68px;
+      --brand-navy: #0a1a3c;
+      --brand-blue: #1958ff;
+      --brand-blue-dark: #0d3fd1;
+      --brand-gold: #f7c948;
+      --brand-btc: #f7931a;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Pretendard', 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #fff;
+      color: #10131a;
+      padding-bottom: calc(var(--cta-height) + var(--safe-bottom));
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mobile-container {
+      max-width: 430px;
+      margin: 0 auto;
+      position: relative;
+      min-height: 100vh;
+      background: #fff;
+    }
+    @media (min-width: 431px) {
+      body { background: #f2f4f8; }
+      .mobile-container {
+        box-shadow: 0 0 24px rgba(10,26,60,.08);
+        border-left: 1px solid #eaecef;
+        border-right: 1px solid #eaecef;
+      }
+    }
+
+    /* ===== 1. 선착순 마감 안내 상단바 ===== */
+    .urgency-bar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      padding: 10px 16px;
+      background: var(--brand-navy);
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .urgency-text { font-weight: 700; font-size: 13.5px; letter-spacing: -.2px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .urgency-text strong { color: var(--brand-gold); font-weight: 800; }
+    .urgency-progress { height: 6px; background: rgba(255,255,255,.2); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .urgency-progress span { display: block; height: 100%; width: 68%; background: var(--brand-gold); transition: width .6s ease; }
+
+    /* ===== 히어로 ===== */
+    .hero {
+      padding: 40px 20px 28px;
+      background: radial-gradient(120% 100% at 50% 0%, #16308a 0%, var(--brand-navy) 55%, #060d24 100%);
+      color: #fff;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px; padding: 6px 14px; font-size: 12.5px; font-weight: 600;
+      margin-bottom: 18px; color: #cfe0ff;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+    .hero h1 { font-size: 26px; line-height: 1.35; font-weight: 800; margin: 0 0 10px; letter-spacing: -.5px; }
+    .hero h1 .accent { color: var(--brand-gold); }
+    .hero p.sub { font-size: 14.5px; color: #b9c6ea; margin: 0 0 26px; line-height: 1.5; }
+    .btc-coin {
+      width: 108px; height: 108px; margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, #ffcf6b, var(--brand-btc) 65%, #c9720a 100%);
+      box-shadow: 0 14px 34px rgba(247,147,26,.35), inset 0 -6px 14px rgba(0,0,0,.15);
+      animation: float 3.2s ease-in-out infinite;
+    }
+    .btc-coin span { font-size: 44px; font-weight: 900; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,.25); }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    .hero-amount { font-size: 34px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+    .hero-amount .unit { font-size: 16px; color: var(--brand-gold); font-weight: 700; }
+
+    /* ===== 6. 가입 CTA (히어로 내) ===== */
+    .cta-primary {
+      display: block; width: 100%; margin-top: 22px;
+      appearance: none; border: 0; cursor: pointer;
+      border-radius: 14px; padding: 17px 20px;
+      font-weight: 800; font-size: 17px; color: var(--brand-navy);
+      background: linear-gradient(0deg, var(--brand-gold), #ffe08a);
+      box-shadow: 0 10px 24px rgba(247,201,72,.3);
+    }
+    .cta-primary:active { transform: translateY(1px); }
+    .cta-caption { margin-top: 10px; font-size: 12px; color: #93a3cc; }
+
+    /* ===== 혜택 요약 ===== */
+    .benefits { padding: 26px 18px; }
+    .benefits h2 { font-size: 17px; font-weight: 800; margin: 0 0 14px; letter-spacing: -.3px; }
+    .benefit-list { display: flex; flex-direction: column; gap: 10px; }
+    .benefit-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px; border: 1px solid #eaecf3; border-radius: 12px; background: #fafbfe;
+    }
+    .benefit-icon {
+      flex: 0 0 34px; width: 34px; height: 34px; border-radius: 9px;
+      background: #eaf0ff; color: var(--brand-blue);
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px;
+    }
+    .benefit-item h3 { margin: 0 0 3px; font-size: 14.5px; font-weight: 700; }
+    .benefit-item p { margin: 0; font-size: 13px; color: #667085; line-height: 1.45; }
+
+    /* ===== 2. 지인 추천 배너 ===== */
+    .referral-banner {
+      margin: 0 18px 26px; padding: 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-dark));
+      color: #fff; text-align: left;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .referral-banner .txt { flex: 1; }
+    .referral-banner h3 { margin: 0 0 4px; font-size: 15px; font-weight: 800; }
+    .referral-banner p { margin: 0; font-size: 12.5px; color: #dbe6ff; line-height: 1.4; }
+    .referral-btn {
+      flex: 0 0 auto; appearance: none; border: 0; cursor: pointer;
+      background: #fff; color: var(--brand-blue-dark);
+      border-radius: 10px; padding: 10px 14px; font-weight: 800; font-size: 13px;
+      white-space: nowrap;
+    }
+
+    /* ===== 7. 실시간 회원가입 현황 ===== */
+    .recent-signups { padding: 4px 18px 6px; }
+    .recent-signups h2 { margin: 8px 0 12px; font-size: 16px; font-weight: 800; letter-spacing: -.3px; }
+    .table-wrap { border: 1px solid #eaecf3; border-radius: 14px; overflow: hidden; }
+    .signup-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    .signup-table thead th { background: #f7f8fc; text-align: left; padding: 10px 12px; border-bottom: 1px solid #eaecf3; color: #667085; font-weight: 700; }
+    .signup-table tbody td { padding: 10px 12px; border-bottom: 1px solid #f2f3f8; color: #10131a; }
+    .signup-table tbody tr:last-child td { border-bottom: 0; }
+    .signup-table tbody tr.highlight { animation: rowflash 2s ease; }
+    .signup-table .badge-btc { color: var(--brand-btc); font-weight: 700; font-size: 12.5px; }
+    @keyframes rowflash { 0% { background: #fff6df; } 100% { background: transparent; } }
+
+    /* ===== 푸터 ===== */
+    .footer { margin-top: 40px; padding: 24px 18px 32px; background: #f7f8fc; border-top: 1px solid #eaecf3; text-align: center; }
+    .footer-content { max-width: 400px; margin: 0 auto; color: #7c8598; font-size: 12px; line-height: 1.6; }
+    .footer-content .company-name { font-weight: 700; color: #40465a; margin-bottom: 4px; font-size: 12.5px; }
+
+    /* ===== 5. 가입 플로팅바 ===== */
+    .floating-cta {
+      position: fixed; left: 50%; bottom: 0; z-index: 9999;
+      transform: translateX(-50%);
+      max-width: 430px; width: 100%;
+      display: flex; gap: 10px; align-items: center; justify-content: space-between;
+      padding: 10px 16px calc(10px + var(--safe-bottom));
+      background: rgba(255,255,255,0.97); border-top: 1px solid #eaecf3;
+      backdrop-filter: saturate(180%) blur(8px);
+      -webkit-backdrop-filter: saturate(180%) blur(8px);
+      transition: transform .25s ease;
+    }
+    .floating-cta__title { font-weight: 700; font-size: 14px; color: #10131a; line-height: 1.3; }
+    .floating-cta__title span { display: block; font-size: 12px; color: #f7931a; font-weight: 700; }
+    .floating-cta__btn {
+      appearance: none; border: 0; cursor: pointer; border-radius: 9999px;
+      padding: 14px 22px; font-weight: 800; font-size: 15px; color: #fff;
+      background: linear-gradient(90deg, var(--brand-blue), var(--brand-blue-dark));
+      box-shadow: 0 6px 16px rgba(25,88,255,.28);
+      white-space: nowrap;
+    }
+    .floating-cta__btn:active { transform: translateY(1px); }
+    @media (min-width: 768px) {
+      :root { --cta-height: 74px; }
+      .floating-cta__title { font-size: 15px; }
+      .floating-cta__btn { font-size: 16px; padding: 16px 28px; }
+    }
+
+    /* ===== 2. 지인 추천 버튼 (플로팅바 왼쪽 상단 고정) ===== */
+    .referral-float-btn {
+      position: fixed;
+      left: max(16px, calc(50% - 215px + 16px));
+      bottom: calc(var(--cta-height) + var(--safe-bottom) + 10px);
+      z-index: 9998;
+      appearance: none; border: 0; cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      padding: 10px 14px;
+      border-radius: 9999px;
+      font-weight: 700; font-size: 12.5px; color: var(--brand-navy);
+      background: linear-gradient(0deg, var(--brand-gold), #ffe08a);
+      box-shadow: 0 6px 16px rgba(10,26,60,.18);
+      transition: transform .15s ease;
+    }
+    @media (max-width: 430px) { .referral-float-btn { left: 16px; } }
+    .referral-float-btn:active { transform: translateY(1px); }
+    .referral-float-btn .icon { width: 15px; height: 15px; }
+
+    /* ===== 실시간 가입 토스트 ===== */
+    .live-signup {
+      position: fixed; right: calc(50% - 215px + 12px); top: 64px;
+      z-index: 9998; display: flex; flex-direction: column; gap: 8px;
+      pointer-events: none;
+    }
+    @media (max-width: 430px) { .live-signup { right: 12px; } }
+    .live-toast {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+      background: rgba(255,255,255,0.97); border: 1px solid #eaecf3;
+      border-radius: 14px; box-shadow: 0 8px 20px rgba(10,26,60,.12);
+      transform: translateY(-8px); opacity: 0;
+      animation: toast-in .36s ease forwards, toast-out .36s ease forwards 5.5s;
+      max-width: 240px;
+    }
+    .live-avatar-wrap { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex: 0 0 28px; background: #eee; }
+    .live-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--brand-navy); }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-blue); animation: pulse 2s infinite; }
+    .live-meta { font-size: 11.5px; color: #f7931a; font-weight: 700; margin-top: 2px; }
+    @keyframes toast-in  { to { transform: translateY(0); opacity: 1; } }
+    @keyframes toast-out { to { transform: translateY(-8px); opacity: 0; } }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(25,88,255,.5); }
+      70%  { box-shadow: 0 0 0 12px rgba(25,88,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(25,88,255,0); }
+    }
+
+    /* ===== 4. 선착순 마감 안내 토스트 (중앙 하단, 주기적 노출) ===== */
+    .deadline-toast {
+      position: fixed; left: 50%; bottom: calc(var(--cta-height) + var(--safe-bottom) + 14px);
+      transform: translateX(-50%) translateY(12px);
+      z-index: 9997; max-width: 380px; width: calc(100% - 32px);
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 14px; border-radius: 12px;
+      background: var(--brand-navy); color: #fff;
+      box-shadow: 0 10px 26px rgba(10,26,60,.3);
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    .deadline-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .deadline-toast .icon { flex: 0 0 auto; font-size: 18px; }
+    .deadline-toast .txt { font-size: 12.5px; line-height: 1.4; }
+    .deadline-toast .txt strong { color: var(--brand-gold); }
+
+    /* ===== 복사 토스트 (지인 추천) ===== */
+    .copy-toast {
+      position: fixed; left: 50%; top: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      z-index: 10000; max-width: 280px; width: 90%;
+      padding: 16px 20px; text-align: center;
+      background: rgba(10,26,60,0.95); color: #fff;
+      border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      opacity: 0; transition: all .3s ease; pointer-events: none;
+    }
+    .copy-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .copy-toast-title    { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    .copy-toast-subtitle { font-size: 12px; opacity: .8; line-height: 1.4; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .live-toast { animation: none; opacity: 1; }
+      .live-dot, .btc-coin { animation: none; }
+    }
+  </style>
+
+  <script>
+    // 전환 이벤트: 가입 CTA 클릭 시 GTM dataLayer로 전달
+    function conversionCallback() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'signup_cta_click',
+        content_category: 'event',
+        content_name: 'coinone_new_signup_btc',
+        source: 'landing_page'
+      });
+    }
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="mobile-container">
+
+    <!-- 3. 선착순 마감 안내 상단바 -->
+    <div class="urgency-bar" role="status" aria-live="polite">
+      <div class="urgency-text">오늘 이벤트 마감까지 <span id="countdown">00:00:00</span> · 잔여 <strong><span id="seats-left">32</span>명</strong></div>
+      <div class="urgency-progress" aria-hidden="true"><span id="urgency-fill" style="width:68%"></span></div>
+    </div>
+
+    <!-- 히어로 -->
+    <section class="hero">
+      <div class="hero-badge"><span class="dot"></span>코인원 X 신규가입 이벤트</div>
+      <div class="btc-coin"><span>₿</span></div>
+      <div class="hero-amount">30,000<span class="unit">원 상당 비트코인</span></div>
+      <h1>코인원 <span class="accent">첫 가입</span>하면<br>비트코인 3만원 <span class="accent">즉시 지급</span></h1>
+      <p class="sub">코인원 가입 이력이 없는 분이라면 누구나<br>바로 받을 수 있어요</p>
+
+      <button id="go-apply" class="cta-primary" onclick="conversionCallback()">지금 가입하고 3만원 받기</button>
+      <div class="cta-caption">신규 가입 회원 대상 · 조기 마감될 수 있어요</div>
+    </section>
+
+    <!-- 혜택 요약 -->
+    <section class="benefits" aria-label="이벤트 혜택">
+      <h2>코인원 신규 가입 이벤트</h2>
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <div class="benefit-icon">1</div>
+          <div><h3>코인원 첫 가입</h3><p>신규 회원만 참여 가능한 이벤트예요</p></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">2</div>
+          <div><h3>가입만 하면 끝</h3><p>회원가입만 완료하면 비트코인이 바로 지급돼요</p></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">3</div>
+          <div><h3>선착순 한정 수량</h3><p>준비된 수량 소진 시 예고 없이 조기 마감될 수 있어요</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. 실시간 회원가입 현황 -->
+    <section class="recent-signups" aria-label="실시간 가입 현황">
+      <h2>실시간 가입 현황</h2>
+      <div class="table-wrap">
+        <table class="signup-table" aria-live="polite">
+          <thead><tr><th>이름</th><th>지역</th><th>지급 내역</th></tr></thead>
+          <tbody id="signup-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="company-name">(주)코인원 | 대표이사 차명훈</div>
+        <div class="business-number">사업자등록번호 261-81-07437</div>
+        <div class="address">서울특별시 영등포구 여의대로 108 파크원 타워1 45층 (우 07335)</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 2. 지인 추천 버튼 (플로팅바 왼쪽 상단 고정) -->
+  <button class="referral-float-btn" id="referral-btn" aria-label="지인에게 알려주기">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+    </svg>
+    지인에게 알려주기
+  </button>
+
+  <!-- 5. 가입 플로팅바 (항상 노출) -->
+  <div class="floating-cta" role="region" aria-label="빠른 가입 호출영역">
+    <div class="floating-cta__title">코인원 신규가입<span>비트코인 3만원 즉시 지급</span></div>
+    <button id="go-apply-floating" class="floating-cta__btn">가입하기</button>
+  </div>
+
+  <!-- 실시간 가입 토스트 -->
+  <div class="live-signup" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- 4. 선착순 마감 안내 토스트 -->
+  <div class="deadline-toast" id="deadline-toast" role="status">
+    <span class="icon">⏰</span>
+    <div class="txt">잔여 수량이 얼마 남지 않았어요.<br><strong>지금 가입</strong>하면 비트코인 3만원을 바로 받을 수 있어요.</div>
+  </div>
+
+  <div class="copy-toast" id="copy-toast">
+    <div class="copy-toast-title">추천 링크가 복사되었습니다</div>
+    <div class="copy-toast-subtitle">카톡이나 문자로 지인에게 공유해주세요</div>
+  </div>
+
+  <!-- 가입 버튼 스크롤/전환 제어 -->
+  <script>
+    (function () {
+      const signupURL = 'https://Ocayn.info/t8gzbw84ty'; // 앱스토어 설치 랜딩 링크
+      const btns = [document.getElementById('go-apply'), document.getElementById('go-apply-floating')];
+      btns.forEach(btn => {
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+          conversionCallback();
+          window.location.href = signupURL;
+        });
+      });
+      // 플로팅바는 스크롤 위치와 무관하게 항상 노출됩니다.
+    })();
+  </script>
+
+  <!-- 지인 추천 버튼 -->
+  <script>
+    (function () {
+      const refBtn     = document.getElementById('referral-btn');
+      const copyToast  = document.getElementById('copy-toast');
+      const REFERRAL_URL = 'https://m.site.naver.com/2exIc'; // 추천 링크 (필요 시 ?ref=USERCODE 등 파라미터 추가)
+      if (!refBtn) return;
+      refBtn.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'referral_share_click', source: 'landing_page' });
+
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (navigator.share && isMobile) {
+          navigator.share({ title: '코인원 신규가입 이벤트', text: '코인원 첫 가입하면 비트코인 3만원 즉시 지급!', url: REFERRAL_URL }).catch(() => {});
+        } else {
+          const show = () => { copyToast.classList.add('show'); setTimeout(() => copyToast.classList.remove('show'), 3000); };
+          navigator.clipboard.writeText(REFERRAL_URL).then(show).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = REFERRAL_URL; document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta); show();
+          });
+        }
+      });
+    })();
+  </script>
+
+  <!-- 카운트다운 + 실시간 가입 애니메이션 + 마감 토스트 -->
+  <script>
+    (function () {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const container    = document.querySelector('.live-signup');
+      const seatsEl       = document.getElementById('seats-left');
+      const fillEl        = document.getElementById('urgency-fill');
+      const countdownEl   = document.getElementById('countdown');
+      const tbody          = document.getElementById('signup-tbody');
+      const deadlineToast = document.getElementById('deadline-toast');
+      if (!container) return;
+
+      const lastNames  = ['김','이','박','최','정','강','조','윤','장','임','한','오','서','신','권','황','안','송','전','홍'];
+      const firstNames = ['민준','서준','예준','도윤','시우','주원','하준','지호','지훈','승우','수민','지우','서연','하윤','지민','채원','유진','예린','다은','수아'];
+      const regions     = ['서울','경기','인천','부산','대구','대전','광주','울산','제주'];
+
+      function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
+
+      // 가운데 이름 가리기: 3글자 → 김O수, 2글자 → 김O
+      function maskName(last, first) {
+        const full = last + first;
+        if (full.length <= 2) return full.charAt(0) + 'O';
+        const chars = full.split('');
+        const midIdx = Math.floor(chars.length / 2);
+        chars[midIdx] = 'O';
+        return chars.join('');
+      }
+      function randomMaskedName() {
+        return maskName(lastNames[rand(0, lastNames.length-1)], firstNames[rand(0, firstNames.length-1)]);
+      }
+      function avatarURI(init) {
+        const bg = ['#E8EEFF','#FFF1DA','#E3F6E8','#FDE9E9','#EDE7FB'][rand(0,4)];
+        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+          `<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56'><rect width='56' height='56' rx='28' fill='${bg}'/><text x='50%' y='56%' text-anchor='middle' font-size='26' fill='#0a1a3c'>${init}</text></svg>`
+        );
+      }
+      function nowKST() { return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' })); }
+      function midnight(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()+1, 0, 0, 0); }
+
+      let seats = Math.max(8, Math.floor(28 + Math.random()*12));
+      function updateSeats() {
+        if (seatsEl) seatsEl.textContent = seats;
+        if (fillEl)  fillEl.style.width = Math.max(0, Math.min(100, ((60 - seats)/60)*100)) + '%';
+      }
+      updateSeats();
+
+      function updateCountdown() {
+        const n = nowKST(), s = Math.max(0, (midnight(n) - n)/1000);
+        const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = Math.floor(s%60);
+        if (countdownEl) countdownEl.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+      }
+      updateCountdown(); setInterval(updateCountdown, 1000);
+
+      function addRow(name, region, highlight) {
+        if (!tbody) return;
+        const tr = document.createElement('tr');
+        if (highlight && !prefersReduced) tr.classList.add('highlight');
+        tr.innerHTML = `<td>${name}</td><td>${region}</td><td><span class="badge-btc">BTC 3만원 지급</span></td>`;
+        tbody.insertBefore(tr, tbody.firstChild);
+        while (tbody.children.length > 20) tbody.removeChild(tbody.lastElementChild);
+      }
+
+      for (let i = rand(6, 11); i >= 1; i--) {
+        addRow(randomMaskedName(), regions[rand(0, regions.length-1)], false);
+      }
+
+      function createToast() {
+        const name = randomMaskedName(), region = regions[rand(0, regions.length-1)];
+        const toast = document.createElement('div');
+        toast.className = 'live-toast';
+        toast.setAttribute('role','status');
+        toast.innerHTML = `
+          <div class="live-avatar-wrap"><img src="${avatarURI(name.charAt(0))}" alt="" width="28" height="28" loading="lazy"></div>
+          <div>
+            <div class="live-badge"><span class="live-dot" aria-hidden="true"></span><strong>${name}</strong>님이 가입했어요</div>
+            <div class="live-meta">${region} · BTC 3만원 지급</div>
+          </div>
+        `;
+        if (container.children.length >= 3) container.removeChild(container.firstElementChild);
+        container.appendChild(toast);
+        setTimeout(() => toast.parentNode && toast.parentNode.removeChild(toast), 6200);
+        addRow(name, region, true);
+        if (seats > 1) { seats--; updateSeats(); }
+      }
+
+      function schedule() { setTimeout(() => { createToast(); schedule(); }, rand(3000, 9000)); }
+      schedule();
+
+      // 4. 선착순 마감 안내 토스트: 주기적으로 노출
+      function showDeadlineToast() {
+        deadlineToast.classList.add('show');
+        setTimeout(() => deadlineToast.classList.remove('show'), 4000);
+      }
+      setTimeout(showDeadlineToast, 6000);
+      setInterval(showDeadlineToast, 25000);
+    })();
+  </script>
+</body>
+</html>
