@@ -215,6 +215,9 @@
         fbq('trackCustom', 'flor_CTA', { content_category: 'audition', content_name: 'actor', source: 'tenping_form', page: 'landing' });
       }
       if (typeof window.karrotPixel !== 'undefined') window.karrotPixel.track("Lead");
+        // Kakao Pixel
+      if (typeof kakaoPixel === 'function') {
+        kakaoPixel('2456462917277958019').participation();}
     }
   </script>
 </head>
@@ -246,8 +249,7 @@
       tenping-ad-contain_logo="false"
       tenping-ad-contain_Plugin="false"
       tenping-ad-contain_TpCall="false"
-      tenping-ad-theme="white"
-      tenping-ad-contain_privacy="false">
+      tenping-ad-theme="white">
     </tenping>
     <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
 
