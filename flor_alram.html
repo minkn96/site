@@ -218,6 +218,14 @@
         // Kakao Pixel
       if (typeof kakaoPixel === 'function') {
         kakaoPixel('2456462917277958019').participation();}
+        // GTM dataLayer push (GA4는 GTM 태그에서 처리)
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+        event: 'flor_cta',
+        event_category: 'audition',
+        event_label: 'actor',
+        source: 'tenping_form',
+        page: 'landing'});
     }
   </script>
 </head>
