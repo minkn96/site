@@ -265,10 +265,26 @@
       tenping-ad-contain_TpCall="false"
       tenping-ad-theme="blue">
     </tenping>
-    <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>   
 
     <!-- 두 번째 랜딩 이미지 -->
     <img src="KRS_2.png" alt="독해력 무료진단 랜딩페이지" class="landing-image" />
+
+    <!-- Tenping 폼 (KRS_2 바로 아래) -->
+    <tenping class="adsbytenping" 
+      style="width:100%; margin:0 auto; display:block;"
+      tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
+      tenping-ad-client="bMCak6oFZXAMeS0Ed1JBbmPYyFKadysuzNA%2fwwgyA50OoxZL1SUZ3jqIb0PvbgZs"
+      tenping-ad-campaign="2026090818320001"
+      tenping-ad-distributionAddID="2026091500560021"
+      tenping-ad-contain_image="false"
+      tenping-ad-contain_logo="false"
+      tenping-ad-contain_Plugin="false"
+      tenping-ad-contain_TpCall="false"
+      tenping-ad-theme="blue">
+    </tenping>
+
+    <!-- 텐핑 스크립트: 두 폼이 모두 파싱된 뒤 1회만 로드 -->
+    <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>
 
     <!-- 최근 등록 현황 테이블 -->
     <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
@@ -325,7 +341,7 @@
       const btn = document.getElementById('go-apply');
       const anchor = document.getElementById('apply-anchor');
       const bar = document.querySelector('.floating-cta');
-      const form = document.querySelector('.adsbytenping');
+      const forms = document.querySelectorAll('.adsbytenping');
 
       function scrollToApply(e) {
         if (e) e.preventDefault();
@@ -339,14 +355,17 @@
 
       btn.addEventListener('click', scrollToApply);
 
-      if ('IntersectionObserver' in window && form) {
+      if ('IntersectionObserver' in window && forms.length) {
+        const visible = new Set();
         const io = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) bar.classList.add('hidden');
-            else bar.classList.remove('hidden');
+            if (entry.isIntersecting) visible.add(entry.target);
+            else visible.delete(entry.target);
           });
+          // 폼이 하나라도 화면에 보이면 플로팅바 숨김
+          bar.classList.toggle('hidden', visible.size > 0);
         }, { threshold: 0.15 });
-        io.observe(form);
+        forms.forEach(f => io.observe(f));
       }
     })();
   </script>
