@@ -225,6 +225,16 @@
     setInterval(showLiveNotification,8000);
     setTimeout(showLiveNotification,3000);
     trackPageView();
+
+    // ▼▼ 추가: 플로팅바 높이에 맞춰 푸터 하단 여백 자동 조정 ▼▼
+    function syncFooterPadding(){
+      const bar = document.getElementById('floatingCta');
+      const footer = document.querySelector('.footer');
+      if(bar && footer) footer.style.paddingBottom = (bar.offsetHeight + 20) + 'px';
+    }
+    window.addEventListener('load', syncFooterPadding);
+    window.addEventListener('resize', syncFooterPadding);
+    // ▲▲ 추가 ▲▲
   </script>
 
   <!-- 상단 잔여석 + 진행바 + 감소 로직  -->
