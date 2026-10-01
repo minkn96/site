@@ -67,24 +67,6 @@
     }
     .landing-image { width: 100%; display: block; margin: 0 auto; height: auto; }
 
-    /* ▼▼ 이미지 사이 CTA ▼▼ */
-    .mid-cta-wrap {
-      padding: 20px 16px;
-      background: #fff;
-      text-align: center;
-    }
-    .mid-cta-btn {
-      appearance: none; border: 0; cursor: pointer; width: 100%;
-      border-radius: 14px; padding: 18px 20px; font-weight: 800; font-size: 17px;
-      color: #0b1a3a;
-      background: linear-gradient(0deg, var(--brand-yellow), #ffe47a);
-      box-shadow: 0 6px 16px rgba(0,0,0,.12);
-      transition: transform .15s ease;
-    }
-    .mid-cta-btn:active { transform: translateY(1px); }
-    .mid-cta-sub { margin-top: 10px; font-size: 13px; color: #666; }
-    /* ▲▲ 이미지 사이 CTA ▲▲ */
-
     .floating-cta {
       position: fixed; left: 50%; right: auto; bottom: 0; z-index: 9999;
       transform: translateX(-50%);
@@ -267,19 +249,10 @@
     <!-- 첫 번째 랜딩 이미지 -->
     <img src="KRS_1.png" alt="독해력 무료진단 랜딩페이지" class="landing-image" />
 
-    <!-- 이미지 사이 CTA: 무료 진단받기 -->
-    <div class="mid-cta-wrap">
-      <button id="mid-cta-btn" class="mid-cta-btn" aria-label="무료 진단받기 - 신청 폼으로 이동">무료 진단받기</button>
-      <div class="mid-cta-sub">선착순 30명 한정 무료! 지금 신청하세요!</div>
-    </div>
-
-    <!-- 두 번째 랜딩 이미지 -->
-    <img src="KRS_2.png" alt="독해력 무료진단 랜딩페이지" class="landing-image" />
-
     <!-- 신청폼 앵커 -->
     <span id="apply-anchor"></span>
 
-    <!-- Tenping 폼 -->
+    <!-- Tenping 폼 (KRS_1 바로 아래) -->
     <tenping class="adsbytenping" 
       style="width:100%; margin:0 auto; display:block;"
       tenping-ad-type="CInmlFSNPJoo9rBMK%2brlTg%3d%3d"
@@ -293,6 +266,9 @@
       tenping-ad-theme="blue">
     </tenping>
     <script async src="//ads.tenping.kr/scripts/adsbytenping.min.js"></script>   
+
+    <!-- 두 번째 랜딩 이미지 -->
+    <img src="KRS_2.png" alt="독해력 무료진단 랜딩페이지" class="landing-image" />
 
     <!-- 최근 등록 현황 테이블 -->
     <section class="recent-signups" id="recent-signups" aria-label="최근 등록 현황">
@@ -362,10 +338,6 @@
       }
 
       btn.addEventListener('click', scrollToApply);
-
-      // 이미지 사이 "무료 진단받기" CTA도 동일하게 하단 텐핑폼으로 이동
-      const midBtn = document.getElementById('mid-cta-btn');
-      if (midBtn) midBtn.addEventListener('click', scrollToApply);
 
       if ('IntersectionObserver' in window && form) {
         const io = new IntersectionObserver((entries) => {
