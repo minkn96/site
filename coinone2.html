@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111721">
+  <meta name="description" content="코인원 첫 가입 혜택. 비트코인 3만 원 상당 지급 이벤트를 확인하세요.">
+  <title>코인원 첫 가입 혜택 | 비트코인 3만 원</title>
+
+  <style>
+    :root {
+      --ink: #111721;
+      --paper: #f7f8fa;
+      --blue: #3976f6;
+      --muted: #778498;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 30px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Apple SD Gothic Neo", Pretendard, "Noto Sans KR", sans-serif;
+      word-break: keep-all;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    a:focus-visible,
+    summary:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 5px;
+    }
+
+    .wrap { width: 100%; max-width: 1180px; margin: auto; }
+
+    nav {
+      height: 78px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .brand span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 13px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border: 1px solid #dbe0e9;
+      border-radius: 30px;
+      font-size: 10px;
+      color: #7e8795;
+    }
+
+    .hero {
+      padding: 65px 5% 80px;
+      overflow: hidden;
+      background: var(--ink);
+      color: white;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin-bottom: 23px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #8192b2;
+    }
+
+    .hero .eyebrow { color: #93b7ff; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(46px, 5.2vw, 72px);
+      line-height: 1.15;
+      letter-spacing: -4px;
+    }
+
+    h1 em {
+      color: #82acff;
+      font-style: normal;
+    }
+
+    .hero-copy {
+      margin: 25px 0;
+      font-size: 16px;
+      line-height: 1.9;
+      color: #b3bdcc;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      padding: 21px 27px;
+      border-radius: 6px;
+      background: var(--blue);
+      color: white;
+      font-size: 15px;
+      font-weight: 750;
+      transition: transform .2s, background .2s;
+    }
+
+    .cta:hover {
+      background: #245fdb;
+      transform: translateY(-2px);
+    }
+
+    .cta span { font-size: 23px; }
+
+    /* 비트코인 그래픽 */
+    .art {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 440px;
+      perspective: 1000px;
+    }
+
+    .halo {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border: 1px solid #ffffff14;
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 45px #ffffff03,
+        0 0 0 90px #ffffff02;
+    }
+
+    .coin {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 235px;
+      height: 235px;
+      border: 8px solid #eccb8a;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        #fff2c5,
+        #e9b95e 38%,
+        #a86c21 70%,
+        #ffdd8a
+      );
+      box-shadow:
+        9px 12px 0 #9d6c2b,
+        16px 21px 0 #614117,
+        25px 35px 50px #0009;
+      transform: rotate(-18deg) rotateY(-18deg);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .coin::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 2px dashed #9c6b31;
+      border-radius: 50%;
+    }
+
+    .coin b {
+      font-size: 145px;
+      color: #8e591c;
+      text-shadow: 2px 3px 0 #ffe6a7;
+      line-height: 1;
+    }
+
+    .tiny-coin {
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      display: grid;
+      place-items: center;
+      width: 65px;
+      height: 65px;
+      border: 1px solid #597292;
+      border-radius: 50%;
+      background: #28384d;
+      color: #9dc2ff;
+      font-size: 37px;
+      transform: rotate(20deg);
+    }
+
+    .reward {
+      position: absolute;
+      right: -5px;
+      bottom: 24px;
+      width: 285px;
+      padding: 22px 26px;
+      border-radius: 12px;
+      background: linear-gradient(130deg, #ffffffed, #e3eaffe8);
+      color: #162339;
+      box-shadow: 0 16px 50px #0005;
+      backdrop-filter: blur(10px);
+      transform: rotate(-5deg);
+    }
+
+    .reward small {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #66758d;
+    }
+
+    .reward strong {
+      display: block;
+      margin: 8px 0;
+      font-size: 42px;
+      letter-spacing: -2px;
+    }
+
+    .reward strong span {
+      font-size: 15px;
+      letter-spacing: -0.5px;
+    }
+
+    .reward > span {
+      font-size: 11px;
+      color: #70809a;
+    }
+
+    section { padding: 90px 5%; }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(34px, 4.3vw, 53px);
+      line-height: 1.3;
+      letter-spacing: -2.4px;
+    }
+
+    h3 { letter-spacing: -.6px; }
+
+    .section-head { margin-bottom: 38px; }
+
+    .underline {
+      background: linear-gradient(transparent 68%, #d8e5ff 68%);
+    }
+
+    .value-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 40px;
+      border: 1px solid #d4e1fb;
+      border-radius: 14px;
+      background: #e9f0ff;
+    }
+
+    .value-card small {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #6682b0;
+    }
+
+    .value-card strong {
+      margin: 25px 0;
+      color: #2b66d8;
+      font-size: clamp(60px, 7vw, 86px);
+      letter-spacing: -5px;
+      line-height: 1;
+    }
+
+    .value-card strong span {
+      font-size: 25px;
+      letter-spacing: -1px;
+    }
+
+    .value-card p {
+      margin: 0;
+      color: #647797;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .dark {
+      background: #1b2533;
+      color: white;
+    }
+
+    .dark .eyebrow { color: #8ba7ce; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px;
+    }
+
+    .step {
+      padding: 30px 10px 0;
+      border-top: 1px solid #4a5a70;
+    }
+
+    .step > span {
+      font-family: monospace;
+      font-size: 44px;
+      color: #78a8ff;
+    }
+
+    .step h3 {
+      margin: 23px 0 15px;
+      font-size: 24px;
+    }
+
+    .step p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.9;
+      color: #a5b3c7;
+    }
+
+    .emphasis {
+      margin-top: 38px;
+      padding: 19px 24px;
+      border: 1px solid #445d82;
+      border-radius: 7px;
+      background: #28374d;
+      color: #bacdea;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .checklist label {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 23px 0;
+      border-bottom: 1px solid #dce2ea;
+      font-size: 15px;
+      line-height: 1.6;
+      cursor: pointer;
+    }
+
+    .checklist label:first-child { padding-top: 0; }
+
+    .checklist input {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin: 2px 0 0;
+      accent-color: var(--blue);
+    }
+
+    .check-cta {
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    .faq-section { background: #edf1f7; }
+    .faq { max-width: 880px; }
+    .faq h2 { margin-bottom: 35px; }
+
+    details {
+      padding: 24px 0;
+      border-bottom: 1px solid #dce2eb;
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      font-size: 17px;
+      font-weight: 650;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      color: #6185bc;
+      font-size: 23px;
+    }
+
+    details[open] summary::after { content: "−"; }
+
+    details p {
+      margin: 17px 0 0;
+      color: #778397;
+      font-size: 14px;
+      line-height: 1.95;
+    }
+
+    .final {
+      background: #101b2f;
+      color: white;
+    }
+
+    .final-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 45px;
+    }
+
+    .final p {
+      margin: 23px 0 0;
+      color: #91a5c4;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .final .cta { white-space: nowrap; }
+
+    .terms {
+      margin-top: 55px;
+      padding-top: 25px;
+      border-top: 1px solid #30405b;
+      color: #8a94a4;
+      font-size: 11px;
+      line-height: 1.95;
+    }
+
+    .terms a {
+      color: #a9c2ec;
+      text-decoration: underline;
+    }
+
+    footer {
+      padding: 30px 5% 120px;
+      background: #0c1423;
+      color: #6e7b90;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 35px;
+    }
+
+    footer strong { color: #a1b3cf; font-size: 20px; }
+
+    .floating {
+      position: fixed;
+      z-index: 20;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      left: 50%;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      max-width: calc(100% - 20px);
+      padding: 10px 10px 10px 24px;
+      border: 1px solid #d7e1f2;
+      border-radius: 50px;
+      background: #fffffff5;
+      box-shadow: 0 12px 40px #0002;
+      backdrop-filter: blur(12px);
+      transform: translateX(-50%);
+    }
+
+    .floating p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: nowrap;
+    }
+
+    .floating small { color: #8a95a4; font-size: 10px; }
+
+    .floating .cta {
+      gap: 20px;
+      padding: 14px 22px;
+      border-radius: 30px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-12px) rotate(-13deg) rotateY(-13deg);
+      }
+    }
+
+    @media (max-width: 760px) {
+      nav { height: 66px; }
+      .brand { font-size: 21px; }
+      .nav-links > a { display: none; }
+      .tag { font-size: 9px; }
+
+      .hero { padding-top: 40px; padding-bottom: 40px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 5px; }
+      h1 { font-size: 47px; letter-spacing: -2.8px; }
+      .hero-copy { font-size: 14px; }
+      .hero .cta { width: 100%; font-size: 14px; }
+
+      .art { height: 330px; margin-top: 15px; }
+      .coin { width: 190px; height: 190px; }
+      .coin b { font-size: 116px; }
+      .halo { width: 270px; height: 270px; }
+
+      .reward {
+        right: 0;
+        bottom: 6px;
+        width: 230px;
+        padding: 18px 22px;
+      }
+
+      .reward strong { font-size: 35px; }
+
+      .tiny-coin {
+        top: 20px;
+        left: 15px;
+        width: 52px;
+        height: 52px;
+        font-size: 29px;
+      }
+
+      section { padding: 65px 6%; }
+      h2 { font-size: 34px; letter-spacing: -1.6px; }
+      .section-head { margin-bottom: 30px; }
+      .value-card { padding: 28px; }
+      .value-card strong { font-size: 60px; }
+      .value-card strong span { font-size: 21px; }
+      .value-card p { font-size: 14px; }
+
+      .steps { grid-template-columns: 1fr; gap: 32px; }
+
+      .step {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        gap: 10px 18px;
+        padding-top: 22px;
+      }
+
+      .step > span { grid-row: span 2; font-size: 31px; }
+      .step h3 { margin: 0; font-size: 22px; }
+      .step p { font-size: 13px; }
+
+      .split { grid-template-columns: 1fr; gap: 35px; }
+      .checklist label { font-size: 14px; }
+      .check-cta { font-size: 13px; padding: 19px; }
+      summary { font-size: 15px; }
+      details p { font-size: 13px; }
+
+      .final-grid { display: block; }
+      .final .cta { width: 100%; margin-top: 30px; font-size: 14px; }
+      .terms { margin-top: 35px; font-size: 10px; }
+
+      footer .wrap { display: block; }
+      footer p { font-size: 10px; }
+
+      .floating {
+        width: calc(100% - 20px);
+        justify-content: space-between;
+        gap: 10px;
+        padding-left: 17px;
+      }
+
+      .floating p { font-size: 11px; }
+      .floating .cta { gap: 10px; padding: 14px 16px; font-size: 12px; }
+    }
+
+    @media (max-width: 360px) {
+      h1 { font-size: 41px; }
+      h2 { font-size: 30px; }
+      .cta { gap: 15px; }
+      .floating { padding-left: 12px; }
+      .floating .cta { padding: 13px 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a class="brand" href="#">coinone<span>.</span></a>
+
+    <div class="nav-links">
+      <a href="#benefit">신규 혜택</a>
+      <a href="#how">참여 조건</a>
+      <a href="#faq">FAQ</a>
+      <span class="tag">이벤트 소개</span>
+    </div>
+  </nav>
+
+  <main>
+    <!-- 1. 히어로 -->
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">A WELCOME GIFT FOR YOUR FIRST STEP</div>
+
+          <!-- 메인 카피 수정 -->
+          <h1>
+            코인원 신규고객<br>
+            비트코인<br>
+            <em>3만원 즉시 지급.</em>
+          </h1>
+
+          <!-- 서브 카피 수정 -->
+          <p class="hero-copy">
+            최초 가입자를 위한 웰컴 혜택.<br>
+            지금 이벤트 페이지에서 시작하세요.
+          </p>
+
+          <a class="cta event-link" href="https://Ocayn.info/t8gzbw84ty">
+            지금 바로 3만원 받으러가기 <span>↗</span>
+          </a>
+        </div>
+
+        <div
+          class="art"
+          role="img"
+          aria-label="비트코인 3만 원 상당 신규 가입 혜택"
+        >
+          <div class="halo"></div>
+          <div class="tiny-coin">₿</div>
+          <div class="coin"><b>₿</b></div>
+
+          <div class="reward">
+            <small>NEW MEMBER BENEFIT</small>
+            <strong>30,000<span> 원 상당</span></strong>
+            <span>비트코인(BTC) · 신규 가입 시 지급</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. 혜택 -->
+    <section id="benefit">
+      <div class="wrap">
+        <div class="eyebrow">01 / THE WELCOME BENEFIT</div>
+
+        <div class="section-head">
+          <h2>
+            첫 가입 혜택,<br>
+            <span class="underline">비트코인 3만원 지급</span>
+          </h2>
+        </div>
+
+        <div class="value-card">
+          <small>BITCOIN / BTC</small>
+
+          <strong>30,000<span> 원 상당</span></strong>
+
+          <!-- 혜택 설명 수정 -->
+          <p>
+            신규 가입 시 즉시 지급됩니다.<br>
+            이벤트 종료 전 참여해 주세요!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 참여 조건 -->
+    <section class="dark" id="how">
+      <div class="wrap">
+        <div class="eyebrow">02 / HOW TO JOIN</div>
+
+        <div class="section-head">
+          <h2>참여 방법</h2>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <span>01</span>
+            <h3>코인원 앱 설치하기</h3>
+            <p>
+              이 페이지의 참여 링크를 통해<br>
+              앱 설치를 진행해 주세요.
+            </p>
+          </article>
+
+          <article class="step">
+            <span>02</span>
+            <h3>코인원 신규 가입</h3>
+            <p>
+              앱 설치 후 가입해 주세요.<br>
+              최초 가입시<br>
+              비트코인 3만 원 상당이 지급됩니다.
+            </p>
+          </article>
+        </div>
+
+        <div class="emphasis">
+          선착순 마감 or 이벤트 종료 전 참여해 주세요.
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 참여 조건 체크 -->
+    <section id="check">
+      <div class="wrap split">
+        <div>
+          <div class="eyebrow">03 / BEFORE YOU START</div>
+          <h2>참여 조건<br></h2>
+        </div>
+
+        <div>
+          <div class="checklist">
+            <label>
+              <input type="checkbox">
+              <span>코인원 앱을 설치해 주세요.</span>
+            </label>
+
+            <label>
+              <input type="checkbox">
+              <span>코인원에 신규 가입을 진행해 주세요.</span>
+            </label>
+
+            <label>
+              <input type="checkbox">
+              <span>가입 후 코인 지갑을 확인해 주세요.</span>
+            </label>
+
+            <label>
+              <input type="checkbox">
+              <span>3만원 지급 완료.</span>
+            </label>
+          </div>
+
+          <a
+            class="cta event-link check-cta"
+            href="https://Ocayn.info/t8gzbw84ty"
+          >
+            조건 확인하고 이벤트 참여하기 <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="wrap faq">
+        <div class="eyebrow">04 / GOOD TO KNOW</div>
+        <h2>궁금한 점, 먼저 확인하세요.</h2>
+
+        <details>
+          <summary>현금 3만 원을 받는 건가요?</summary>
+          <p>
+            현금이 아닌 3만 원 상당의 비트코인이 지급됩니다.
+            수량 산정 기준과 지급 조건은 이벤트 안내를 확인해 주세요.
+            시세에 따라 지급 시점과 이후 평가금액이 달라질 수 있습니다.
+          </p>
+        </details>
+
+        <details>
+          <summary>언제 지급되나요?</summary>
+          <p>
+            신규 가입시 즉시 3만원이 지갑으로 지급됩니다.
+          </p>
+        </details>
+
+        <details>
+          <summary>다른 신규 가입 이벤트도 함께 받을 수 있나요?</summary>
+          <p>
+            다른 신규 가입 이벤트 혜택과 중복 지급되지 않습니다.
+            자세한 내용은 연결된 이벤트 페이지와 공식 공지를 확인해 주세요.
+          </p>
+        </details>
+
+        <details>
+          <summary>받은 비트코인을 팔거나 출금할 수 있나요?</summary>
+          <p>
+            가능합니다. 즉시 판매할 수도 있고, 계속 소유할 수도 있습니다.
+          </p>
+        </details>
+
+        <details>
+          <summary>여기에 개인정보를 입력해야 하나요?</summary>
+          <p>
+            이 페이지에서는 개인정보를 받지 않습니다.
+            참여 버튼을 누르면 연결된 이벤트 페이지로 이동합니다.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. 마지막 CTA -->
+    <section class="final">
+      <div class="wrap">
+        <div class="final-grid">
+          <div>
+            <div class="eyebrow">YOUR FIRST COINONE BENEFIT</div>
+            <h2>
+              코인원 첫 가입,<br>
+              혜택부터 챙겨보세요.
+            </h2>
+            <p>비트코인 3만 원 상당 · 신규 가입 한정 지급</p>
+          </div>
+
+          <a class="cta event-link" href="https://Ocayn.info/t8gzbw84ty">
+            이벤트 참여하러 가기 <span>↗</span>
+          </a>
+        </div>
+
+        <div class="terms">
+          <b>참여 전 확인사항</b><br>
+          이벤트 일정과 지급 조건은 변경되거나 조기 종료될 수 있습니다.
+          거래 제한·심사 중인 계정, 약관 위반 등은 지급 대상에서 제외될 수 있습니다.
+          세금·점검 시간·기타 세부 조건은
+          <a
+            href="https://coinone.co.kr/info/notice/5700"
+            target="_blank"
+            rel="noopener noreferrer"
+          >공식 공지</a>와 연결된 이벤트 페이지에서 확인하세요.<br>
+          가상자산은 가격 변동으로 손실이 발생할 수 있습니다.
+          이벤트 혜택은 투자 수익이나 자산 가치를 보장하지 않습니다.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>coinone.</strong>
+      <p>
+        코인원 이벤트 소개 페이지 · 코인원 공식 운영 페이지가 아닙니다.<br>
+        가입과 참여는 연결된 이벤트 페이지에서 진행됩니다.<br>
+        이 페이지는 개인정보를 수집하지 않습니다.
+      </p>
+    </div>
+  </footer>
+
+  <!-- 하단 고정 CTA -->
+  <div class="floating">
+    <p>
+      <b>비트코인 3만 원 상당</b><br>
+      <small>신규 가입 시 즉시 지급</small>
+    </p>
+
+    <a class="cta event-link" href="https://Ocayn.info/t8gzbw84ty">
+      3만원 받으러 가기 <span>↗</span>
+    </a>
+  </div>
+
+  <script>
+    // 모든 참여 버튼의 목적지 URL을 여기서 수정하세요.
+    const EVENT_URL = "https://Ocayn.info/t8gzbw84ty";
+
+    document.querySelectorAll(".event-link").forEach((link) => {
+      link.href = EVENT_URL;
+    });
+  </script>
+</body>
+</html>
