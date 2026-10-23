@@ -4,8 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111721">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
   <meta name="description" content="코인원 첫 가입 혜택. 비트코인 3만 원 상당 지급 이벤트를 확인하세요.">
   <title>코인원 첫 가입 혜택 | 비트코인 3만 원</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="코인원 신규가입 이벤트 | 즉시 비트코인 3만원">
+  <meta property="og:description" content="코인원 첫 가입하고 비트코인 3만원 바로 받기">
+  <meta property="og:image" content="https://minkn96.github.io/site/coinone_s.png">
+  <meta property="og:url" content="https://minkn96.github.io/site/coinone.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KN95GTT2');</script>
 
   <style>
     :root {
@@ -19,7 +37,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 30px;
+      scroll-padding-top: 80px;
     }
 
     body {
@@ -35,12 +53,30 @@
 
     a:focus-visible,
     summary:focus-visible,
-    input:focus-visible {
+    input:focus-visible,
+    button:focus-visible {
       outline: 3px solid var(--blue);
       outline-offset: 5px;
     }
 
     .wrap { width: 100%; max-width: 1180px; margin: auto; }
+
+    /* 상단 안내 바 */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 10px 5%;
+      background: var(--ink);
+      border-bottom: 1px solid #ffffff1a;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -.2px;
+      text-align: center;
+    }
+
+    .top-bar strong { color: #82acff; font-weight: 800; }
 
     nav {
       height: 78px;
@@ -503,6 +539,53 @@
       white-space: nowrap;
     }
 
+    /* 지인에게 알려주기 버튼 */
+    .referral-float-btn {
+      position: fixed;
+      z-index: 19;
+      left: 16px;
+      bottom: calc(max(12px, env(safe-area-inset-bottom)) + 82px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 9999px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 16px #11172126;
+      transition: transform .15s;
+    }
+
+    .referral-float-btn:active { transform: translateY(1px); }
+    .referral-float-btn svg { width: 15px; height: 15px; }
+
+    .copy-toast {
+      position: fixed;
+      z-index: 100;
+      left: 50%;
+      top: 50%;
+      width: 90%;
+      max-width: 280px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: #111721f2;
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 8px 24px #0003;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(.9);
+      transition: all .3s ease;
+    }
+
+    .copy-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .copy-toast b { display: block; margin-bottom: 4px; font-size: 14px; }
+    .copy-toast small { font-size: 12px; opacity: .8; line-height: 1.4; }
+
     @keyframes float {
       50% {
         transform: translateY(-12px) rotate(-13deg) rotateY(-13deg);
@@ -510,6 +593,7 @@
     }
 
     @media (max-width: 760px) {
+      .top-bar { font-size: 12px; }
       nav { height: 66px; }
       .brand { font-size: 21px; }
       .nav-links > a { display: none; }
@@ -604,6 +688,14 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN95GTT2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- 상단 안내 바 -->
+  <div class="top-bar" role="status">
+    코인원 신규 가입 이벤트 · <strong>비트코인 3만 원 상당</strong> 신규 가입자 대상
+  </div>
+
   <nav>
     <a class="brand" href="#">coinone<span>.</span></a>
 
@@ -622,14 +714,12 @@
         <div>
           <div class="eyebrow">A WELCOME GIFT FOR YOUR FIRST STEP</div>
 
-          <!-- 메인 카피 수정 -->
           <h1>
             코인원 신규고객<br>
             비트코인<br>
             <em>3만원 즉시 지급.</em>
           </h1>
 
-          <!-- 서브 카피 수정 -->
           <p class="hero-copy">
             최초 가입자를 위한 웰컴 혜택.<br>
             지금 이벤트 페이지에서 시작하세요.
@@ -675,7 +765,6 @@
 
           <strong>30,000<span> 원 상당</span></strong>
 
-          <!-- 혜택 설명 수정 -->
           <p>
             신규 가입 시 즉시 지급됩니다.<br>
             이벤트 종료 전 참여해 주세요!
@@ -684,7 +773,7 @@
       </div>
     </section>
 
-    <!-- 3. 참여 조건 -->
+    <!-- 3. 참여 방법 -->
     <section class="dark" id="how">
       <div class="wrap">
         <div class="eyebrow">02 / HOW TO JOIN</div>
@@ -715,7 +804,7 @@
         </div>
 
         <div class="emphasis">
-          선착순 마감 or 이벤트 종료 전 참여해 주세요.
+          이벤트 종료 전 참여해 주세요.
         </div>
       </div>
     </section>
@@ -854,6 +943,15 @@
     </div>
   </footer>
 
+  <!-- 지인에게 알려주기 -->
+  <button class="referral-float-btn" id="referral-btn" type="button" aria-label="지인에게 알려주기">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+    </svg>
+    지인에게 알려주기
+  </button>
+
   <!-- 하단 고정 CTA -->
   <div class="floating">
     <p>
@@ -866,13 +964,70 @@
     </a>
   </div>
 
+  <div class="copy-toast" id="copy-toast" role="status">
+    <b>추천 링크가 복사되었습니다</b>
+    <small>카톡이나 문자로 지인에게 공유해주세요</small>
+  </div>
+
   <script>
     // 모든 참여 버튼의 목적지 URL을 여기서 수정하세요.
     const EVENT_URL = "https://Ocayn.info/t8gzbw84ty";
 
+    // 지인 추천 공유 링크
+    const REFERRAL_URL = "https://m.site.naver.com/2exIc";
+
+    window.dataLayer = window.dataLayer || [];
+
+    // 참여 버튼: URL 설정 + GTM 전환 이벤트
     document.querySelectorAll(".event-link").forEach((link) => {
       link.href = EVENT_URL;
+      link.addEventListener("click", () => {
+        window.dataLayer.push({
+          event: "signup_cta_click",
+          content_category: "event",
+          content_name: "coinone_new_signup_btc",
+          source: "landing_page"
+        });
+      });
     });
+
+    // 지인에게 알려주기
+    (function () {
+      const btn = document.getElementById("referral-btn");
+      const toast = document.getElementById("copy-toast");
+      if (!btn) return;
+
+      btn.addEventListener("click", () => {
+        window.dataLayer.push({ event: "referral_share_click", source: "landing_page" });
+
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (navigator.share && isMobile) {
+          navigator.share({
+            title: "코인원 신규가입 이벤트",
+            text: "코인원 첫 가입하면 비트코인 3만원 즉시 지급!",
+            url: REFERRAL_URL
+          }).catch(() => {});
+          return;
+        }
+
+        const show = () => {
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 3000);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(REFERRAL_URL).then(show).catch(() => {});
+        } else {
+          const ta = document.createElement("textarea");
+          ta.value = REFERRAL_URL;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          show();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
